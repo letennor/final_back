@@ -1,7 +1,11 @@
 package com.final_back;
 
 import com.final_back.mapper.RolePriMapper;
+import com.final_back.mapper.UserBasicInfoMapper;
+import com.final_back.mapper.UserPasswordInfoMapper;
 import com.final_back.pojo.RolePri;
+import com.final_back.pojo.UserBasicInfo;
+import com.final_back.pojo.UserPasswordInfo;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -10,6 +14,7 @@ import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 @SpringBootTest
@@ -19,9 +24,14 @@ class FinalBackApplicationTests {
     DataSource dataSource;
     @Autowired
     private RolePriMapper rolePriMapper;
+    @Autowired
+    private UserBasicInfoMapper userBasicInfoMapper;
+    @Autowired
+    private UserPasswordInfoMapper userPasswordInfoMapper;
 
     @Test
     void contextLoads() {
+        System.out.println("测试用例");
     }
 
     @Test
@@ -83,6 +93,44 @@ class FinalBackApplicationTests {
         rolePri.setPrivilege_id(123L);
         int insert = rolePriMapper.insert(rolePri);
         System.out.println("insert:" + insert);
+    }
+
+    @Test
+    void insertUserBasicInfo(){
+        UserBasicInfo userBasicInfo = new UserBasicInfo();
+        userBasicInfo.setGender(1);
+        userBasicInfo.setName("王五");
+        userBasicInfo.setAge(32);
+        userBasicInfo.setWorkYear(4);
+        userBasicInfo.setEntryTime(new Date());
+        userBasicInfo.setSalary(4000.0);
+        userBasicInfo.setPhoneNumber("123189102013");
+        userBasicInfo.setEmail("h1231231@123.com");
+        userBasicInfo.setWechat("lala@112");
+        userBasicInfo.setPhoto("user/picture/img");
+        int insert = userBasicInfoMapper.insert(userBasicInfo);
+        System.out.println(insert);
+
+
+    }
+
+    @Test
+    void insertUserPasswordInfo(){
+        UserPasswordInfo userPasswordInfo = new UserPasswordInfo();
+        userPasswordInfo.setUserBasicInfoId(1594580274451607554L);
+        userPasswordInfo.setState(1);
+        userPasswordInfo.setUserName("wangwu");
+        userPasswordInfo.setPassword("hfuiasudhufisahoah");
+        userPasswordInfo.setOrganizationId(1L);
+        int insert = userPasswordInfoMapper.insert(userPasswordInfo);
+        System.out.println(insert);
+    }
+
+    @Test
+    void testXMLSql(){
+        UserBasicInfo userPassword = userBasicInfoMapper.getUserPassword(1594578912879919105L);
+        System.out.println(userPassword);
+
     }
 
 
