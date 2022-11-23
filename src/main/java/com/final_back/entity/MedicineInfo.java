@@ -1,27 +1,25 @@
-package com.final_back.pojo;
+package com.final_back.entity;
+
 
 import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import lombok.Data;
 
 import java.util.Date;
 
 @Data
-public class UserPasswordInfo {
-    @TableId(value = "user_password_info_id", type = IdType.ID_WORKER)
-    private Long UserPasswordInfoId;
+public class MedicineInfo {
+    @JsonSerialize(using = ToStringSerializer.class)
+    @TableId(value = "medicine_id", type = IdType.ID_WORKER)
+    private Long medicineId;
 
-    private Long userBasicInfoId;
+    private String medicineName;
 
-    private Integer state;
-
-    private String userName;
-
-    private String password;
-
-    private Long organizationId;
+    private Double totalAmount;
 
     @TableField(fill = FieldFill.INSERT)
     private Date gmtCreate;

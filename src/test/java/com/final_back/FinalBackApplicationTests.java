@@ -3,9 +3,9 @@ package com.final_back;
 import com.final_back.mapper.RolePriMapper;
 import com.final_back.mapper.UserBasicInfoMapper;
 import com.final_back.mapper.UserPasswordInfoMapper;
-import com.final_back.pojo.RolePri;
-import com.final_back.pojo.UserBasicInfo;
-import com.final_back.pojo.UserPasswordInfo;
+import com.final_back.entity.RolePri;
+import com.final_back.entity.UserBasicInfo;
+import com.final_back.entity.UserPasswordInfo;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -14,7 +14,6 @@ import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 
 @SpringBootTest

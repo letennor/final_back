@@ -1,16 +1,18 @@
-package com.final_back.pojo;
+package com.final_back.entity;
 
 import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import lombok.Data;
 
 import java.util.Date;
 
 @Data
 public class UserBasicInfo {
-
+    @JsonSerialize(using = ToStringSerializer.class)
     @TableId(value = "user_basic_info_id", type = IdType.ID_WORKER)
     private Long userBasicInfoId;
 
@@ -33,12 +35,6 @@ public class UserBasicInfo {
     private String email;
 
     private String photo;
-
-    @TableField(exist = false)
-    private String userName;
-
-    @TableField(exist = false)
-    private String password;
 
     @TableField(fill = FieldFill.INSERT)
     private Date gmtCreate;
