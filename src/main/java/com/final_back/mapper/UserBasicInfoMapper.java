@@ -1,7 +1,7 @@
 package com.final_back.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.final_back.entity.UserBasicInfo;
+import com.final_back.entity.system.UserBasicInfo;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 

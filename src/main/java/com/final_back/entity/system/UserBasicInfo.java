@@ -1,4 +1,4 @@
-package com.final_back.entity;
+package com.final_back.entity.system;
 
 import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.IdType;
@@ -11,21 +11,30 @@ import lombok.Data;
 import java.util.Date;
 
 @Data
-public class UserPasswordInfo {
-    @TableId(value = "user_password_info_id", type = IdType.ID_WORKER)
-    private Long UserPasswordInfoId;
-
+public class UserBasicInfo {
     @JsonSerialize(using = ToStringSerializer.class)
+    @TableId(value = "user_basic_info_id", type = IdType.ID_WORKER)
     private Long userBasicInfoId;
 
-    private Integer state;
+    private Integer gender;
 
-    private String account;
+    private String name;
 
-    private String password;
+    private Integer age;
 
-    @JsonSerialize(using = ToStringSerializer.class)
-    private Long organizationId;
+    private Integer workYear;
+
+    private Date entryTime;
+
+    private Double salary;
+
+    private String phoneNumber;
+
+    private String wechat;
+
+    private String email;
+
+    private String photo;
 
     @TableField(fill = FieldFill.INSERT)
     private Date gmtCreate;

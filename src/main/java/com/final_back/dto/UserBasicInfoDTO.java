@@ -1,6 +1,6 @@
 package com.final_back.dto;
 
-import com.final_back.entity.UserBasicInfo;
+import com.final_back.entity.system.UserBasicInfo;
 import lombok.Data;
 
 @Data

@@ -7,7 +7,7 @@
         where upi.user_basic_info_id = #{userBasicInfoId};
     </select>
 
-    <resultMap id="getUserPasswordMap" type="com.final_back.entity.UserBasicInfo">
+    <resultMap id="getUserPasswordMap" type="com.final_back.entity.system.UserBasicInfo">
         <result property="gender" column="gender"/>
         <result property="name" column="name"/>
         <result property="age" column="age"/>

@@ -1,12 +1,11 @@
-package com.final_back.controller;
+package com.final_back.controller.system;
 
 
 import com.final_back.dto.UserBasicInfoDTO;
-import com.final_back.entity.UserPasswordInfo;
+import com.final_back.entity.system.UserPasswordInfo;
 import com.final_back.mapper.UserBasicInfoMapper;
 import com.final_back.mapper.UserPasswordInfoMapper;
-import com.final_back.entity.UserBasicInfo;
-import com.final_back.utils.common.SnowFlakeGenerateIdWorker;
+import com.final_back.entity.system.UserBasicInfo;
 import com.final_back.utils.result.Result;
 import com.final_back.utils.result.ResultUtil;
 import org.springframework.beans.factory.annotation.Autowired;
