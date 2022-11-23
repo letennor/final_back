@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 public class DeathRecordController {
 
@@ -23,7 +25,12 @@ public class DeathRecordController {
         }else {
             return ResultUtil.success("插入失败");
         }
+    }
 
+    @RequestMapping("/getAllDeathRecord")
+    public Result<?> getAllDeathRecord(){
+        List<DeathRecord> deathRecordList = deathRecordMapper.selectList(null);
+        return ResultUtil.success(deathRecordList);
     }
 
 }
