@@ -1,7 +1,7 @@
 package com.final_back.controller.transport;
 
 import com.final_back.entity.transport.TransportRecord;
-import com.final_back.mapper.TransportRecordMapper;
+import com.final_back.mapper.transport.TransportRecordMapper;
 import com.final_back.utils.result.Result;
 import com.final_back.utils.result.ResultUtil;
 import org.springframework.beans.factory.annotation.Autowired;

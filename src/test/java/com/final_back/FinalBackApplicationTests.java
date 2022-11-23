@@ -1,9 +1,7 @@
 package com.final_back;
 
-import com.final_back.mapper.RolePriMapper;
-import com.final_back.mapper.UserBasicInfoMapper;
-import com.final_back.mapper.UserPasswordInfoMapper;
-import com.final_back.entity.RolePri;
+import com.final_back.mapper.system.UserBasicInfoMapper;
+import com.final_back.mapper.system.UserPasswordInfoMapper;
 import com.final_back.entity.system.UserBasicInfo;
 import com.final_back.entity.system.UserPasswordInfo;
 import org.junit.jupiter.api.Test;

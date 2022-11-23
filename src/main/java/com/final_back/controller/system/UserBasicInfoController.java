@@ -3,8 +3,8 @@ package com.final_back.controller.system;
 
 import com.final_back.dto.UserBasicInfoDTO;
 import com.final_back.entity.system.UserPasswordInfo;
-import com.final_back.mapper.UserBasicInfoMapper;
-import com.final_back.mapper.UserPasswordInfoMapper;
+import com.final_back.mapper.system.UserBasicInfoMapper;
+import com.final_back.mapper.system.UserPasswordInfoMapper;
 import com.final_back.entity.system.UserBasicInfo;
 import com.final_back.utils.result.Result;
 import com.final_back.utils.result.ResultUtil;
