@@ -1,11 +1,10 @@
 package com.final_back.controller.system;
 
-
 import com.final_back.dto.UserBasicInfoDTO;
 import com.final_back.entity.system.UserPasswordInfo;
-import com.final_back.mapper.system.UserBasicInfoMapper;
-import com.final_back.mapper.system.UserPasswordInfoMapper;
 import com.final_back.entity.system.UserBasicInfo;
+import com.final_back.service.system.UserBasicInfoService;
+import com.final_back.service.system.UserPasswordInfoService;
 import com.final_back.utils.result.Result;
 import com.final_back.utils.result.ResultUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,20 +18,21 @@ import java.util.List;
 public class UserBasicInfoController {
 
     @Autowired
-    UserBasicInfoMapper userBasicInfoMapper;
+    UserBasicInfoService userBasicInfoService;
     @Autowired
-    UserPasswordInfoMapper userPasswordInfoMapper;
+    UserPasswordInfoService userPasswordInfoService;
+
 
     @RequestMapping("/addUser")
-    public Result<?> addUser(@RequestBody UserBasicInfoDTO entity) {
+    public Result<?> addUser(@RequestBody UserBasicInfoDTO userBasicInfoDTO) {
 
-        int basicInfoInsert = userBasicInfoMapper.insert(entity);
+        int basicInfoInsert = userBasicInfoService.addUser(userBasicInfoDTO);
+
         UserPasswordInfo userPasswordInfo  = new UserPasswordInfo();
-        userPasswordInfo.setUserBasicInfoId(entity.getUserBasicInfoId());
-        userPasswordInfo.setPassword(entity.getPassword());
-        userPasswordInfo.setAccount(entity.getAccount());
-
-        int userPasswordInsert = userPasswordInfoMapper.insert(userPasswordInfo);
+        userPasswordInfo.setUserBasicInfoId(userBasicInfoDTO.getUserBasicInfoId());
+        userPasswordInfo.setPassword(userBasicInfoDTO.getPassword());
+        userPasswordInfo.setAccount(userBasicInfoDTO.getAccount());
+        int userPasswordInsert = userPasswordInfoService.addUserPasswordInfo(userPasswordInfo);
 
         if (basicInfoInsert > 0 && userPasswordInsert > 0){
             return ResultUtil.success("输入成功");
@@ -43,7 +43,7 @@ public class UserBasicInfoController {
 
     @RequestMapping("/getAllPerson")
     public Result<?> getAllPerson(){
-        List<UserBasicInfo> userBasicInfoList = userBasicInfoMapper.selectList(null);
+        List<UserBasicInfo> userBasicInfoList = userBasicInfoService.getAllPerson();
         return ResultUtil.success(userBasicInfoList);
     }
 

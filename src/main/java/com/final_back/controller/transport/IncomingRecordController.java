@@ -2,6 +2,7 @@ package com.final_back.controller.transport;
 
 import com.final_back.entity.transport.IncomingRecord;
 import com.final_back.mapper.transport.IncomingRecordMapper;
+import com.final_back.service.transport.IncomingRecordService;
 import com.final_back.utils.result.Result;
 import com.final_back.utils.result.ResultUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,11 +14,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class IncomingRecordController {
 
     @Autowired
-    IncomingRecordMapper incomingRecordMapper;
+    IncomingRecordService incomingRecordService;
 
     @RequestMapping("/addIncomingRecord")
     public Result<?> addIncomingRecord(@RequestBody IncomingRecord incomingRecord){
-        int insert = incomingRecordMapper.insert(incomingRecord);
+        int insert = incomingRecordService.addIncomingRecord(incomingRecord);
         if (insert > 0) {
 
             return ResultUtil.success("插入成功");
@@ -25,5 +26,6 @@ public class IncomingRecordController {
             return ResultUtil.success("插入失败");
         }
     }
+
 
 }

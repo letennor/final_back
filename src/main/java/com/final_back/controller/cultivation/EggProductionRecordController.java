@@ -2,6 +2,7 @@ package com.final_back.controller.cultivation;
 
 import com.final_back.entity.cultivation.EggProductionRecord;
 import com.final_back.mapper.cultivation.EggProductionRecordMapper;
+import com.final_back.service.cultivation.EggProductionRecordService;
 import com.final_back.utils.result.Result;
 import com.final_back.utils.result.ResultUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,12 +14,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class EggProductionRecordController {
 
     @Autowired
-    EggProductionRecordMapper eggProductionRecordMapper;
+    EggProductionRecordService eggProductionRecordService;
 
     @RequestMapping("/addEggProductionRecord")
     public Result<?> addEggProductionRecord(@RequestBody EggProductionRecord eggProductionRecord){
-        System.out.println(eggProductionRecord);
-        int insert = eggProductionRecordMapper.insert(eggProductionRecord);
+        int insert = eggProductionRecordService.addEggProductionRecord(eggProductionRecord);
         if (insert > 0){
             return ResultUtil.success("插入成功");
         }else {

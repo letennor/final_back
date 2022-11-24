@@ -1,7 +1,9 @@
 package com.final_back.controller.cultivation;
 
 import com.final_back.entity.cultivation.DeathRecord;
+import com.final_back.entity.maintainInfo.BatchInfo;
 import com.final_back.mapper.cultivation.DeathRecordMapper;
+import com.final_back.service.cultivation.DeathRecordService;
 import com.final_back.utils.result.Result;
 import com.final_back.utils.result.ResultUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,11 +17,11 @@ import java.util.List;
 public class DeathRecordController {
 
     @Autowired
-    DeathRecordMapper deathRecordMapper;
+    DeathRecordService deathRecordService;
 
     @RequestMapping("/addDeathRecord")
     public Result<?> addDeathRecord(@RequestBody DeathRecord deathRecord){
-        int insert = deathRecordMapper.insert(deathRecord);
+        int insert = deathRecordService.addDeathRecord(deathRecord);
         if (insert > 0){
             return ResultUtil.success("插入成功");
         }else {
@@ -29,8 +31,20 @@ public class DeathRecordController {
 
     @RequestMapping("/getAllDeathRecord")
     public Result<?> getAllDeathRecord(){
-        List<DeathRecord> deathRecordList = deathRecordMapper.selectList(null);
-        return ResultUtil.success(deathRecordList);
+        List<DeathRecord> allDeathRecord = deathRecordService.getAllDeathRecord();
+        return ResultUtil.success(allDeathRecord);
+    }
+
+    @RequestMapping("/deleteDeathRecord")
+    public Result<?> deleteDeathRecord(@RequestBody DeathRecord deathRecord){
+        Long deathRecordId = deathRecord.getDeathRecordId();
+        int i = deathRecordService.deleteDeathRecordById(deathRecordId);
+
+        if (i > 0){
+            return ResultUtil.success("删除成功");
+        }else {
+            return ResultUtil.success("删除失败");
+        }
     }
 
 }
