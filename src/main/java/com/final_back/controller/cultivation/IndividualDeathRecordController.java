@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.HashMap;
+import java.util.List;
+
 @RestController
 public class IndividualDeathRecordController {
 
@@ -25,5 +28,26 @@ public class IndividualDeathRecordController {
             return ResultUtil.success("插入失败");
         }
     }
+
+    @RequestMapping("/getAllIndividualDeathRecord")
+    public Result<?> getAllIndividualDeathRecord(){
+        List<IndividualDeathRecord> allIndividualDeathRecord = individualDeathRecordService.getAllIndividualDeathRecord();
+        return ResultUtil.success(allIndividualDeathRecord);
+    }
+
+    @RequestMapping("/deleteIndividualDeathRecord")
+    public Result<?> deleteIndividualDeathRecord(@RequestBody IndividualDeathRecord individualDeathRecord){
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("individual_death_record_id", individualDeathRecord.getIndividualDeathRecordId());
+        int i = individualDeathRecordService.deleteIndividualDeathRecord(map);
+        if (i > 0){
+            return ResultUtil.success("删除成功");
+        }else {
+            return ResultUtil.success("删除失败");
+        }
+
+    }
+
+
 
 }

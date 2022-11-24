@@ -14,7 +14,7 @@ import java.util.Date;
 public class FertilizationRecord {
     @JsonSerialize(using = ToStringSerializer.class)
     @TableId(value = "fertilization_record_id", type = IdType.ID_WORKER)
-    private Long FertilizationRecordId;
+    private Long fertilizationRecordId;
 
     @JsonSerialize(using = ToStringSerializer.class)
     private Long batchId;

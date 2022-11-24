@@ -14,6 +14,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 @RestController
 public class FeedRecordController {
 
@@ -45,6 +49,24 @@ public class FeedRecordController {
             return ResultUtil.success("输入成功");
         }else {
             return ResultUtil.success("输入失败");
+        }
+    }
+
+    @RequestMapping("/getAllFeedRecord")
+    public Result<?> getAllFeedRecord(){
+        List<FeedRecord> allFeedRecord = feedRecordService.getAllFeedRecord();
+        return ResultUtil.success(allFeedRecord);
+    }
+
+    @RequestMapping("/deleteFeedRecord")
+    public Result<?> deleteFeedRecord(@RequestBody FeedRecord feedRecord){
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("feed_record_id", feedRecord.getFeedRecordId());
+        int i = feedRecordService.deleteFeedRecord(map);
+        if (i > 0){
+            return ResultUtil.success("删除成功");
+        }else {
+            return ResultUtil.success("删除失败");
         }
     }
 

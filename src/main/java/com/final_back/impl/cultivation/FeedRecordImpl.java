@@ -8,6 +8,7 @@ import com.final_back.service.cultivation.FeedRecordService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -21,7 +22,12 @@ public class FeedRecordImpl extends ServiceImpl<FeedRecordMapper, FeedRecord> im
     }
 
     @Override
-    public int deleteFeedRecordById(Map<String, Object> map) {
+    public int deleteFeedRecord(Map<String, Object> map) {
         return feedRecordMapper.deleteByMap(map);
+    }
+
+    @Override
+    public List<FeedRecord> getAllFeedRecord() {
+        return feedRecordMapper.selectList(null);
     }
 }

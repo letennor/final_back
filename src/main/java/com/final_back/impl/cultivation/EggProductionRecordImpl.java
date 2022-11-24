@@ -7,6 +7,9 @@ import com.final_back.service.cultivation.EggProductionRecordService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Map;
+
 @Service
 public class EggProductionRecordImpl extends ServiceImpl<EggProductionRecordMapper, EggProductionRecord> implements EggProductionRecordService {
     @Autowired
@@ -15,5 +18,15 @@ public class EggProductionRecordImpl extends ServiceImpl<EggProductionRecordMapp
     @Override
     public int addEggProductionRecord(EggProductionRecord eggProductionRecord) {
         return eggProductionRecordMapper.insert(eggProductionRecord);
+    }
+
+    @Override
+    public List<EggProductionRecord> getAllEggProductionRecord() {
+        return eggProductionRecordMapper.selectList(null);
+    }
+
+    @Override
+    public int deleteEggProductionRecord(Map<String, Object> map) {
+        return eggProductionRecordMapper.deleteByMap(map);
     }
 }

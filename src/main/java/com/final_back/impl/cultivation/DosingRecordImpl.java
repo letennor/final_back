@@ -10,6 +10,9 @@ import com.final_back.utils.result.ResultUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Map;
+
 @Service
 public class DosingRecordImpl extends ServiceImpl<DosingRecordMapper, DosingRecord> implements DosingRecordService {
 
@@ -20,8 +23,16 @@ public class DosingRecordImpl extends ServiceImpl<DosingRecordMapper, DosingReco
 
     @Override
     public int addDosingRecord(DosingRecord dosingRecord) {
-
-
         return dosingRecordMapper.insert(dosingRecord);
+    }
+
+    @Override
+    public List<DosingRecord> getAllDosingRecord() {
+        return dosingRecordMapper.selectList(null);
+    }
+
+    @Override
+    public int deleteDosingRecord(Map<String, Object> map) {
+        return dosingRecordMapper.deleteByMap(map);
     }
 }

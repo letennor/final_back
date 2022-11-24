@@ -3,6 +3,13 @@ package com.final_back.service.cultivation;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.final_back.entity.cultivation.IndividualDeathRecord;
 
+import java.util.List;
+import java.util.Map;
+
 public interface IndividualDeathRecordService extends IService<IndividualDeathRecord> {
     int addIndividualDeathRecord(IndividualDeathRecord individualDeathRecord);
+
+    List<IndividualDeathRecord> getAllIndividualDeathRecord();
+
+    int deleteIndividualDeathRecord(Map<String, Object> map);
 }

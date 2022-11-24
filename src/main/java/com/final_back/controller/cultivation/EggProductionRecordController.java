@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.HashMap;
+import java.util.List;
+
 @RestController
 public class EggProductionRecordController {
 
@@ -17,12 +20,30 @@ public class EggProductionRecordController {
     EggProductionRecordService eggProductionRecordService;
 
     @RequestMapping("/addEggProductionRecord")
-    public Result<?> addEggProductionRecord(@RequestBody EggProductionRecord eggProductionRecord){
+    public Result<?> addEggProductionRecord(@RequestBody EggProductionRecord eggProductionRecord) {
         int insert = eggProductionRecordService.addEggProductionRecord(eggProductionRecord);
-        if (insert > 0){
+        if (insert > 0) {
             return ResultUtil.success("插入成功");
-        }else {
+        } else {
             return ResultUtil.success("插入失败");
+        }
+    }
+
+    @RequestMapping("/getAllEggProductionRecord")
+    public Result<?> getAllEggProductionRecord() {
+        List<EggProductionRecord> allEggProductionRecord = eggProductionRecordService.getAllEggProductionRecord();
+        return ResultUtil.success(allEggProductionRecord);
+    }
+
+    @RequestMapping("/deleteEggProductionRecord")
+    public Result<?> deleteEggProductionRecord(@RequestBody EggProductionRecord eggProductionRecord){
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("egg_production_record_id", eggProductionRecord.getEggProductionRecordId());
+        int i = eggProductionRecordService.deleteEggProductionRecord(map);
+        if (i > 0){
+            return ResultUtil.success("删除成功");
+        }else {
+            return ResultUtil.success("删除失败");
         }
     }
 
