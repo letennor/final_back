@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.HashMap;
 import java.util.List;
 
 @RestController
@@ -37,14 +38,14 @@ public class DeathRecordController {
 
     @RequestMapping("/deleteDeathRecord")
     public Result<?> deleteDeathRecord(@RequestBody DeathRecord deathRecord){
-        Long deathRecordId = deathRecord.getDeathRecordId();
-        int i = deathRecordService.deleteDeathRecordById(deathRecordId);
-
+        int i = deathRecordService.deleteDeathRecordById(deathRecord.getDeathRecordId());
         if (i > 0){
             return ResultUtil.success("删除成功");
         }else {
             return ResultUtil.success("删除失败");
         }
+
     }
+
 
 }

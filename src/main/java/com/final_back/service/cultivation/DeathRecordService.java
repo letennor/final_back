@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.final_back.entity.cultivation.DeathRecord;
 
 import java.util.List;
+import java.util.Map;
 
 public interface DeathRecordService extends IService<DeathRecord> {
 

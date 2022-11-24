@@ -10,7 +10,7 @@ spring:
     type: com.alibaba.druid.pool.DruidDataSource
 
 mybatis-plus:
-  mapper-locations: com/finalback/mapper/xml/*.xml
+  mapper-locations: com/final_back/mapper/xml/**/*.xml
   global-config:
     db-config:
       logic-delete-value: 1

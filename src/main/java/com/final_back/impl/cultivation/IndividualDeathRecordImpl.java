@@ -29,4 +29,15 @@ public class IndividualDeathRecordImpl extends ServiceImpl<IndividualDeathRecord
     public int deleteIndividualDeathRecord(Map<String, Object> map) {
         return individualDeathRecordMapper.deleteByMap(map);
     }
+
+    @Override
+    public List<Long> getIdList(Long deathRecordId, Long recordPerson) {
+        return individualDeathRecordMapper.getIdList(deathRecordId, recordPerson);
+    }
+
+
+    @Override
+    public int deleteIndividualDeathRecordByIdList(List<Long> idList) {
+        return individualDeathRecordMapper.deleteBatchIds(idList);
+    }
 }

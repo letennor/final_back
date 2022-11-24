@@ -11,5 +11,15 @@ public interface IndividualDeathRecordService extends IService<IndividualDeathRe
 
     List<IndividualDeathRecord> getAllIndividualDeathRecord();
 
+
     int deleteIndividualDeathRecord(Map<String, Object> map);
+
+
+    List<Long> getIdList(Long deathRecordId, Long recordPerson);
+
+    int deleteIndividualDeathRecordByIdList(List<Long> idList);
+
+
+
+
 }
