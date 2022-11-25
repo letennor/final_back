@@ -13,6 +13,7 @@ import com.final_back.service.transport.OutputRecordService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Iterator;
 import java.util.List;
 
 @Service
@@ -64,5 +65,24 @@ public class BatchInfoImpl extends ServiceImpl<BatchInfoMapper, BatchInfo> imple
         int i = batchInfoMapper.deleteById(batchId);
 
         return i;
+    }
+
+    @Override
+    public List<Long> getIdList(Long recordPerson) {
+        return batchInfoMapper.getIdList(recordPerson);
+    }
+
+    @Override
+    public int deleteBatchInfoByIdList(List<Long> idList) {
+        if (idList.size() > 0){
+            int i = 0;
+            Iterator iterator = idList.iterator();
+            while (iterator.hasNext()){
+                Long batchId = (Long) iterator.next();
+                i += deleteBatchInfoById(batchId);
+            }
+            return i;
+        }
+        return 0;
     }
 }

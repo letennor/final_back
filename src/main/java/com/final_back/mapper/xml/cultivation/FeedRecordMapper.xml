@@ -3,7 +3,7 @@
 <mapper namespace="com.final_back.mapper.cultivation.FeedRecordMapper">
 
     <select id="getIdList" resultType="java.lang.Long">
-        select * from feed_record
+        select feed_record_id from feed_record
         <where>
             <if test="batchId != null">
                 batch_id = #{batchId}

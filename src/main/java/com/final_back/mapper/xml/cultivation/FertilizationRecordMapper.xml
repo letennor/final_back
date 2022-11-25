@@ -3,7 +3,7 @@
 <mapper namespace="com.final_back.mapper.cultivation.FertilizationRecordMapper">
 
     <select id="getIdList" resultType="java.lang.Long">
-        select * from fertilization_record
+        select fertilization_record_id from fertilization_record
         <where>
             <if test="batchId != null">
                 batch_id = #{batchId}

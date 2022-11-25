@@ -3,7 +3,7 @@
 <mapper namespace="com.final_back.mapper.transport.TransportRecordMapper">
 
     <select id="getIdList" resultType="java.lang.Long">
-        select * from transport_record
+        select transport_record_id from transport_record
         <where>
             <if test="licensePlate != null">
                 license_plate = #{licensePlate}

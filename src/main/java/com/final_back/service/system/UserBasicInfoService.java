@@ -12,4 +12,6 @@ public interface UserBasicInfoService extends IService<UserBasicInfo> {
 
     List<UserBasicInfo> getAllPerson();
 
+    int deleteUserBasicInfoById(Long userBasicinfoId);
+
 }

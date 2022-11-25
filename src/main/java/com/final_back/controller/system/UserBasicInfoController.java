@@ -47,4 +47,14 @@ public class UserBasicInfoController {
         return ResultUtil.success(userBasicInfoList);
     }
 
+    @RequestMapping("/deleteUserBasicInfo")
+    public Result<?> deleteUserBasicInfo(@RequestBody UserBasicInfo userBasicInfo){
+        int i = userBasicInfoService.deleteUserBasicInfoById(userBasicInfo.getUserBasicInfoId());
+        if (i > 0){
+            return ResultUtil.success("删除成功");
+        }else {
+            return ResultUtil.success("删除失败");
+        }
+    }
+
 }

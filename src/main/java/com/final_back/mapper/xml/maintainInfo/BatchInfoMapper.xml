@@ -1,15 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.final_back.mapper.cultivation.IndividualDeathRecordMapper">
+<mapper namespace="com.final_back.mapper.maintainInfo.BatchInfoMapper">
 
     <select id="getIdList" resultType="java.lang.Long">
-        select individual_death_record_id from individual_death_record
+        select batch_id from batch_info
         <where>
-            <if test="deathRecordId != null">
-                death_record_id = #{deathRecordId}
-            </if>
             <if test="recordPerson != null">
-                OR record_person = #{recordPerson}
+                record_person = #{recordPerson}
             </if>
         </where>
     </select>

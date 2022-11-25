@@ -3,7 +3,7 @@
 <mapper namespace="com.final_back.mapper.transport.OutputRecordMapper">
 
     <select id="getIdList" resultType="java.lang.Long">
-        select * from output_record
+        select output_record_id from output_record
         <where>
             <if test="batchId != null">
                 batch_id = #{batchId}

@@ -3,7 +3,7 @@
 <mapper namespace="com.final_back.mapper.cultivation.DeathRecordMapper">
 
     <select id="getIdList" resultType="java.lang.Long">
-        select * from death_record
+        select death_record_id from death_record
         <where>
             <if test="batchId != null">
                 batch_id = #{batchId}

@@ -6,6 +6,8 @@ import com.final_back.mapper.system.UserPasswordInfoMapper;
 import com.final_back.entity.system.UserBasicInfo;
 import com.final_back.entity.system.UserPasswordInfo;
 import com.final_back.service.cultivation.*;
+import com.final_back.service.maintainInfo.BatchInfoService;
+import com.final_back.service.system.UserPasswordInfoService;
 import com.final_back.service.transport.IncomingRecordService;
 import com.final_back.service.transport.OutputRecordService;
 import com.final_back.service.transport.TransportRecordService;
@@ -44,6 +46,10 @@ class FinalBackApplicationTests {
     DeathRecordService deathRecordService;
     @Autowired
     FertilizationRecordService fertilizationRecordService;
+    @Autowired
+    UserPasswordInfoService userPasswordInfoService;
+    @Autowired
+    BatchInfoService batchInfoService;
 
     @Test
     void testDelete() {
@@ -107,6 +113,19 @@ class FinalBackApplicationTests {
     @Test
     void test11(){
         List<Long> idList = fertilizationRecordService.getIdList(null, null, null);
+        System.out.println(idList);
+    }
+
+    @Test
+    void test12(){
+        List<Long> idList = userPasswordInfoService.getIdList(null, null, null, 1L);
+        System.out.println(idList);
+
+    }
+
+    @Test
+    void test13(){
+        List<Long> idList = batchInfoService.getIdList(1594945262135595010L);
         System.out.println(idList);
     }
 
