@@ -9,4 +9,6 @@ public interface BatchInfoService extends IService<BatchInfo> {
     List<BatchInfo> getAllBatch();
 
     int addBatchInfo(BatchInfo batchInfo);
+
+    int deleteBatchInfoById(Long batchId);
 }

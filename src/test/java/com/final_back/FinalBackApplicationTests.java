@@ -5,9 +5,7 @@ import com.final_back.mapper.system.UserBasicInfoMapper;
 import com.final_back.mapper.system.UserPasswordInfoMapper;
 import com.final_back.entity.system.UserBasicInfo;
 import com.final_back.entity.system.UserPasswordInfo;
-import com.final_back.service.cultivation.DosingRecordService;
-import com.final_back.service.cultivation.FeedRecordService;
-import com.final_back.service.cultivation.IndividualDeathRecordService;
+import com.final_back.service.cultivation.*;
 import com.final_back.service.transport.IncomingRecordService;
 import com.final_back.service.transport.OutputRecordService;
 import com.final_back.service.transport.TransportRecordService;
@@ -40,6 +38,12 @@ class FinalBackApplicationTests {
     DosingRecordService dosingRecordService;
     @Autowired
     TransportRecordService transportRecordService;
+    @Autowired
+    EggProductionRecordService eggProductionRecordService;
+    @Autowired
+    DeathRecordService deathRecordService;
+    @Autowired
+    FertilizationRecordService fertilizationRecordService;
 
     @Test
     void testDelete() {
@@ -86,6 +90,24 @@ class FinalBackApplicationTests {
                 null);
         System.out.println(idList);
 
+    }
+
+    @Test
+    void test9(){
+        List<Long> eggProductionRecordIdList = eggProductionRecordService.getIdList(null, null, null);
+        System.out.println(eggProductionRecordIdList);
+    }
+
+    @Test
+    void test10(){
+        List<Long> idList = deathRecordService.getIdList(null, null, 1594944996053143554L);
+        System.out.println(idList);
+    }
+
+    @Test
+    void test11(){
+        List<Long> idList = fertilizationRecordService.getIdList(null, null, null);
+        System.out.println(idList);
     }
 
 }

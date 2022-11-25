@@ -12,4 +12,8 @@ public interface EggProductionRecordService extends IService<EggProductionRecord
     List<EggProductionRecord> getAllEggProductionRecord();
 
     int deleteEggProductionRecord(Map<String, Object> map);
+
+    List<Long> getIdList(Long batchId, Long pickEggPerson, Long recordPerson);
+
+    int deleteEggProductionRecordByIdList(List<Long> idList);
 }

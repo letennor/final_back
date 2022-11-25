@@ -20,6 +20,4 @@ public interface IndividualDeathRecordService extends IService<IndividualDeathRe
     int deleteIndividualDeathRecordByIdList(List<Long> idList);
 
 
-
-
 }

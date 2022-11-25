@@ -23,18 +23,28 @@ public class BatchInfoController {
     BatchInfoService batchInfoService;
 
     @RequestMapping("/getAllBatch")
-    public Result<?> getAllBatch(){
+    public Result<?> getAllBatch() {
         List<BatchInfo> batchInfoList = batchInfoService.getAllBatch();
         return ResultUtil.success(batchInfoList);
     }
 
     @RequestMapping("/addBatchInfo")
-    public Result<?> addBatchInfo(@RequestBody BatchInfo batchInfo){
+    public Result<?> addBatchInfo(@RequestBody BatchInfo batchInfo) {
         int i = batchInfoService.addBatchInfo(batchInfo);
-        if (i > 0){
+        if (i > 0) {
             return ResultUtil.success("插入成功");
-        }else {
+        } else {
             return ResultUtil.success("插入失败");
+        }
+    }
+
+    @RequestMapping("/deleteBatchInfo")
+    public Result<?> deleteBatchInfo(@RequestBody BatchInfo batchInfo) {
+        int i = batchInfoService.deleteBatchInfoById(batchInfo.getBatchId());
+        if (i > 0) {
+            return ResultUtil.success("删除成功");
+        } else {
+            return ResultUtil.success("删除失败");
         }
 
     }

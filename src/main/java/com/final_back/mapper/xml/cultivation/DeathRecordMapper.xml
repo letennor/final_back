@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.final_back.mapper.cultivation.DeathRecordMapper">
+
+    <select id="getIdList" resultType="java.lang.Long">
+        select * from death_record
+        <where>
+            <if test="batchId != null">
+                batch_id = #{batchId}
+            </if>
+            <if test="deathRecordPerson != null">
+                OR death_record_person = #{deathRecordPerson}
+            </if>
+            <if test="recordPerson != null">
+                OR record_person = #{recordPerson}
+            </if>
+        </where>
+    </select>
+
+
+</mapper>

@@ -38,6 +38,9 @@ public class FeedRecordImpl extends ServiceImpl<FeedRecordMapper, FeedRecord> im
 
     @Override
     public int deleteFeedRecordByIdList(List<Long> idList) {
-        return feedRecordMapper.deleteBatchIds(idList);
+        if (idList.size() > 0){
+            return feedRecordMapper.deleteBatchIds(idList);
+        }
+        return 0;
     }
 }

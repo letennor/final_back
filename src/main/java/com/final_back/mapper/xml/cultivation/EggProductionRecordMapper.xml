@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.final_back.mapper.cultivation.EggProductionRecordMapper">
+
+    <select id="getIdList" resultType="java.lang.Long">
+        select * from egg_production_record
+        <where>
+            <if test="batchId != null">
+                batch_id = #{batchId}
+            </if>
+            <if test="pickEggPerson != null">
+                OR pick_egg_person = #{pickEggPerson}
+            </if>
+            <if test="recordPerson != null">
+                OR record_person = #{recordPerson}
+            </if>
+        </where>
+    </select>
+
+
+</mapper>

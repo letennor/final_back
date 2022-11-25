@@ -14,4 +14,8 @@ public interface DeathRecordService extends IService<DeathRecord> {
 
     int deleteDeathRecordById(Long deathRecordId);
 
+    List<Long> getIdList(Long batchId, Long deathRecordPerson, Long recordPerson);
+
+    int deleteDeathRecordByIdList(List<Long> idList);
+
 }

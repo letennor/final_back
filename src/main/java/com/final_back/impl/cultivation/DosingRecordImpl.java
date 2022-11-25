@@ -43,6 +43,9 @@ public class DosingRecordImpl extends ServiceImpl<DosingRecordMapper, DosingReco
 
     @Override
     public int deleteDosingRecordByIdList(List<Long> idList) {
-        return dosingRecordMapper.deleteBatchIds(idList);
+        if (idList.size() > 0){
+            return dosingRecordMapper.deleteBatchIds(idList);
+        }
+        return 0;
     }
 }

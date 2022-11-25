@@ -10,6 +10,7 @@ import com.final_back.service.cultivation.IndividualDeathRecordService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -45,5 +46,30 @@ public class DeathRecordImpl extends ServiceImpl<DeathRecordMapper, DeathRecord>
         deathRecordMapper.deleteById(deathRecordId);
 
         return 1;
+    }
+
+    @Override
+    public List<Long> getIdList(Long batchId, Long deathRecordPerson, Long recordPerson) {
+        return deathRecordMapper.getIdList(batchId, deathRecordPerson, recordPerson);
+    }
+
+    @Override
+    public int deleteDeathRecordByIdList(List<Long> idList) {
+        if (idList.size() > 0){
+            //因为有联表，遍历之后一个个删除
+            int i = 0;
+
+            Iterator iterator = idList.iterator();
+            while (iterator.hasNext()){
+                Long deathRecordId = (Long) iterator.next();
+                i += deleteDeathRecordById(deathRecordId);
+            }
+
+            return i;
+        }
+
+
+
+        return 0;
     }
 }

@@ -29,4 +29,17 @@ public class EggProductionRecordImpl extends ServiceImpl<EggProductionRecordMapp
     public int deleteEggProductionRecord(Map<String, Object> map) {
         return eggProductionRecordMapper.deleteByMap(map);
     }
+
+    @Override
+    public List<Long> getIdList(Long batchId, Long pickEggPerson, Long recordPerson) {
+        return eggProductionRecordMapper.getIdList(batchId, pickEggPerson, recordPerson);
+    }
+
+    @Override
+    public int deleteEggProductionRecordByIdList(List<Long> idList) {
+        if (idList.size() > 0){
+            eggProductionRecordMapper.deleteBatchIds(idList);
+        }
+        return 0;
+    }
 }

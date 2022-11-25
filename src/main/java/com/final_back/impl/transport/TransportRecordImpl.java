@@ -54,14 +54,19 @@ public class TransportRecordImpl extends ServiceImpl<TransportRecordMapper, Tran
 
     @Override
     public int deleteTransportRecordByIdList(List<Long> idList) {
-        //先找出所有的id，然后遍历这些id，然后调用service的接口一个一个删除。因为有联表，所以不能通过deleteBatchIds删除
-        Iterator iterator = idList.iterator();
-        int i = 0;
-        while (iterator.hasNext()){
-            Long transportRecordId = (Long) iterator.next();
-            i += deleteTransportRecordById(transportRecordId);
+        if (idList.size() > 0){
+            //先找出所有的id，然后遍历这些id，然后调用service的接口一个一个删除。因为有联表，所以不能通过deleteBatchIds删除
+            Iterator iterator = idList.iterator();
+            int i = 0;
+            while (iterator.hasNext()){
+                Long transportRecordId = (Long) iterator.next();
+                i += deleteTransportRecordById(transportRecordId);
+            }
+
+            return i;
         }
 
-        return i;
+        return 0;
+
     }
 }

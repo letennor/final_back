@@ -28,4 +28,18 @@ public class FertilizationRecordImpl extends ServiceImpl<FertilizationRecordMapp
     public int deleteFertilizationRecord(Map<String, Object> map) {
         return fertilizationRecordMapper.deleteByMap(map);
     }
+
+    @Override
+    public List<Long> getIdList(Long batchId, Long operatePerson, Long recordPerson) {
+        return fertilizationRecordMapper.getIdList(batchId, operatePerson, recordPerson);
+    }
+
+    @Override
+    public int deleteFertilizationRecordByIdList(List<Long> idList) {
+        if (idList.size() > 0){
+            return fertilizationRecordMapper.deleteBatchIds(idList);
+        }
+
+        return 0;
+    }
 }
