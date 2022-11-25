@@ -26,8 +26,6 @@ public class IncomingRecord {
     @JsonSerialize(using = ToStringSerializer.class)
     private Long transportRecordId;
 
-    @JsonSerialize(using = ToStringSerializer.class)
-    private Long recordPerson;
 
     @JsonSerialize(using = ToStringSerializer.class)
     private Long batchId;

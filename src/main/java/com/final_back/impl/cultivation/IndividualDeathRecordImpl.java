@@ -38,6 +38,11 @@ public class IndividualDeathRecordImpl extends ServiceImpl<IndividualDeathRecord
 
     @Override
     public int deleteIndividualDeathRecordByIdList(List<Long> idList) {
-        return individualDeathRecordMapper.deleteBatchIds(idList);
+        if (idList.size() != 0){
+            return individualDeathRecordMapper.deleteBatchIds(idList);
+        }else {
+            return 0;
+        }
+
     }
 }

@@ -7,6 +7,8 @@ import com.final_back.service.transport.IncomingRecordService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class IncomingRecordImpl extends ServiceImpl<IncomingRecordMapper, IncomingRecord> implements IncomingRecordService {
     @Autowired
@@ -15,5 +17,15 @@ public class IncomingRecordImpl extends ServiceImpl<IncomingRecordMapper, Incomi
     @Override
     public int addIncomingRecord(IncomingRecord incomingRecord) {
         return incomingRecordMapper.insert(incomingRecord);
+    }
+
+    @Override
+    public List<IncomingRecord> getAllIncomingRecord() {
+        return incomingRecordMapper.selectList(null);
+    }
+
+    @Override
+    public int deleteIncomingRecord(IncomingRecord incomingRecord) {
+        return incomingRecordMapper.deleteById(incomingRecord.getIncomingRecordId());
     }
 }

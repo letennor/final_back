@@ -39,6 +39,7 @@ public class DeathRecordImpl extends ServiceImpl<DeathRecordMapper, DeathRecord>
         //先删除最里面的表：个体死亡记录
         //取出个体死亡表的所有id
         //先删掉这个id子表的所有id，再删这个id
+
         List<Long> individualDeathRecordServiceAllId = individualDeathRecordService.getIdList(deathRecordId, null);
         individualDeathRecordService.deleteIndividualDeathRecordByIdList(individualDeathRecordServiceAllId);
         deathRecordMapper.deleteById(deathRecordId);

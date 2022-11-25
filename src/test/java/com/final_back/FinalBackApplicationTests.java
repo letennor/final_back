@@ -35,21 +35,8 @@ class FinalBackApplicationTests {
         map.put("feed_record_id", 1594987064947486721L);
         int i = feedRecordService.deleteFeedRecord(map);
         System.out.println(i);
-
     }
 
-    @Test
-    void test1(){
-        List<Long> allId = individualDeathRecordMapper.getAllId();
-        System.out.println(allId);
-
-    }
-
-    @Test
-    void test2(){
-        List<Long> allId = individualDeathRecordService.getAllId();
-        System.out.println(allId);
-    }
 
     @Test
     void test3(){

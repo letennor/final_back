@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 public class IncomingRecordController {
 
@@ -25,6 +27,23 @@ public class IncomingRecordController {
         }else {
             return ResultUtil.success("插入失败");
         }
+    }
+
+    @RequestMapping("/getAllIncomingRecord")
+    public Result<?> getAllIncomingRecord(){
+        List<IncomingRecord> allIncomingRecord = incomingRecordService.getAllIncomingRecord();
+        return ResultUtil.success(allIncomingRecord);
+    }
+
+    @RequestMapping("/deleteIncomingRecord")
+    public Result<?> deleteIncomingRecord(@RequestBody IncomingRecord incomingRecord){
+        int i = incomingRecordService.deleteIncomingRecord(incomingRecord);
+        if (i > 0){
+            return ResultUtil.success("删除成功");
+        }else {
+            return ResultUtil.success("删除失败");
+        }
+
     }
 
 
