@@ -14,4 +14,8 @@ public interface FeedRecordService extends IService<FeedRecord> {
     List<FeedRecord> getAllFeedRecord();
 
 
+    List<Long> getIdList(Long batchId, Long feedId, Long feedPerson, Long recordPerson);
+
+    int deleteFeedRecordByIdList(List<Long> idList);
+
 }

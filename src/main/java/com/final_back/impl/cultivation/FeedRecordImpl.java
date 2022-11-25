@@ -30,4 +30,14 @@ public class FeedRecordImpl extends ServiceImpl<FeedRecordMapper, FeedRecord> im
     public List<FeedRecord> getAllFeedRecord() {
         return feedRecordMapper.selectList(null);
     }
+
+    @Override
+    public List<Long> getIdList(Long batchId, Long feedId, Long feedPerson, Long recordPerson) {
+        return feedRecordMapper.getIdList(batchId, feedId, feedPerson, recordPerson);
+    }
+
+    @Override
+    public int deleteFeedRecordByIdList(List<Long> idList) {
+        return feedRecordMapper.deleteBatchIds(idList);
+    }
 }

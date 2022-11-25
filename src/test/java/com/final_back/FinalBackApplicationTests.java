@@ -75,9 +75,17 @@ class FinalBackApplicationTests {
     }
 
     @Test
-    void test7(){
+    void test7() {
         List<Long> idList = transportRecordService.getIdList(null, null, null, null);
         System.out.println(idList);
+    }
+
+    @Test
+    void test8() {
+        List<Long> idList = feedRecordService.getIdList(null, null, null,
+                null);
+        System.out.println(idList);
+
     }
 
 }

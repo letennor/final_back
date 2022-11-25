@@ -40,4 +40,14 @@ public class FeedInfoController {
         return ResultUtil.success(feedInfoList);
     }
 
+    @RequestMapping("/deleteFeedInfo")
+    public Result<?> deleteFeedInfo(@RequestBody FeedInfo feedInfo){
+        int i = feedInfoService.deleteFeedInfoById(feedInfo.getFeedId());
+        if (i > 0){
+            return ResultUtil.success("删除成功");
+        }else {
+            return ResultUtil.success("删除失败");
+        }
+    }
+
 }

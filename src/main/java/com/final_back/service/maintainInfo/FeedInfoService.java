@@ -11,6 +11,7 @@ public interface FeedInfoService extends IService<FeedInfo> {
     FeedInfo getFeedInfoById(Long feedId);
 
     int updateFeedInfoById(FeedInfo feedInfo);
-
     List<FeedInfo> getAllFeed();
+
+    int deleteFeedInfoById(Long feedId);
 }
