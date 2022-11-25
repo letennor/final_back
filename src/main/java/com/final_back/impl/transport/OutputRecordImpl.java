@@ -8,6 +8,8 @@ import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class OutputRecordImpl extends ServiceImpl<OutputRecordMapper, OutputRecord> implements OutputRecordService {
     @Autowired
@@ -16,5 +18,15 @@ public class OutputRecordImpl extends ServiceImpl<OutputRecordMapper, OutputReco
     @Override
     public int addOutputRecord(OutputRecord outputRecord) {
         return outputRecordMapper.insert(outputRecord);
+    }
+
+    @Override
+    public List<OutputRecord> getAllOutputRecord() {
+        return outputRecordMapper.selectList(null);
+    }
+
+    @Override
+    public int deleteOutputRecord(OutputRecord outputRecord) {
+        return outputRecordMapper.deleteById(outputRecord.getOutputRecordId());
     }
 }

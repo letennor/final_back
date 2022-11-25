@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 public class OutputRecordController {
 
@@ -25,7 +27,22 @@ public class OutputRecordController {
         }else {
             return ResultUtil.success("插入失败");
         }
+    }
 
+    @RequestMapping("/getAllOutputRecord")
+    public Result<?> getAllOutputRecord(){
+        List<OutputRecord> allOutputRecord = outputRecordService.getAllOutputRecord();
+        return ResultUtil.success(allOutputRecord);
+    }
+
+    @RequestMapping("/deleteOutputRecord")
+    public Result<?> deleteOutputRecord(@RequestBody OutputRecord outputRecord){
+        int i = outputRecordService.deleteOutputRecord(outputRecord);
+        if ( i > 0){
+            return ResultUtil.success("删除成功");
+        }else {
+            return ResultUtil.success("删除失败");
+        }
     }
 
 
