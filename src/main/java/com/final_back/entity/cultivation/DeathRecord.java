@@ -13,7 +13,7 @@ import java.util.Date;
 @Data
 public class DeathRecord {
     @JsonSerialize(using = ToStringSerializer.class)
-    @TableId(value = "death_record_id", type = IdType.ID_WORKER)
+    @TableId(value = "death_record_id", type = IdType.ASSIGN_ID)
     private Long deathRecordId;
 
     @JsonSerialize(using = ToStringSerializer.class)

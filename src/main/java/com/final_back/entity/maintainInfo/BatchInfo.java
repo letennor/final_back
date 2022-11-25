@@ -13,7 +13,7 @@ import java.util.Date;
 @Data
 public class BatchInfo {
     @JsonSerialize(using = ToStringSerializer.class)
-    @TableId(value = "batch_id", type = IdType.ID_WORKER)
+    @TableId(value = "batch_id", type = IdType.ASSIGN_ID)
     private Long batchId;
 
     @JsonSerialize(using = ToStringSerializer.class)

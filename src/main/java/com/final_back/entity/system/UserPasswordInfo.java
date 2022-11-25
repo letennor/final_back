@@ -12,7 +12,7 @@ import java.util.Date;
 
 @Data
 public class UserPasswordInfo {
-    @TableId(value = "user_password_info_id", type = IdType.ID_WORKER)
+    @TableId(value = "user_password_info_id", type = IdType.ASSIGN_ID)
     private Long UserPasswordInfoId;
 
     @JsonSerialize(using = ToStringSerializer.class)

@@ -14,7 +14,7 @@ import java.util.Date;
 @Data
 public class MedicineInfo {
     @JsonSerialize(using = ToStringSerializer.class)
-    @TableId(value = "medicine_id", type = IdType.ID_WORKER)
+    @TableId(value = "medicine_id", type = IdType.ASSIGN_ID)
     private Long medicineId;
 
     private String medicineName;

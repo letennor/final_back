@@ -13,7 +13,7 @@ import java.util.Date;
 @Data
 public class TransportRecord {
     @JsonSerialize(using = ToStringSerializer.class)
-    @TableId(value = "transport_record_id", type = IdType.ID_WORKER)
+    @TableId(value = "transport_record_id", type = IdType.ASSIGN_ID)
     private Long transportRecordId;
 
 

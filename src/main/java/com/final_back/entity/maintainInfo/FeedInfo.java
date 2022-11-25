@@ -13,7 +13,7 @@ import java.util.Date;
 @Data
 public class FeedInfo {
     @JsonSerialize(using = ToStringSerializer.class)
-    @TableId(value = "feed_id", type = IdType.ID_WORKER)
+    @TableId(value = "feed_id", type = IdType.ASSIGN_ID)
     private Long feedId;
 
     private String feedName;

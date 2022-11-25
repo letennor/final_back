@@ -14,7 +14,7 @@ import java.util.Date;
 @Data
 public class GoodsInfo {
     @JsonSerialize(using = ToStringSerializer.class)
-    @TableId(value = "goods_id", type = IdType.ID_WORKER)
+    @TableId(value = "goods_id", type = IdType.ASSIGN_ID)
     private Long goodsId;
 
     private String goodsName;

@@ -15,7 +15,7 @@ import java.util.Date;
 public class IncomingRecord {
 
     @JsonSerialize(using = ToStringSerializer.class)
-    @TableId(value = "incoming_record_id", type = IdType.ID_WORKER)
+    @TableId(value = "incoming_record_id", type = IdType.ASSIGN_ID)
     private Long incomingRecordId;
 
     private Integer incomingAmount;

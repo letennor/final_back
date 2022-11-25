@@ -14,7 +14,7 @@ import java.util.Date;
 public class DosingRecord {
 
     @JsonSerialize(using = ToStringSerializer.class)
-    @TableId(value = "dosing_record_id", type = IdType.ID_WORKER)
+    @TableId(value = "dosing_record_id", type = IdType.ASSIGN_ID)
     private Long dosingRecordId;
 
     private Double dosingAmount;

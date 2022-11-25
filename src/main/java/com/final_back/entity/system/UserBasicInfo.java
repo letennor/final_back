@@ -13,7 +13,7 @@ import java.util.Date;
 @Data
 public class UserBasicInfo {
     @JsonSerialize(using = ToStringSerializer.class)
-    @TableId(value = "user_basic_info_id", type = IdType.ID_WORKER)
+    @TableId(value = "user_basic_info_id", type = IdType.ASSIGN_ID)
     private Long userBasicInfoId;
 
     private Integer gender;

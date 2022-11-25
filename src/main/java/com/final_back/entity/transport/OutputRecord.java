@@ -14,7 +14,7 @@ import java.util.Date;
 public class OutputRecord {
 
     @JsonSerialize(using = ToStringSerializer.class)
-    @TableId(value = "output_record_id", type = IdType.ID_WORKER)
+    @TableId(value = "output_record_id", type = IdType.ASSIGN_ID)
     private Long outputRecordId;
 
     private Integer outputAmount;
