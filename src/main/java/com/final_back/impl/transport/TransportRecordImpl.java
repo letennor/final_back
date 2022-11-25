@@ -7,9 +7,11 @@ import com.final_back.mapper.transport.TransportRecordMapper;
 import com.final_back.service.transport.IncomingRecordService;
 import com.final_back.service.transport.OutputRecordService;
 import com.final_back.service.transport.TransportRecordService;
+import com.sun.jdi.connect.spi.TransportService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Iterator;
 import java.util.List;
 
 @Service
@@ -20,6 +22,7 @@ public class TransportRecordImpl extends ServiceImpl<TransportRecordMapper, Tran
     IncomingRecordService incomingRecordService;
     @Autowired
     OutputRecordService outputRecordService;
+
 
     @Override
     public int addTransportRecord(TransportRecord transportRecord) {
@@ -40,6 +43,24 @@ public class TransportRecordImpl extends ServiceImpl<TransportRecordMapper, Tran
         outputRecordService.deleteOutputRecordByIdList(outputRecordIdList);
 
         int i = transportRecordMapper.deleteById(transportRecordId);
+
+        return i;
+    }
+
+    @Override
+    public List<Long> getIdList(String licensePlate, Long driver, Long goodsId, Long recordPerson) {
+        return transportRecordMapper.getIdList(licensePlate, driver, goodsId, recordPerson);
+    }
+
+    @Override
+    public int deleteTransportRecordByIdList(List<Long> idList) {
+        //先找出所有的id，然后遍历这些id，然后调用service的接口一个一个删除。因为有联表，所以不能通过deleteBatchIds删除
+        Iterator iterator = idList.iterator();
+        int i = 0;
+        while (iterator.hasNext()){
+            Long transportRecordId = (Long) iterator.next();
+            i += deleteTransportRecordById(transportRecordId);
+        }
 
         return i;
     }

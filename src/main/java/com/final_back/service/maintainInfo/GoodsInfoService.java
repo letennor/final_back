@@ -10,4 +10,6 @@ public interface GoodsInfoService extends IService<GoodsInfo> {
 
     int addGoodsInfo(GoodsInfo goodsInfo);
 
+    int deleteGoodsInfoById(Long goodsId);
+
 }

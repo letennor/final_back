@@ -10,6 +10,7 @@ import com.final_back.service.cultivation.FeedRecordService;
 import com.final_back.service.cultivation.IndividualDeathRecordService;
 import com.final_back.service.transport.IncomingRecordService;
 import com.final_back.service.transport.OutputRecordService;
+import com.final_back.service.transport.TransportRecordService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -37,6 +38,8 @@ class FinalBackApplicationTests {
     OutputRecordService outputRecordService;
     @Autowired
     DosingRecordService dosingRecordService;
+    @Autowired
+    TransportRecordService transportRecordService;
 
     @Test
     void testDelete() {
@@ -68,6 +71,12 @@ class FinalBackApplicationTests {
     @Test
     void test6() {
         List<Long> idList = dosingRecordService.getIdList(null, null, null, null);
+        System.out.println(idList);
+    }
+
+    @Test
+    void test7(){
+        List<Long> idList = transportRecordService.getIdList(null, null, null, null);
         System.out.println(idList);
     }
 

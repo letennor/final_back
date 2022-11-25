@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.final_back.mapper.transport.TransportRecordMapper">
+
+    <select id="getIdList" resultType="java.lang.Long">
+        select * from transport_record
+        <where>
+            <if test="licensePlate != null">
+                license_plate = #{licensePlate}
+            </if>
+            <if test="goodsId != null">
+                OR goods_id = #{goodsId}
+            </if>
+            <if test="driver != null">
+                OR driver = #{driver}
+            </if>
+            <if test="recordPerson != null">
+                OR record_person = #{recordPerson}
+            </if>
+        </where>
+    </select>
+
+
+</mapper>

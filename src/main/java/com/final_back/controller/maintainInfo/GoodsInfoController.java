@@ -42,5 +42,15 @@ public class GoodsInfoController {
         }
     }
 
+    @RequestMapping("/deleteGoodsInfo")
+    public Result<?> deleteGoodsInfo(@RequestBody GoodsInfo goodsInfo){
+        int i = goodsInfoService.deleteGoodsInfoById(goodsInfo.getGoodsId());
+        if (i > 0){
+            return ResultUtil.success("删除成功");
+        }else {
+            return ResultUtil.success("删除失败");
+        }
+    }
+
 
 }
