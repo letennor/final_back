@@ -11,4 +11,8 @@ public interface OutputRecordService extends IService<OutputRecord> {
     List<OutputRecord> getAllOutputRecord();
 
     int deleteOutputRecord(OutputRecord outputRecord);
+
+    List<Long> getIdList(Long batchId, Long transportRecordId, Long recordPerson);
+
+    int deleteOutputRecordByIdList(List<Long> idList);
 }

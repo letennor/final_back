@@ -13,4 +13,8 @@ public interface IncomingRecordService extends IService<IncomingRecord> {
     List<IncomingRecord> getAllIncomingRecord();
 
     int deleteIncomingRecord(IncomingRecord incomingRecord);
+
+    List<Long> getIdList(Long batchId, Long goodsId, Long transportRecordId, Long recordPerson);
+
+    int deleteIncomingRecordByIdList(List<Long> idList);
 }

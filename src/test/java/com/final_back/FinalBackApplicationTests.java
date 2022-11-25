@@ -7,6 +7,8 @@ import com.final_back.entity.system.UserBasicInfo;
 import com.final_back.entity.system.UserPasswordInfo;
 import com.final_back.service.cultivation.FeedRecordService;
 import com.final_back.service.cultivation.IndividualDeathRecordService;
+import com.final_back.service.transport.IncomingRecordService;
+import com.final_back.service.transport.OutputRecordService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -28,9 +30,13 @@ class FinalBackApplicationTests {
     IndividualDeathRecordMapper individualDeathRecordMapper;
     @Autowired
     IndividualDeathRecordService individualDeathRecordService;
+    @Autowired
+    IncomingRecordService incomingRecordService;
+    @Autowired
+    OutputRecordService outputRecordService;
 
     @Test
-    void testDelete(){
+    void testDelete() {
         HashMap<String, Object> map = new HashMap<>();
         map.put("feed_record_id", 1594987064947486721L);
         int i = feedRecordService.deleteFeedRecord(map);
@@ -39,8 +45,22 @@ class FinalBackApplicationTests {
 
 
     @Test
-    void test3(){
+    void test3() {
         List<Long> idList = individualDeathRecordService.getIdList(null, null);
         System.out.println(idList);
     }
+
+    @Test
+    void test4() {
+        List<Long> idList = incomingRecordService.getIdList(null, null, null, null);
+        System.out.println(idList);
+    }
+
+    @Test
+    void test5() {
+        List<Long> idList = outputRecordService.getIdList(null
+                , null, null);
+        System.out.println(idList);
+    }
+
 }

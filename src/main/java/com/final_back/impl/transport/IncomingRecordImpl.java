@@ -28,4 +28,17 @@ public class IncomingRecordImpl extends ServiceImpl<IncomingRecordMapper, Incomi
     public int deleteIncomingRecord(IncomingRecord incomingRecord) {
         return incomingRecordMapper.deleteById(incomingRecord.getIncomingRecordId());
     }
+
+    @Override
+    public List<Long> getIdList(Long batchId, Long goodsId, Long transportRecordId, Long recordPerson) {
+        return incomingRecordMapper.getIdList(batchId, goodsId, transportRecordId, recordPerson);
+    }
+
+    @Override
+    public int deleteIncomingRecordByIdList(List<Long> idList) {
+        if (idList.size() > 0){
+            return incomingRecordMapper.deleteBatchIds(idList);
+        }
+        return 0;
+    }
 }

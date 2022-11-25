@@ -33,9 +33,19 @@ public class TransportRecordController {
     }
 
     @RequestMapping("/getAllTransportRecord")
-    public Result<?> getAllTransportRecord(){
+    public Result<?> getAllTransportRecord() {
         List<TransportRecord> transportRecordList = transportRecordService.getAllTransportRecord();
         return ResultUtil.success(transportRecordList);
+    }
+
+    @RequestMapping("/deleteTransportRecord")
+    public Result<?> deleteTransportRecord(@RequestBody TransportRecord transportRecord) {
+        int i = transportRecordService.deleteTransportRecordById(transportRecord.getTransportRecordId());
+        if (i > 0) {
+            return ResultUtil.success("删除成功");
+        } else {
+            return ResultUtil.success("删除失败");
+        }
     }
 
 }

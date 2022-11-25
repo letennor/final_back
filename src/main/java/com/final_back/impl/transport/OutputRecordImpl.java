@@ -29,4 +29,18 @@ public class OutputRecordImpl extends ServiceImpl<OutputRecordMapper, OutputReco
     public int deleteOutputRecord(OutputRecord outputRecord) {
         return outputRecordMapper.deleteById(outputRecord.getOutputRecordId());
     }
+
+    @Override
+    public List<Long> getIdList(Long batchId, Long transportRecordId, Long recordPerson) {
+        return outputRecordMapper.getIdList(batchId, transportRecordId, recordPerson);
+    }
+
+    @Override
+    public int deleteOutputRecordByIdList(List<Long> idList) {
+        if (idList.size() > 0){
+            return outputRecordMapper.deleteBatchIds(idList);
+        }
+
+        return 0;
+    }
 }

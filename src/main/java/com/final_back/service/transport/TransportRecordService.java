@@ -7,6 +7,7 @@ import java.util.List;
 
 public interface TransportRecordService extends IService<TransportRecord> {
     int addTransportRecord(TransportRecord transportRecord);
-
     List<TransportRecord> getAllTransportRecord();
+
+    int deleteTransportRecordById(Long transportRecordId);
 }
