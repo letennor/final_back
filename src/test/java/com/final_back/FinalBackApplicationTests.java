@@ -5,6 +5,7 @@ import com.final_back.mapper.system.UserBasicInfoMapper;
 import com.final_back.mapper.system.UserPasswordInfoMapper;
 import com.final_back.entity.system.UserBasicInfo;
 import com.final_back.entity.system.UserPasswordInfo;
+import com.final_back.service.cultivation.DosingRecordService;
 import com.final_back.service.cultivation.FeedRecordService;
 import com.final_back.service.cultivation.IndividualDeathRecordService;
 import com.final_back.service.transport.IncomingRecordService;
@@ -34,6 +35,8 @@ class FinalBackApplicationTests {
     IncomingRecordService incomingRecordService;
     @Autowired
     OutputRecordService outputRecordService;
+    @Autowired
+    DosingRecordService dosingRecordService;
 
     @Test
     void testDelete() {
@@ -58,8 +61,13 @@ class FinalBackApplicationTests {
 
     @Test
     void test5() {
-        List<Long> idList = outputRecordService.getIdList(null
-                , null, null);
+        List<Long> idList = outputRecordService.getIdList(null, null, null);
+        System.out.println(idList);
+    }
+
+    @Test
+    void test6() {
+        List<Long> idList = dosingRecordService.getIdList(null, null, null, null);
         System.out.println(idList);
     }
 

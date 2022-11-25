@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface BatchInfoService extends IService<BatchInfo> {
     List<BatchInfo> getAllBatch();
+
+    int addBatchInfo(BatchInfo batchInfo);
 }

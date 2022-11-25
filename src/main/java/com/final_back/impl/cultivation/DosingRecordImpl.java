@@ -35,4 +35,14 @@ public class DosingRecordImpl extends ServiceImpl<DosingRecordMapper, DosingReco
     public int deleteDosingRecord(Map<String, Object> map) {
         return dosingRecordMapper.deleteByMap(map);
     }
+
+    @Override
+    public List<Long> getIdList(Long medicineId, Long dosingPerson, Long recordPerson, Long batchId) {
+        return dosingRecordMapper.getIdList(medicineId, dosingPerson, recordPerson, batchId);
+    }
+
+    @Override
+    public int deleteDosingRecordByIdList(List<Long> idList) {
+        return dosingRecordMapper.deleteBatchIds(idList);
+    }
 }

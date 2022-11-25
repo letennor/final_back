@@ -18,4 +18,9 @@ public class BatchInfoImpl extends ServiceImpl<BatchInfoMapper, BatchInfo> imple
     public List<BatchInfo> getAllBatch() {
         return batchInfoMapper.selectList(null);
     }
+
+    @Override
+    public int addBatchInfo(BatchInfo batchInfo) {
+        return batchInfoMapper.insert(batchInfo);
+    }
 }

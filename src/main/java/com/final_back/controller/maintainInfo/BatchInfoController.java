@@ -28,4 +28,15 @@ public class BatchInfoController {
         return ResultUtil.success(batchInfoList);
     }
 
+    @RequestMapping("/addBatchInfo")
+    public Result<?> addBatchInfo(@RequestBody BatchInfo batchInfo){
+        int i = batchInfoService.addBatchInfo(batchInfo);
+        if (i > 0){
+            return ResultUtil.success("插入成功");
+        }else {
+            return ResultUtil.success("插入失败");
+        }
+
+    }
+
 }

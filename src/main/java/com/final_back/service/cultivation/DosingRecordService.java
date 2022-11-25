@@ -15,4 +15,8 @@ public interface DosingRecordService extends IService<DosingRecord> {
 
     int deleteDosingRecord(Map<String, Object> map);
 
+    List<Long> getIdList(Long medicineId, Long dosingPerson, Long recordPerson, Long batchId);
+
+    int deleteDosingRecordByIdList(List<Long> idList);
+
 }

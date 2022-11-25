@@ -38,4 +38,15 @@ public class MedicineInfoController {
         return ResultUtil.success(medicineInfoList);
     }
 
+    @RequestMapping("/deleteMedicineInfo")
+    public Result<?> deleteMedicineInfo(@RequestBody MedicineInfo medicineInfo){
+        int i = medicineInfoService.deleteMedicineInfoById(medicineInfo.getMedicineId());
+        if (i > 0){
+            return ResultUtil.success("删除成功");
+        }else {
+            return ResultUtil.success("删除失败");
+        }
+
+    }
+
 }
