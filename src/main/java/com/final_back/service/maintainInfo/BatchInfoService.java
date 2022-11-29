@@ -15,4 +15,6 @@ public interface BatchInfoService extends IService<BatchInfo> {
     List<Long> getIdList(Long recordPerson);
 
     int deleteBatchInfoByIdList(List<Long> idList);
+
+    int updateBatchInfo(BatchInfo batchInfo);
 }

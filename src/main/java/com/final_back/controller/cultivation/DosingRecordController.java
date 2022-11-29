@@ -35,7 +35,7 @@ public class DosingRecordController {
 
         if (leftAmount >= 0){
             medicineInfo.setTotalAmount(leftAmount);
-            medicineInfoService.updateMedicineInfoById(medicineInfo);
+            medicineInfoService.updateMedicineInfo(medicineInfo);
         }else {
             return ResultUtil.success("余量不足");
         }

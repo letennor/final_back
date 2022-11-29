@@ -30,11 +30,6 @@ public class FeedInfoImpl extends ServiceImpl<FeedInfoMapper, FeedInfo> implemen
     }
 
     @Override
-    public int updateFeedInfoById(FeedInfo feedInfo) {
-        return feedInfoMapper.updateById(feedInfo);
-    }
-
-    @Override
     public List<FeedInfo> getAllFeed() {
         return feedInfoMapper.selectList(null);
     }
@@ -47,5 +42,10 @@ public class FeedInfoImpl extends ServiceImpl<FeedInfoMapper, FeedInfo> implemen
 
         int i = feedInfoMapper.deleteById(feedId);
         return i;
+    }
+
+    @Override
+    public int updateFeedInfo(FeedInfo feedInfo) {
+        return feedInfoMapper.updateById(feedInfo);
     }
 }

@@ -50,4 +50,14 @@ public class FeedInfoController {
         }
     }
 
+    @RequestMapping("/updateFeedInfo")
+    public Result<?> updateFeedInfo(@RequestBody FeedInfo feedInfo){
+        int i = feedInfoService.updateFeedInfo(feedInfo);
+        if (i > 0){
+            return ResultUtil.success("修改成功");
+        }else {
+            return ResultUtil.success("修改失败");
+        }
+    }
+
 }

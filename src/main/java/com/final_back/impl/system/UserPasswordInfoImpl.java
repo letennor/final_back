@@ -18,8 +18,7 @@ public class UserPasswordInfoImpl extends ServiceImpl<UserPasswordInfoMapper, Us
 
     @Override
     public int addUserPasswordInfo(UserPasswordInfo userPasswordInfo) {
-
-        return 0;
+        return userPasswordInfoMapper.insert(userPasswordInfo);
     }
 
     @Override

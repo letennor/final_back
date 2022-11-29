@@ -1,6 +1,7 @@
 package com.final_back.impl.system;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.final_back.dto.UserBasicInfoDTO;
 import com.final_back.entity.system.UserBasicInfo;
 import com.final_back.entity.system.UserPasswordInfo;
 import com.final_back.mapper.system.UserBasicInfoMapper;
@@ -83,5 +84,15 @@ public class UserBasicInfoImpl extends ServiceImpl<UserBasicInfoMapper, UserBasi
 
         return i;
 
+    }
+
+    @Override
+    public int updateUserBasicInfo(UserBasicInfo userBasicInfo) {
+        return userBasicInfoMapper.updateById(userBasicInfo);
+    }
+
+    @Override
+    public List<UserBasicInfoDTO> getAllUserAllInfo() {
+        return userBasicInfoMapper.getAllUserAllInfo();
     }
 }

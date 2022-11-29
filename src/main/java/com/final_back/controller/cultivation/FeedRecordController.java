@@ -38,7 +38,7 @@ public class FeedRecordController {
 
         if (restAmount >= 0){
             feedInfo.setTotalAmount(restAmount);
-            feedInfoService.updateFeedInfoById(feedInfo);
+            feedInfoService.updateFeedInfo(feedInfo);
         }else {
             return ResultUtil.success("用料不足");
         }

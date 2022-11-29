@@ -43,8 +43,8 @@ public class UserBasicInfoController {
 
     @RequestMapping("/getAllPerson")
     public Result<?> getAllPerson(){
-        List<UserBasicInfo> userBasicInfoList = userBasicInfoService.getAllPerson();
-        return ResultUtil.success(userBasicInfoList);
+        List<UserBasicInfoDTO> userBasicInfoDTOList = userBasicInfoService.getAllUserAllInfo();
+        return ResultUtil.success(userBasicInfoDTOList);
     }
 
     @RequestMapping("/deleteUserBasicInfo")
@@ -54,6 +54,16 @@ public class UserBasicInfoController {
             return ResultUtil.success("删除成功");
         }else {
             return ResultUtil.success("删除失败");
+        }
+    }
+
+    @RequestMapping("/updateUserBasicInfo")
+    public Result<?> updateUserBasicInfo(@RequestBody UserBasicInfo userBasicInfo){
+        int i = userBasicInfoService.updateUserBasicInfo(userBasicInfo);
+        if (i > 0){
+            return ResultUtil.success("修改成功");
+        }else {
+            return ResultUtil.success("修改失败");
         }
     }
 

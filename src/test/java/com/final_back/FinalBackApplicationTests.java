@@ -1,5 +1,6 @@
 package com.final_back;
 
+import com.final_back.dto.UserBasicInfoDTO;
 import com.final_back.mapper.cultivation.IndividualDeathRecordMapper;
 import com.final_back.mapper.system.UserBasicInfoMapper;
 import com.final_back.mapper.system.UserPasswordInfoMapper;
@@ -7,6 +8,7 @@ import com.final_back.entity.system.UserBasicInfo;
 import com.final_back.entity.system.UserPasswordInfo;
 import com.final_back.service.cultivation.*;
 import com.final_back.service.maintainInfo.BatchInfoService;
+import com.final_back.service.system.UserBasicInfoService;
 import com.final_back.service.system.UserPasswordInfoService;
 import com.final_back.service.transport.IncomingRecordService;
 import com.final_back.service.transport.OutputRecordService;
@@ -50,6 +52,8 @@ class FinalBackApplicationTests {
     UserPasswordInfoService userPasswordInfoService;
     @Autowired
     BatchInfoService batchInfoService;
+    @Autowired
+    UserBasicInfoService userBasicInfoService;
 
     @Test
     void testDelete() {
@@ -127,6 +131,36 @@ class FinalBackApplicationTests {
     void test13(){
         List<Long> idList = batchInfoService.getIdList(1594945262135595010L);
         System.out.println(idList);
+    }
+
+
+    @Test
+    void test14(){
+        UserBasicInfo userBasicInfo = new UserBasicInfo();
+        userBasicInfo.setUserBasicInfoId(1597035679850520578L);
+        userBasicInfo.setAge(60);
+        int i = userBasicInfoService.updateUserBasicInfo(userBasicInfo);
+        System.out.println(i);
+    }
+
+    @Test
+    void test15(){
+        List<UserBasicInfo> allPerson = userBasicInfoService.getAllPerson();
+        Iterator iterator = allPerson.iterator();
+
+        while (iterator.hasNext()){
+            System.out.println(iterator.next());
+        }
+    }
+
+    @Test
+    void test16(){
+        List<UserBasicInfoDTO> allUserAllInfo = userBasicInfoService.getAllUserAllInfo();
+        Iterator iterator = allUserAllInfo.iterator();
+        while (iterator.hasNext()){
+            UserBasicInfoDTO userBasicInfoDTO = (UserBasicInfoDTO) iterator.next();
+            System.out.println(userBasicInfoDTO.getUserBasicInfoId());
+        }
     }
 
 }

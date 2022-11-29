@@ -12,4 +12,5 @@ public interface GoodsInfoService extends IService<GoodsInfo> {
 
     int deleteGoodsInfoById(Long goodsId);
 
+    int updateGoodsInfo(GoodsInfo goodsInfo);
 }

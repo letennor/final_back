@@ -85,4 +85,9 @@ public class BatchInfoImpl extends ServiceImpl<BatchInfoMapper, BatchInfo> imple
         }
         return 0;
     }
+
+    @Override
+    public int updateBatchInfo(BatchInfo batchInfo) {
+        return batchInfoMapper.updateById(batchInfo);
+    }
 }

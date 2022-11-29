@@ -8,6 +8,9 @@ spring:
     url: jdbc:p6spy:mysql://localhost:3306/mysql_test?useSSL=false&useUnicode=true&characterEncoding=utf-8&serverTimezone=GMT%2B8
     driver-class-name: com.p6spy.engine.spy.P6SpyDriver
     type: com.alibaba.druid.pool.DruidDataSource
+  jackson:
+    serialization:
+      write-dates-as-timestamps: true
 
 mybatis-plus:
   mapper-locations: com/final_back/mapper/xml/**/*.xml

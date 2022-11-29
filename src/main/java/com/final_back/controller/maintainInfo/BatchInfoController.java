@@ -46,7 +46,16 @@ public class BatchInfoController {
         } else {
             return ResultUtil.success("删除失败");
         }
+    }
 
+    @RequestMapping("/updateBatchInfo")
+    public Result<?> updateBatchInfo(@RequestBody BatchInfo batchInfo){
+        int i = batchInfoService.updateBatchInfo(batchInfo);
+        if (i > 0) {
+            return ResultUtil.success("修改成功");
+        } else {
+            return ResultUtil.success("修改失败");
+        }
     }
 
 }

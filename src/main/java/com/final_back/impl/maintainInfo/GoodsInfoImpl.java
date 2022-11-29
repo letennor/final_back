@@ -44,5 +44,10 @@ public class GoodsInfoImpl extends ServiceImpl<GoodsInfoMapper, GoodsInfo> imple
         return i;
     }
 
+    @Override
+    public int updateGoodsInfo(GoodsInfo goodsInfo) {
+        return goodsInfoMapper.updateById(goodsInfo);
+    }
+
 
 }

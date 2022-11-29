@@ -25,11 +25,6 @@ public class MedicineInfoImpl extends ServiceImpl<MedicineInfoMapper, MedicineIn
     }
 
     @Override
-    public int updateMedicineInfoById(MedicineInfo medicineInfo) {
-        return medicineInfoMapper.updateById(medicineInfo);
-    }
-
-    @Override
     public List<MedicineInfo> getAllMedicine() {
         return medicineInfoMapper.selectList(null);
     }
@@ -48,6 +43,10 @@ public class MedicineInfoImpl extends ServiceImpl<MedicineInfoMapper, MedicineIn
         return i;
     }
 
+    @Override
+    public int updateMedicineInfo(MedicineInfo medicineInfo) {
+        return medicineInfoMapper.updateById(medicineInfo);
+    }
 
 
 }

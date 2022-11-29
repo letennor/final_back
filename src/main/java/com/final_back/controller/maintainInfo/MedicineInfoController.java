@@ -49,4 +49,14 @@ public class MedicineInfoController {
 
     }
 
+    @RequestMapping("/updateMedicineInfo")
+    public Result<?> updateMedicineInfo(@RequestBody MedicineInfo medicineInfo){
+        int i = medicineInfoService.updateMedicineInfo(medicineInfo);
+        if (i > 0){
+            return ResultUtil.success("修改成功");
+        }else {
+            return ResultUtil.success("修改失败");
+        }
+    }
+
 }

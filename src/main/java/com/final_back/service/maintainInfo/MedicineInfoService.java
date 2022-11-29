@@ -8,13 +8,11 @@ import java.util.List;
 public interface MedicineInfoService extends IService<MedicineInfo> {
     MedicineInfo getMedicineInfoById(Long medicineId);
 
-    int updateMedicineInfoById(MedicineInfo medicineInfo);
-
     List<MedicineInfo> getAllMedicine();
 
     int addMedicineInfo(MedicineInfo medicineInfo);
 
     int deleteMedicineInfoById(Long medicineId);
 
-
+    int updateMedicineInfo(MedicineInfo medicineInfo);
 }

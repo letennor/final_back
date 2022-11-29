@@ -3,7 +3,9 @@
 <mapper namespace="com.final_back.mapper.system.UserBasicInfoMapper">
 
     <select id="getUserPassword" resultMap="getUserPasswordMap">
-        select gender, name, age, work_year from user_basic_info join user_password_info upi on user_basic_info.user_basic_info_id = upi.user_basic_info_id
+        select gender, name, age, work_year
+        from user_basic_info
+                 join user_password_info upi on user_basic_info.user_basic_info_id = upi.user_basic_info_id
         where upi.user_basic_info_id = #{userBasicInfoId};
     </select>
 
@@ -13,5 +15,27 @@
         <result property="age" column="age"/>
         <result property="workYear" column="work_year"/>
     </resultMap>
+
+
+    <select id="getAllUserAllInfo" resultType="com.final_back.dto.UserBasicInfoDTO">
+        select upi.user_basic_info_id,
+               gender,
+               name,
+               gender,
+               age,
+               work_year,
+               entry_time,
+               salary,
+               phone_number,
+               wechat,
+               email,
+               user_password_info_id,
+               state,
+               account,
+               password,
+               organization_id
+        from user_basic_info
+                 join user_password_info upi on user_basic_info.user_basic_info_id = upi.user_basic_info_id;
+    </select>
 
 </mapper>
