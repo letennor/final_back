@@ -42,4 +42,9 @@ public class EggProductionRecordImpl extends ServiceImpl<EggProductionRecordMapp
         }
         return 0;
     }
+
+    @Override
+    public int updateEggProductionRecord(EggProductionRecord eggProductionRecord) {
+        return eggProductionRecordMapper.updateById(eggProductionRecord);
+    }
 }

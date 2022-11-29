@@ -45,7 +45,16 @@ public class FertilizationRecordController {
         }else {
             return ResultUtil.success("删除失败");
         }
+    }
 
+    @RequestMapping("/updateFertilizationRecord")
+    public Result<?> updateFertilizationRecord(@RequestBody FertilizationRecord fertilizationRecord){
+        int i = fertilizationRecordService.updateFertilizationRecord(fertilizationRecord);
+        if (i > 0){
+            return ResultUtil.success("修改成功");
+        }else {
+            return ResultUtil.success("修改失败");
+        }
     }
 
 }

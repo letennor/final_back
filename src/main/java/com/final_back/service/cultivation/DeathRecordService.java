@@ -18,4 +18,6 @@ public interface DeathRecordService extends IService<DeathRecord> {
 
     int deleteDeathRecordByIdList(List<Long> idList);
 
+    int updateDeathRecord(DeathRecord deathRecord);
+
 }

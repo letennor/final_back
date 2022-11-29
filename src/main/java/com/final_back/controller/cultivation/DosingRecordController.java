@@ -26,46 +26,54 @@ public class DosingRecordController {
     MedicineInfoService medicineInfoService;
 
     @RequestMapping("/addDosingRecord")
-    public Result<?> addDosingRecord(@RequestBody DosingRecord dosingRecord){
+    public Result<?> addDosingRecord(@RequestBody DosingRecord dosingRecord) {
 
         Double dosingAmount = dosingRecord.getDosingAmount();
         Long medicineId = dosingRecord.getMedicineId();
         MedicineInfo medicineInfo = medicineInfoService.getMedicineInfoById(medicineId);
         Double leftAmount = medicineInfo.getTotalAmount() - dosingAmount;
 
-        if (leftAmount >= 0){
+        if (leftAmount >= 0) {
             medicineInfo.setTotalAmount(leftAmount);
             medicineInfoService.updateMedicineInfo(medicineInfo);
-        }else {
+        } else {
             return ResultUtil.success("余量不足");
         }
 
         int insert = dosingRecordService.addDosingRecord(dosingRecord);
 
-        if (insert > 0){
+        if (insert > 0) {
             return ResultUtil.success("插入成功");
-        }else {
+        } else {
             return ResultUtil.success("插入失败");
         }
     }
 
     @RequestMapping("/getAllDosingRecord")
-    public Result<?> getAllDosingRecord(){
+    public Result<?> getAllDosingRecord() {
         List<DosingRecord> allDosingRecord = dosingRecordService.getAllDosingRecord();
         return ResultUtil.success(allDosingRecord);
     }
 
     @RequestMapping("/deleteDosingRecord")
-    public Result<?> deleteDosingRecord(@RequestBody DosingRecord dosingRecord){
+    public Result<?> deleteDosingRecord(@RequestBody DosingRecord dosingRecord) {
         HashMap<String, Object> map = new HashMap<>();
         map.put("dosing_record_id", dosingRecord.getDosingRecordId());
         int i = dosingRecordService.deleteDosingRecord(map);
-        if (i > 0){
+        if (i > 0) {
             return ResultUtil.success("删除成功");
-        }else {
+        } else {
             return ResultUtil.success("删除失败");
         }
     }
 
-
+    @RequestMapping("/updateDosingRecord")
+    public Result<?> updateDosingRecord(@RequestBody DosingRecord dosingRecord) {
+        int i = dosingRecordService.updateDosingRecord(dosingRecord);
+        if (i > 0) {
+            return ResultUtil.success("修改成功");
+        } else {
+            return ResultUtil.success("修改失败");
+        }
+    }
 }

@@ -45,4 +45,9 @@ public class IndividualDeathRecordImpl extends ServiceImpl<IndividualDeathRecord
         }
 
     }
+
+    @Override
+    public int updateIndividualDeathRecord(IndividualDeathRecord individualDeathRecord) {
+        return individualDeathRecordMapper.updateById(individualDeathRecord);
+    }
 }

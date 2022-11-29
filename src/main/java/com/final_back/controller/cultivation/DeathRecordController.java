@@ -44,7 +44,16 @@ public class DeathRecordController {
         }else {
             return ResultUtil.success("删除失败");
         }
+    }
 
+    @RequestMapping("/updateDeathRecord")
+    public Result<?> updateDeathRecord(@RequestBody DeathRecord deathRecord){
+        int i = deathRecordService.updateDeathRecord(deathRecord);
+        if (i > 0){
+            return ResultUtil.success("修改成功");
+        }else {
+            return ResultUtil.success("修改失败");
+        }
     }
 
 

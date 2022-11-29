@@ -19,4 +19,5 @@ public interface DosingRecordService extends IService<DosingRecord> {
 
     int deleteDosingRecordByIdList(List<Long> idList);
 
+    int updateDosingRecord(DosingRecord dosingRecord);
 }

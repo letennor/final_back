@@ -47,4 +47,14 @@ public class EggProductionRecordController {
         }
     }
 
+    @RequestMapping("/updateEggProductionRecord")
+    public Result<?> updateEggProductionRecord(@RequestBody EggProductionRecord eggProductionRecord){
+        int i = eggProductionRecordService.updateEggProductionRecord(eggProductionRecord);
+        if (i > 0){
+            return ResultUtil.success("修改成功");
+        }else {
+            return ResultUtil.success("修改失败");
+        }
+    }
+
 }

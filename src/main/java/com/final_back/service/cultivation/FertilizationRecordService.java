@@ -16,4 +16,6 @@ public interface FertilizationRecordService extends IService<FertilizationRecord
     List<Long> getIdList(Long batchId, Long operatePerson, Long recordPerson);
 
     int deleteFertilizationRecordByIdList(List<Long> idList);
+
+    int updateFertilizationRecord(FertilizationRecord fertilizationRecord);
 }

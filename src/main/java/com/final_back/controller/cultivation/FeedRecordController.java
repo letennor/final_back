@@ -70,5 +70,14 @@ public class FeedRecordController {
         }
     }
 
+    @RequestMapping("/updateFeedRecord")
+    public Result<?> updateFeedRecord(@RequestBody FeedRecord feedRecord){
+        int i = feedRecordService.updateFeedRecord(feedRecord);
+        if (i > 0){
+            return ResultUtil.success("修改成功");
+        }else {
+            return ResultUtil.success("修改失败");
+        }
+    }
 
 }

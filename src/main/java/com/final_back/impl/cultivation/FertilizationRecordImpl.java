@@ -42,4 +42,9 @@ public class FertilizationRecordImpl extends ServiceImpl<FertilizationRecordMapp
 
         return 0;
     }
+
+    @Override
+    public int updateFertilizationRecord(FertilizationRecord fertilizationRecord) {
+        return fertilizationRecordMapper.updateById(fertilizationRecord);
+    }
 }

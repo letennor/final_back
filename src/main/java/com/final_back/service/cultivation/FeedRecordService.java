@@ -18,4 +18,5 @@ public interface FeedRecordService extends IService<FeedRecord> {
 
     int deleteFeedRecordByIdList(List<Long> idList);
 
+    int updateFeedRecord(FeedRecord feedRecord);
 }

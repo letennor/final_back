@@ -48,4 +48,9 @@ public class DosingRecordImpl extends ServiceImpl<DosingRecordMapper, DosingReco
         }
         return 0;
     }
+
+    @Override
+    public int updateDosingRecord(DosingRecord dosingRecord) {
+        return dosingRecordMapper.updateById(dosingRecord);
+    }
 }

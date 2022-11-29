@@ -43,4 +43,9 @@ public class FeedRecordImpl extends ServiceImpl<FeedRecordMapper, FeedRecord> im
         }
         return 0;
     }
+
+    @Override
+    public int updateFeedRecord(FeedRecord feedRecord) {
+        return feedRecordMapper.updateById(feedRecord);
+    }
 }

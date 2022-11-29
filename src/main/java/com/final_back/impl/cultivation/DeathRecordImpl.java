@@ -64,12 +64,13 @@ public class DeathRecordImpl extends ServiceImpl<DeathRecordMapper, DeathRecord>
                 Long deathRecordId = (Long) iterator.next();
                 i += deleteDeathRecordById(deathRecordId);
             }
-
             return i;
         }
-
-
-
         return 0;
+    }
+
+    @Override
+    public int updateDeathRecord(DeathRecord deathRecord) {
+        return deathRecordMapper.updateById(deathRecord);
     }
 }
