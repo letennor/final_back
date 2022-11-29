@@ -14,4 +14,6 @@ public interface TransportRecordService extends IService<TransportRecord> {
     List<Long> getIdList(String licensePlate, Long driver, Long goodsId, Long recordPerson);
 
     int deleteTransportRecordByIdList(List<Long> idList);
+
+    int updateTransportRecord(TransportRecord transportRecord);
 }

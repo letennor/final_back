@@ -48,4 +48,14 @@ public class TransportRecordController {
         }
     }
 
+    @RequestMapping("/updateTransportRecord")
+    public Result<?> updateTransportRecord(@RequestBody TransportRecord transportRecord){
+        int i = transportRecordService.updateTransportRecord(transportRecord);
+        if (i > 0) {
+            return ResultUtil.success("修改成功");
+        } else {
+            return ResultUtil.success("修改失败");
+        }
+    }
+
 }

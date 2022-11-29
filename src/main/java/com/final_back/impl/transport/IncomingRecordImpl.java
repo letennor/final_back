@@ -41,4 +41,9 @@ public class IncomingRecordImpl extends ServiceImpl<IncomingRecordMapper, Incomi
         }
         return 0;
     }
+
+    @Override
+    public int updateIncomingRecord(IncomingRecord incomingRecord) {
+        return incomingRecordMapper.updateById(incomingRecord);
+    }
 }

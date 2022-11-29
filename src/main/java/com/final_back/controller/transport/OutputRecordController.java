@@ -45,5 +45,14 @@ public class OutputRecordController {
         }
     }
 
+    @RequestMapping("/updateOutputRecord")
+    public Result<?> updateOutputRecord(@RequestBody OutputRecord outputRecord){
+        int i = outputRecordService.updateOutputRecord(outputRecord);
+        if ( i > 0){
+            return ResultUtil.success("修改成功");
+        }else {
+            return ResultUtil.success("修改失败");
+        }
+    }
 
 }

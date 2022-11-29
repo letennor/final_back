@@ -43,4 +43,9 @@ public class OutputRecordImpl extends ServiceImpl<OutputRecordMapper, OutputReco
 
         return 0;
     }
+
+    @Override
+    public int updateOutputRecord(OutputRecord outputRecord) {
+        return outputRecordMapper.updateById(outputRecord);
+    }
 }

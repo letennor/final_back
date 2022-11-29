@@ -43,7 +43,16 @@ public class IncomingRecordController {
         }else {
             return ResultUtil.success("删除失败");
         }
+    }
 
+    @RequestMapping("/updateIncomingRecord")
+    public Result<?> updateIncomingRecord(@RequestBody IncomingRecord incomingRecord){
+        int i = incomingRecordService.updateIncomingRecord(incomingRecord);
+        if (i > 0){
+            return ResultUtil.success("修改成功");
+        }else {
+            return ResultUtil.success("修改失败");
+        }
     }
 
 

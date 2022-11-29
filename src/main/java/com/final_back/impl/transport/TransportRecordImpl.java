@@ -69,4 +69,9 @@ public class TransportRecordImpl extends ServiceImpl<TransportRecordMapper, Tran
         return 0;
 
     }
+
+    @Override
+    public int updateTransportRecord(TransportRecord transportRecord) {
+        return transportRecordMapper.updateById(transportRecord);
+    }
 }
