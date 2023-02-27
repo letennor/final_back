@@ -11,6 +11,7 @@ import com.sun.jdi.connect.spi.TransportService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
@@ -73,5 +74,22 @@ public class TransportRecordImpl extends ServiceImpl<TransportRecordMapper, Tran
     @Override
     public int updateTransportRecord(TransportRecord transportRecord) {
         return transportRecordMapper.updateById(transportRecord);
+    }
+
+    /**
+     * 通过条件返回运输记录
+     * @param transportRoute
+     * @param license
+     * @param driver
+     * @param recordPerson
+     * @param recordStartDate
+     * @param recordEndDate
+     * @return
+     */
+    @Override
+    public List<TransportRecord> getTransportRecordByCondition(Long transportRoute, String license, Long driver,
+                                                               Long recordPerson, Date recordStartDate,
+                                                               Date recordEndDate) {
+        return null;
     }
 }

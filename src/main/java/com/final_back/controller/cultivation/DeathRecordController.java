@@ -1,5 +1,6 @@
 package com.final_back.controller.cultivation;
 
+import com.alibaba.fastjson.JSONObject;
 import com.final_back.entity.cultivation.DeathRecord;
 import com.final_back.entity.maintainInfo.BatchInfo;
 import com.final_back.mapper.cultivation.DeathRecordMapper;
@@ -20,6 +21,11 @@ public class DeathRecordController {
     @Autowired
     DeathRecordService deathRecordService;
 
+    /**
+     * 添加死亡记录
+     * @param deathRecord
+     * @return
+     */
     @RequestMapping("/addDeathRecord")
     public Result<?> addDeathRecord(@RequestBody DeathRecord deathRecord){
         int insert = deathRecordService.addDeathRecord(deathRecord);
@@ -30,12 +36,21 @@ public class DeathRecordController {
         }
     }
 
+    /**
+     * 取得所有死亡记录
+     * @return
+     */
     @RequestMapping("/getAllDeathRecord")
     public Result<?> getAllDeathRecord(){
         List<DeathRecord> allDeathRecord = deathRecordService.getAllDeathRecord();
         return ResultUtil.success(allDeathRecord);
     }
 
+    /**
+     * 删除死亡记录
+     * @param deathRecord
+     * @return
+     */
     @RequestMapping("/deleteDeathRecord")
     public Result<?> deleteDeathRecord(@RequestBody DeathRecord deathRecord){
         int i = deathRecordService.deleteDeathRecordById(deathRecord.getDeathRecordId());
@@ -46,6 +61,11 @@ public class DeathRecordController {
         }
     }
 
+    /**
+     * 更新死亡记录
+     * @param deathRecord
+     * @return
+     */
     @RequestMapping("/updateDeathRecord")
     public Result<?> updateDeathRecord(@RequestBody DeathRecord deathRecord){
         int i = deathRecordService.updateDeathRecord(deathRecord);
@@ -54,6 +74,16 @@ public class DeathRecordController {
         }else {
             return ResultUtil.success("修改失败");
         }
+    }
+
+    /**
+     * 通过查询条件获取死亡记录
+     * @param jsonObject
+     * @return
+     */
+    @RequestMapping("/getDeathRecordByCondition")
+    public Result<?> getDeathRecordByCondition(@RequestBody JSONObject jsonObject){
+        return null;
     }
 
 

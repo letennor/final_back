@@ -3,6 +3,7 @@ package com.final_back.service.cultivation;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.final_back.entity.cultivation.FertilizationRecord;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -18,4 +19,6 @@ public interface FertilizationRecordService extends IService<FertilizationRecord
     int deleteFertilizationRecordByIdList(List<Long> idList);
 
     int updateFertilizationRecord(FertilizationRecord fertilizationRecord);
+
+    List<FertilizationRecord> getFertilizationRecordByCondition(Long batchId, Date fertilizationRecordStartDate, Date fertilizationRecordEndDate, Long operatePerson, Long recordPerson, Date recordStartDate, Date recordEndDate);
 }

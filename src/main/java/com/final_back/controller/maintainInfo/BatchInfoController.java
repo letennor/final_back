@@ -22,12 +22,21 @@ public class BatchInfoController {
     @Autowired
     BatchInfoService batchInfoService;
 
+    /**
+     * 取得所有批次信息
+     * @return
+     */
     @RequestMapping("/getAllBatch")
     public Result<?> getAllBatch() {
         List<BatchInfo> batchInfoList = batchInfoService.getAllBatch();
         return ResultUtil.success(batchInfoList);
     }
 
+    /**
+     * 增加批次信息
+     * @param batchInfo
+     * @return
+     */
     @RequestMapping("/addBatchInfo")
     public Result<?> addBatchInfo(@RequestBody BatchInfo batchInfo) {
         int i = batchInfoService.addBatchInfo(batchInfo);
@@ -38,6 +47,11 @@ public class BatchInfoController {
         }
     }
 
+    /**
+     * 删除批次信息
+     * @param batchInfo
+     * @return
+     */
     @RequestMapping("/deleteBatchInfo")
     public Result<?> deleteBatchInfo(@RequestBody BatchInfo batchInfo) {
         int i = batchInfoService.deleteBatchInfoById(batchInfo.getBatchId());
@@ -48,6 +62,11 @@ public class BatchInfoController {
         }
     }
 
+    /**
+     * 更新批次信息
+     * @param batchInfo
+     * @return
+     */
     @RequestMapping("/updateBatchInfo")
     public Result<?> updateBatchInfo(@RequestBody BatchInfo batchInfo){
         int i = batchInfoService.updateBatchInfo(batchInfo);

@@ -10,6 +10,7 @@ import com.final_back.service.cultivation.IndividualDeathRecordService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -72,5 +73,19 @@ public class DeathRecordImpl extends ServiceImpl<DeathRecordMapper, DeathRecord>
     @Override
     public int updateDeathRecord(DeathRecord deathRecord) {
         return deathRecordMapper.updateById(deathRecord);
+    }
+
+    /**
+     * 按查询条件返回死亡记录
+     * @param recordtartDate
+     * @param recordEndDate
+     * @param batchId
+     * @param recordPerson
+     * @return
+     */
+    @Override
+    public List<DeathRecord> getDeathRecordByCondition(Date recordtartDate, Date recordEndDate, Long batchId,
+                                                       Long recordPerson) {
+        return null;
     }
 }

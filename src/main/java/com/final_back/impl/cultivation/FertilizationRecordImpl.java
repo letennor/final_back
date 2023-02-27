@@ -7,6 +7,7 @@ import com.final_back.service.cultivation.FertilizationRecordService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -46,5 +47,24 @@ public class FertilizationRecordImpl extends ServiceImpl<FertilizationRecordMapp
     @Override
     public int updateFertilizationRecord(FertilizationRecord fertilizationRecord) {
         return fertilizationRecordMapper.updateById(fertilizationRecord);
+    }
+
+    /**
+     * 按条件取得受精记录
+     * @param batchId
+     * @param fertilizationRecordStartDate
+     * @param fertilizationRecordEndDate
+     * @param operatePerson
+     * @param recordPerson
+     * @param recordStartDate
+     * @param recordEndDate
+     * @return
+     */
+    @Override
+    public List<FertilizationRecord> getFertilizationRecordByCondition(Long batchId, Date fertilizationRecordStartDate,
+                                                                       Date fertilizationRecordEndDate,
+                                                                       Long operatePerson, Long recordPerson,
+                                                                       Date recordStartDate, Date recordEndDate) {
+        return null;
     }
 }

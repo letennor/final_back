@@ -1,5 +1,7 @@
 package com.final_back.controller.cultivation;
 
+import com.alibaba.fastjson.JSONObject;
+import com.final_back.dto.RangeTime;
 import com.final_back.entity.cultivation.EggProductionRecord;
 import com.final_back.mapper.cultivation.EggProductionRecordMapper;
 import com.final_back.service.cultivation.EggProductionRecordService;
@@ -19,6 +21,11 @@ public class EggProductionRecordController {
     @Autowired
     EggProductionRecordService eggProductionRecordService;
 
+    /**
+     * 添加产蛋记录
+     * @param eggProductionRecord
+     * @return
+     */
     @RequestMapping("/addEggProductionRecord")
     public Result<?> addEggProductionRecord(@RequestBody EggProductionRecord eggProductionRecord) {
         int insert = eggProductionRecordService.addEggProductionRecord(eggProductionRecord);
@@ -29,12 +36,21 @@ public class EggProductionRecordController {
         }
     }
 
+    /**
+     * 取得所有产蛋记录
+     * @return
+     */
     @RequestMapping("/getAllEggProductionRecord")
     public Result<?> getAllEggProductionRecord() {
         List<EggProductionRecord> allEggProductionRecord = eggProductionRecordService.getAllEggProductionRecord();
         return ResultUtil.success(allEggProductionRecord);
     }
 
+    /**
+     * 删除产蛋记录
+     * @param eggProductionRecord
+     * @return
+     */
     @RequestMapping("/deleteEggProductionRecord")
     public Result<?> deleteEggProductionRecord(@RequestBody EggProductionRecord eggProductionRecord){
         HashMap<String, Object> map = new HashMap<>();
@@ -47,6 +63,11 @@ public class EggProductionRecordController {
         }
     }
 
+    /**
+     * 更新产蛋记录
+     * @param eggProductionRecord
+     * @return
+     */
     @RequestMapping("/updateEggProductionRecord")
     public Result<?> updateEggProductionRecord(@RequestBody EggProductionRecord eggProductionRecord){
         int i = eggProductionRecordService.updateEggProductionRecord(eggProductionRecord);
@@ -55,6 +76,28 @@ public class EggProductionRecordController {
         }else {
             return ResultUtil.success("修改失败");
         }
+    }
+
+    /**
+     * 获得一段时间内产蛋记录
+     * @param rangeTime
+     * @return
+     */
+    @RequestMapping("/getRangeTimeEggProductionRecord")
+    public Result<?> getRangeTimeEggProductionRecord(@RequestBody RangeTime rangeTime){
+        System.out.println(rangeTime);
+        List<EggProductionRecord> eggProductionRecordList = eggProductionRecordService.getRangeTimeEggProductionRecord(rangeTime.getStartTime(), rangeTime.getEndTime());
+        return ResultUtil.success(eggProductionRecordList);
+    }
+
+    /**
+     * 通过查询条件获取产蛋量信息
+     * @param jsonObject
+     * @return
+     */
+    @RequestMapping("/getEggProductionRecordByCondition")
+    public Result<?> getEggProductionRecordByCondition(@RequestBody JSONObject jsonObject){
+        return null;
     }
 
 }

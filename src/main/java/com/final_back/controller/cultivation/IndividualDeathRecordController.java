@@ -1,5 +1,6 @@
 package com.final_back.controller.cultivation;
 
+import com.alibaba.fastjson.JSONObject;
 import com.final_back.entity.cultivation.IndividualDeathRecord;
 import com.final_back.mapper.cultivation.IndividualDeathRecordMapper;
 import com.final_back.service.cultivation.IndividualDeathRecordService;
@@ -19,6 +20,11 @@ public class IndividualDeathRecordController {
     @Autowired
     IndividualDeathRecordService individualDeathRecordService;
 
+    /**
+     * 增加个体死亡记录
+     * @param individualDeathRecord
+     * @return
+     */
     @RequestMapping("/addIndividualDeathRecord")
     public Result<?> addIndividualDeathRecord(@RequestBody IndividualDeathRecord individualDeathRecord){
         int insert = individualDeathRecordService.addIndividualDeathRecord(individualDeathRecord);
@@ -29,12 +35,21 @@ public class IndividualDeathRecordController {
         }
     }
 
+    /**
+     * 取得个体死亡记录
+     * @return
+     */
     @RequestMapping("/getAllIndividualDeathRecord")
     public Result<?> getAllIndividualDeathRecord(){
         List<IndividualDeathRecord> allIndividualDeathRecord = individualDeathRecordService.getAllIndividualDeathRecord();
         return ResultUtil.success(allIndividualDeathRecord);
     }
 
+    /**
+     * 删除个体死亡记录
+     * @param individualDeathRecord
+     * @return
+     */
     @RequestMapping("/deleteIndividualDeathRecord")
     public Result<?> deleteIndividualDeathRecord(@RequestBody IndividualDeathRecord individualDeathRecord){
         HashMap<String, Object> map = new HashMap<>();
@@ -47,6 +62,11 @@ public class IndividualDeathRecordController {
         }
     }
 
+    /**
+     * 更新死亡记录
+     * @param individualDeathRecord
+     * @return
+     */
     @RequestMapping("/updateIndividualDeathRecord")
     public Result<?> updateIndividualDeathRecord(@RequestBody IndividualDeathRecord individualDeathRecord){
         int i = individualDeathRecordService.updateIndividualDeathRecord(individualDeathRecord);
@@ -55,6 +75,16 @@ public class IndividualDeathRecordController {
         }else {
             return ResultUtil.success("修改失败");
         }
+    }
+
+    /**
+     * 通过查询条件获取个体死亡记录
+     * @param jsonObject
+     * @return
+     */
+    @RequestMapping("/getIndividualDeathRecordByCondition")
+    public Result<?> getIndividualDeathRecordByCondition(@RequestBody JSONObject jsonObject){
+        return null;
     }
 
 }

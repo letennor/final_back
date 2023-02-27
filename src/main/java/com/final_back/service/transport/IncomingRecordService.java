@@ -5,6 +5,7 @@ import com.final_back.entity.transport.IncomingRecord;
 import com.final_back.mapper.transport.IncomingRecordMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.Date;
 import java.util.List;
 
 public interface IncomingRecordService extends IService<IncomingRecord> {
@@ -19,4 +20,6 @@ public interface IncomingRecordService extends IService<IncomingRecord> {
     int deleteIncomingRecordByIdList(List<Long> idList);
 
     int updateIncomingRecord(IncomingRecord incomingRecord);
+
+    List<IncomingRecord> getIncomingRecordByCondition(Long batchId, Date recordStartDate, Date recordEndDate, Integer minAmount, Integer maxAmount);
 }

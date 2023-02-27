@@ -17,5 +17,9 @@
         </where>
     </select>
 
+    <select id="getRangeTimeEggProductionRecord" resultType="com.final_back.entity.cultivation.EggProductionRecord">
+        select * from egg_production_record where record_time between #{startTime} and #{endTime}
+    </select>
+
 
 </mapper>

@@ -10,6 +10,7 @@ import com.final_back.utils.result.ResultUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -52,5 +53,26 @@ public class DosingRecordImpl extends ServiceImpl<DosingRecordMapper, DosingReco
     @Override
     public int updateDosingRecord(DosingRecord dosingRecord) {
         return dosingRecordMapper.updateById(dosingRecord);
+    }
+
+    @Override
+    public List<DosingRecord> getRangeTimeDosingRecord(Date startTime, Date endTime) {
+        return dosingRecordMapper.getRangeTimeDosingRecord(startTime, endTime);
+    }
+
+    /**
+     * 按查询条件返回投药记录
+     * @param medicineId
+     * @param batchId
+     * @param dosingPerson
+     * @param recordStartDate
+     * @param recordEndDate
+     * @param recordPerson
+     * @return
+     */
+    @Override
+    public List<DosingRecord> getDosingRecordByCondition(Long medicineId, Long batchId, Long dosingPerson,
+                                                         Date recordStartDate, Date recordEndDate, Long recordPerson) {
+        return null;
     }
 }

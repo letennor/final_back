@@ -25,7 +25,6 @@ public class UserBasicInfo {
 
     private Integer workYear;
 
-
     private Date entryTime;
 
     private Double salary;
@@ -37,7 +36,6 @@ public class UserBasicInfo {
     private String email;
 
     private String photo;
-
 
     @TableField(fill = FieldFill.INSERT)
     private Date gmtCreate;

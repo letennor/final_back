@@ -13,5 +13,4 @@ public interface DeathRecordMapper extends BaseMapper<DeathRecord> {
     List<Long> getIdList(@Param("batchId") Long batchId, @Param("deathRecordPerson") Long deathRecordPerson,
                          @Param("recordPerson") Long recordPerson);
 
-
 }

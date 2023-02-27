@@ -7,6 +7,7 @@ import com.final_back.service.transport.IncomingRecordService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -45,5 +46,20 @@ public class IncomingRecordImpl extends ServiceImpl<IncomingRecordMapper, Incomi
     @Override
     public int updateIncomingRecord(IncomingRecord incomingRecord) {
         return incomingRecordMapper.updateById(incomingRecord);
+    }
+
+    /**
+     * 通过条件返回进货记录
+     * @param batchId
+     * @param recordStartDate
+     * @param recordEndDate
+     * @param minAmount
+     * @param maxAmount
+     * @return
+     */
+    @Override
+    public List<IncomingRecord> getIncomingRecordByCondition(Long batchId, Date recordStartDate, Date recordEndDate,
+                                                             Integer minAmount, Integer maxAmount) {
+        return null;
     }
 }

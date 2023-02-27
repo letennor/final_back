@@ -8,6 +8,7 @@ import com.final_back.service.cultivation.FeedRecordService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -47,5 +48,25 @@ public class FeedRecordImpl extends ServiceImpl<FeedRecordMapper, FeedRecord> im
     @Override
     public int updateFeedRecord(FeedRecord feedRecord) {
         return feedRecordMapper.updateById(feedRecord);
+    }
+
+    @Override
+    public List<FeedRecord> getRangeTimeFeedRecord(Date startTime, Date endTime) {
+        return feedRecordMapper.getRangeTimeFeedRecord(startTime, endTime);
+    }
+
+    /**
+     * 按条件返回饲养记录
+     * @param batchId
+     * @param feedPerson
+     * @param recordPerson
+     * @param recordStartDate
+     * @param recordEndDate
+     * @return
+     */
+    @Override
+    public List<FeedRecord> getFeedRecordByCondition(Long batchId, Long feedPerson, Long recordPerson,
+                                                     Date recordStartDate, Date recordEndDate) {
+        return null;
     }
 }

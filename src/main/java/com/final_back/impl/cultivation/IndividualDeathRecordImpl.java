@@ -7,6 +7,7 @@ import com.final_back.service.cultivation.IndividualDeathRecordService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -49,5 +50,18 @@ public class IndividualDeathRecordImpl extends ServiceImpl<IndividualDeathRecord
     @Override
     public int updateIndividualDeathRecord(IndividualDeathRecord individualDeathRecord) {
         return individualDeathRecordMapper.updateById(individualDeathRecord);
+    }
+
+    /**
+     * 按查询条件返回个体死亡记录
+     * @param recordPerson
+     * @param recordStartDate
+     * @param recordEndDate
+     * @return
+     */
+    @Override
+    public List<IndividualDeathRecord> getIndividualDeathRecordByCondition(Long recordPerson, Date recordStartDate,
+                                                                           Date recordEndDate) {
+        return null;
     }
 }

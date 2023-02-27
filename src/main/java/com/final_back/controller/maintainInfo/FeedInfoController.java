@@ -23,6 +23,11 @@ public class FeedInfoController {
     @Autowired
     FeedInfoService feedInfoService;
 
+    /**
+     * 添加饲料信息
+     * @param entity
+     * @return
+     */
     @RequestMapping("/addFeedInfo")
     public Result<?> addFeedInfo(@RequestBody FeedInfo entity){
 
@@ -34,12 +39,21 @@ public class FeedInfoController {
         }
     }
 
+    /**
+     * 取得所有饲料信息
+     * @return
+     */
     @RequestMapping("/getAllFeed")
     public Result<?> getAllFeed(){
         List<FeedInfo> feedInfoList = feedInfoService.getAllFeed();
         return ResultUtil.success(feedInfoList);
     }
 
+    /**
+     * 删除饲料信息
+     * @param feedInfo
+     * @return
+     */
     @RequestMapping("/deleteFeedInfo")
     public Result<?> deleteFeedInfo(@RequestBody FeedInfo feedInfo){
         int i = feedInfoService.deleteFeedInfoById(feedInfo.getFeedId());
@@ -50,6 +64,11 @@ public class FeedInfoController {
         }
     }
 
+    /**
+     * 更新饲料信息
+     * @param feedInfo
+     * @return
+     */
     @RequestMapping("/updateFeedInfo")
     public Result<?> updateFeedInfo(@RequestBody FeedInfo feedInfo){
         int i = feedInfoService.updateFeedInfo(feedInfo);

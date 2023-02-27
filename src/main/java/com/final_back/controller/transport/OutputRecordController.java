@@ -19,6 +19,11 @@ public class OutputRecordController {
     @Autowired
     OutputRecordService outputRecordService;
 
+    /**
+     * 添加出苗信息
+     * @param outputRecord
+     * @return
+     */
     @RequestMapping("/addOutputRecord")
     public Result<?> addOutputRecord(@RequestBody OutputRecord outputRecord){
         int insert = outputRecordService.addOutputRecord(outputRecord);
@@ -29,12 +34,21 @@ public class OutputRecordController {
         }
     }
 
+    /**
+     * 取得所有出苗信息
+     * @return
+     */
     @RequestMapping("/getAllOutputRecord")
     public Result<?> getAllOutputRecord(){
         List<OutputRecord> allOutputRecord = outputRecordService.getAllOutputRecord();
         return ResultUtil.success(allOutputRecord);
     }
 
+    /**
+     * 删除出苗信息
+     * @param outputRecord
+     * @return
+     */
     @RequestMapping("/deleteOutputRecord")
     public Result<?> deleteOutputRecord(@RequestBody OutputRecord outputRecord){
         int i = outputRecordService.deleteOutputRecord(outputRecord);
@@ -45,6 +59,11 @@ public class OutputRecordController {
         }
     }
 
+    /**
+     * 更新出苗信息
+     * @param outputRecord
+     * @return
+     */
     @RequestMapping("/updateOutputRecord")
     public Result<?> updateOutputRecord(@RequestBody OutputRecord outputRecord){
         int i = outputRecordService.updateOutputRecord(outputRecord);

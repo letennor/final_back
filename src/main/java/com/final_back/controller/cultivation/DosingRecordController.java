@@ -1,6 +1,8 @@
 package com.final_back.controller.cultivation;
 
 
+import com.alibaba.fastjson.JSONObject;
+import com.final_back.dto.RangeTime;
 import com.final_back.entity.cultivation.DosingRecord;
 import com.final_back.entity.maintainInfo.MedicineInfo;
 import com.final_back.mapper.cultivation.DosingRecordMapper;
@@ -25,6 +27,11 @@ public class DosingRecordController {
     @Autowired
     MedicineInfoService medicineInfoService;
 
+    /**
+     * 添加投药记录
+     * @param dosingRecord
+     * @return
+     */
     @RequestMapping("/addDosingRecord")
     public Result<?> addDosingRecord(@RequestBody DosingRecord dosingRecord) {
 
@@ -49,12 +56,21 @@ public class DosingRecordController {
         }
     }
 
+    /**
+     * 取得所有投药记录
+     * @return
+     */
     @RequestMapping("/getAllDosingRecord")
     public Result<?> getAllDosingRecord() {
         List<DosingRecord> allDosingRecord = dosingRecordService.getAllDosingRecord();
         return ResultUtil.success(allDosingRecord);
     }
 
+    /**
+     * 删除投药记录
+     * @param dosingRecord
+     * @return
+     */
     @RequestMapping("/deleteDosingRecord")
     public Result<?> deleteDosingRecord(@RequestBody DosingRecord dosingRecord) {
         HashMap<String, Object> map = new HashMap<>();
@@ -67,6 +83,11 @@ public class DosingRecordController {
         }
     }
 
+    /**
+     * 更新投药记录
+     * @param dosingRecord
+     * @return
+     */
     @RequestMapping("/updateDosingRecord")
     public Result<?> updateDosingRecord(@RequestBody DosingRecord dosingRecord) {
         int i = dosingRecordService.updateDosingRecord(dosingRecord);
@@ -76,4 +97,26 @@ public class DosingRecordController {
             return ResultUtil.success("修改失败");
         }
     }
+
+    /**
+     * 取得某段时间内投药记录
+     * @param rangeTime
+     * @return
+     */
+    @RequestMapping("/getRangeTimeDosingRecord")
+    public Result<?> getRangeTimeDosingRecord(@RequestBody RangeTime rangeTime){
+        List<DosingRecord> dosingRecordList = dosingRecordService.getRangeTimeDosingRecord(rangeTime.getStartTime(), rangeTime.getEndTime());
+        return ResultUtil.success(dosingRecordList);
+    }
+
+    /**
+     * 通过查询条件获取投药记录
+     * @param jsonObject
+     * @return
+     */
+    @RequestMapping("/getDosingRecordByCondition")
+    public Result<?> getDosingRecordByCondition(@RequestBody JSONObject jsonObject){
+        return null;
+    }
+
 }

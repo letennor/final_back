@@ -17,4 +17,6 @@ public interface OutputRecordService extends IService<OutputRecord> {
     int deleteOutputRecordByIdList(List<Long> idList);
 
     int updateOutputRecord(OutputRecord outputRecord);
+
+    List<OutputRecord> getOutputRecordByCondition(Integer minAmount, Integer maxAmount, Double minRate, Double maxRate, Long recordPerson, Long batchId);
 }

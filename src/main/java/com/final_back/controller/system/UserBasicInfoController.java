@@ -1,5 +1,6 @@
 package com.final_back.controller.system;
 
+import com.alibaba.fastjson.JSONObject;
 import com.final_back.dto.UserBasicInfoDTO;
 import com.final_back.entity.system.UserPasswordInfo;
 import com.final_back.entity.system.UserBasicInfo;
@@ -23,6 +24,11 @@ public class UserBasicInfoController {
     UserPasswordInfoService userPasswordInfoService;
 
 
+    /**
+     * 添加用户
+     * @param userBasicInfoDTO
+     * @return
+     */
     @RequestMapping("/addUser")
     public Result<?> addUser(@RequestBody UserBasicInfoDTO userBasicInfoDTO) {
 
@@ -41,12 +47,21 @@ public class UserBasicInfoController {
         }
     }
 
+    /**
+     * 取得所有用户信息
+     * @return
+     */
     @RequestMapping("/getAllPerson")
     public Result<?> getAllPerson(){
         List<UserBasicInfoDTO> userBasicInfoDTOList = userBasicInfoService.getAllUserAllInfo();
         return ResultUtil.success(userBasicInfoDTOList);
     }
 
+    /**
+     * 删除用户基本信息
+     * @param userBasicInfo
+     * @return
+     */
     @RequestMapping("/deleteUserBasicInfo")
     public Result<?> deleteUserBasicInfo(@RequestBody UserBasicInfo userBasicInfo){
         int i = userBasicInfoService.deleteUserBasicInfoById(userBasicInfo.getUserBasicInfoId());
@@ -57,6 +72,11 @@ public class UserBasicInfoController {
         }
     }
 
+    /**
+     * 更新用户基本信息
+     * @param userBasicInfo
+     * @return
+     */
     @RequestMapping("/updateUserBasicInfo")
     public Result<?> updateUserBasicInfo(@RequestBody UserBasicInfo userBasicInfo){
         int i = userBasicInfoService.updateUserBasicInfo(userBasicInfo);
@@ -66,5 +86,26 @@ public class UserBasicInfoController {
             return ResultUtil.success("修改失败");
         }
     }
+
+    /**
+     * 通过角色、空闲时间寻找用户
+     * @param jsonObject
+     * @return
+     */
+    @RequestMapping("/queryUserByCondition")
+    public Result<?> queryUserByCondition(@RequestBody JSONObject jsonObject){
+        return null;
+    }
+
+    /**
+     * 改变用户状态（启用或禁用）
+     * @param jsonObject
+     * @return
+     */
+    @RequestMapping("/changeUserState")
+    public Result<?> changeUserState(@RequestBody JSONObject jsonObject){
+        return null;
+    }
+
 
 }

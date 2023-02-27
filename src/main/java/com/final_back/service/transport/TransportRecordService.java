@@ -3,6 +3,7 @@ package com.final_back.service.transport;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.final_back.entity.transport.TransportRecord;
 
+import java.util.Date;
 import java.util.List;
 
 public interface TransportRecordService extends IService<TransportRecord> {
@@ -16,4 +17,6 @@ public interface TransportRecordService extends IService<TransportRecord> {
     int deleteTransportRecordByIdList(List<Long> idList);
 
     int updateTransportRecord(TransportRecord transportRecord);
+
+    List<TransportRecord> getTransportRecordByCondition(Long transportRoute, String license, Long driver, Long recordPerson, Date recordStartDate, Date recordEndDate);
 }

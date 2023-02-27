@@ -20,5 +20,10 @@
         </where>
     </select>
 
+    <select id="getRangeTimeDosingRecord" resultType="com.final_back.entity.cultivation.DosingRecord">
+        select * from dosing_record where record_time between #{startTime} and #{endTime}
+    </select>
+
+
 
 </mapper>

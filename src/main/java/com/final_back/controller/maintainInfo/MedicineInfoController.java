@@ -22,6 +22,11 @@ public class MedicineInfoController {
     @Autowired
     MedicineInfoService medicineInfoService;
 
+    /**
+     * 添加药物信息
+     * @param medicineInfo
+     * @return
+     */
     @RequestMapping("/addMedicine")
     public Result<?> addMedicine(@RequestBody MedicineInfo medicineInfo){
         int insert = medicineInfoService.addMedicineInfo(medicineInfo);
@@ -32,12 +37,21 @@ public class MedicineInfoController {
         }
     }
 
+    /**
+     * 取得所有药物信息
+     * @return
+     */
     @RequestMapping("/getAllMedicine")
     public Result<?> getAllMedicine(){
         List<MedicineInfo> medicineInfoList = medicineInfoService.getAllMedicine();
         return ResultUtil.success(medicineInfoList);
     }
 
+    /**
+     * 删除药物信息
+     * @param medicineInfo
+     * @return
+     */
     @RequestMapping("/deleteMedicineInfo")
     public Result<?> deleteMedicineInfo(@RequestBody MedicineInfo medicineInfo){
         int i = medicineInfoService.deleteMedicineInfoById(medicineInfo.getMedicineId());
@@ -49,6 +63,11 @@ public class MedicineInfoController {
 
     }
 
+    /**
+     * 更新药物信息
+     * @param medicineInfo
+     * @return
+     */
     @RequestMapping("/updateMedicineInfo")
     public Result<?> updateMedicineInfo(@RequestBody MedicineInfo medicineInfo){
         int i = medicineInfoService.updateMedicineInfo(medicineInfo);

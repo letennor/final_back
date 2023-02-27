@@ -18,6 +18,11 @@ public class IncomingRecordController {
     @Autowired
     IncomingRecordService incomingRecordService;
 
+    /**
+     * 增加进蛋记录
+     * @param incomingRecord
+     * @return
+     */
     @RequestMapping("/addIncomingRecord")
     public Result<?> addIncomingRecord(@RequestBody IncomingRecord incomingRecord){
         int insert = incomingRecordService.addIncomingRecord(incomingRecord);
@@ -29,12 +34,21 @@ public class IncomingRecordController {
         }
     }
 
+    /**
+     * 取得所有进蛋记录
+     * @return
+     */
     @RequestMapping("/getAllIncomingRecord")
     public Result<?> getAllIncomingRecord(){
         List<IncomingRecord> allIncomingRecord = incomingRecordService.getAllIncomingRecord();
         return ResultUtil.success(allIncomingRecord);
     }
 
+    /**
+     * 删除进蛋记录
+     * @param incomingRecord
+     * @return
+     */
     @RequestMapping("/deleteIncomingRecord")
     public Result<?> deleteIncomingRecord(@RequestBody IncomingRecord incomingRecord){
         int i = incomingRecordService.deleteIncomingRecord(incomingRecord);
@@ -45,6 +59,11 @@ public class IncomingRecordController {
         }
     }
 
+    /**
+     * 更新进蛋记录
+     * @param incomingRecord
+     * @return
+     */
     @RequestMapping("/updateIncomingRecord")
     public Result<?> updateIncomingRecord(@RequestBody IncomingRecord incomingRecord){
         int i = incomingRecordService.updateIncomingRecord(incomingRecord);

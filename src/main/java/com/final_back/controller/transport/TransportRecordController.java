@@ -22,6 +22,11 @@ public class TransportRecordController {
     @Autowired
     TransportRecordService transportRecordService;
 
+    /**
+     * 添加运输记录
+     * @param transportRecord
+     * @return
+     */
     @RequestMapping("/addTransportRecord")
     public Result<?> addTransportRecord(@RequestBody TransportRecord transportRecord) {
         int insert = transportRecordService.addTransportRecord(transportRecord);
@@ -32,12 +37,21 @@ public class TransportRecordController {
         }
     }
 
+    /**
+     * 取得所有运输记录
+     * @return
+     */
     @RequestMapping("/getAllTransportRecord")
     public Result<?> getAllTransportRecord() {
         List<TransportRecord> transportRecordList = transportRecordService.getAllTransportRecord();
         return ResultUtil.success(transportRecordList);
     }
 
+    /**
+     * 删除运输记录
+     * @param transportRecord
+     * @return
+     */
     @RequestMapping("/deleteTransportRecord")
     public Result<?> deleteTransportRecord(@RequestBody TransportRecord transportRecord) {
         int i = transportRecordService.deleteTransportRecordById(transportRecord.getTransportRecordId());
@@ -48,6 +62,11 @@ public class TransportRecordController {
         }
     }
 
+    /**
+     * 更新运输记录
+     * @param transportRecord
+     * @return
+     */
     @RequestMapping("/updateTransportRecord")
     public Result<?> updateTransportRecord(@RequestBody TransportRecord transportRecord){
         int i = transportRecordService.updateTransportRecord(transportRecord);

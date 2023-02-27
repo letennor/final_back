@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.final_back.dto.UserBasicInfoDTO;
 import com.final_back.entity.system.UserBasicInfo;
 
+import java.util.Date;
 import java.util.List;
 
 public interface UserBasicInfoService extends IService<UserBasicInfo> {
@@ -19,5 +20,13 @@ public interface UserBasicInfoService extends IService<UserBasicInfo> {
     int updateUserBasicInfo(UserBasicInfo userBasicInfo);
 
     List<UserBasicInfoDTO> getAllUserAllInfo();
+
+    UserBasicInfo getPersonInfoByAccount(String account);
+
+    UserBasicInfo getPersonInfoByUserBasicInfoId(Long userBasicInfoId);
+
+    List<UserBasicInfo> queryUserByCondition(Long roleId, Date startFreeDate, Date endFreeDate);
+
+    Integer changeUserState(Long userId);
 
 }

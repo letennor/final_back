@@ -14,6 +14,7 @@ import com.final_back.service.transport.TransportRecordService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -95,4 +96,48 @@ public class UserBasicInfoImpl extends ServiceImpl<UserBasicInfoMapper, UserBasi
     public List<UserBasicInfoDTO> getAllUserAllInfo() {
         return userBasicInfoMapper.getAllUserAllInfo();
     }
+
+    /**
+     * 通过账户取得基本信息
+     * @param account
+     * @return
+     */
+    @Override
+    public UserBasicInfo getPersonInfoByAccount(String account) {
+        return null;
+    }
+
+    /**
+     * 通过userBasicInfoId取得基本信息
+     * @param userBasicInfoId
+     * @return
+     */
+    @Override
+    public UserBasicInfo getPersonInfoByUserBasicInfoId(Long userBasicInfoId) {
+        return null;
+    }
+
+    /**
+     * 通过角色、空闲时间查找用户
+     * @param roleId
+     * @param startFreeDate
+     * @param endFreeDate
+     * @return
+     */
+    @Override
+    public List<UserBasicInfo> queryUserByCondition(Long roleId, Date startFreeDate, Date endFreeDate) {
+        return null;
+    }
+
+    /**
+     * 改变用户状态
+     * @param userId
+     * @return
+     */
+    @Override
+    public Integer changeUserState(Long userId) {
+        return null;
+    }
+
+
 }

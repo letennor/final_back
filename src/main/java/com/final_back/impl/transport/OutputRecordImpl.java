@@ -48,4 +48,20 @@ public class OutputRecordImpl extends ServiceImpl<OutputRecordMapper, OutputReco
     public int updateOutputRecord(OutputRecord outputRecord) {
         return outputRecordMapper.updateById(outputRecord);
     }
+
+    /**
+     * 按条件获取出苗记录
+     * @param minAmount
+     * @param maxAmount
+     * @param minRate
+     * @param maxRate
+     * @param recordPerson
+     * @param batchId
+     * @return
+     */
+    @Override
+    public List<OutputRecord> getOutputRecordByCondition(Integer minAmount, Integer maxAmount, Double minRate,
+                                                         Double maxRate, Long recordPerson, Long batchId) {
+        return null;
+    }
 }

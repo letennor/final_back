@@ -34,6 +34,8 @@ public class EggProductionRecord {
     @JsonSerialize(using = ToStringSerializer.class)
     private Long recordPerson;
 
+    private Date recordTime;
+
     @TableField(fill = FieldFill.INSERT)
     private Date gmtCreate;
 

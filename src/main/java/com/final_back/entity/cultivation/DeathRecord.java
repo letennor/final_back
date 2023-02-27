@@ -29,6 +29,8 @@ public class DeathRecord {
     @JsonSerialize(using = ToStringSerializer.class)
     private Long batchId;
 
+    private Date recordTime;
+
     @TableField(fill = FieldFill.INSERT)
     private Date gmtCreate;
 

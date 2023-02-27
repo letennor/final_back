@@ -30,6 +30,8 @@ public class IncomingRecord {
     @JsonSerialize(using = ToStringSerializer.class)
     private Long batchId;
 
+    private Date recordTime;
+
     @TableField(fill = FieldFill.INSERT)
     private Date gmtCreate;
 

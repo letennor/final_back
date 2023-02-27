@@ -1,5 +1,6 @@
 package com.final_back.controller.cultivation;
 
+import com.alibaba.fastjson.JSONObject;
 import com.final_back.entity.cultivation.FertilizationRecord;
 import com.final_back.mapper.cultivation.FertilizationRecordMapper;
 import com.final_back.service.cultivation.FertilizationRecordService;
@@ -19,6 +20,11 @@ public class FertilizationRecordController {
     @Autowired
     FertilizationRecordService fertilizationRecordService;
 
+    /**
+     * 增加受精记录
+     * @param fertilizationRecord
+     * @return
+     */
     @RequestMapping("/addFertilizationRecord")
     public Result<?> addFertilizationRecord(@RequestBody FertilizationRecord fertilizationRecord){
         int insert = fertilizationRecordService.addFertilizationRecord(fertilizationRecord);
@@ -29,12 +35,21 @@ public class FertilizationRecordController {
         }
     }
 
+    /**
+     * 取得所有受精记录
+     * @return
+     */
     @RequestMapping("/getAllFertilizationRecord")
     public Result<?> getAllFertilizationRecord(){
         List<FertilizationRecord> allFertilizationRecord = fertilizationRecordService.getAllFertilizationRecord();
         return ResultUtil.success(allFertilizationRecord);
     }
 
+    /**
+     * 删除受精记录
+     * @param fertilizationRecord
+     * @return
+     */
     @RequestMapping("/deleteFertilizationRecord")
     public Result<?> deleteFertilizationRecord(@RequestBody FertilizationRecord fertilizationRecord){
         HashMap<String, Object> map = new HashMap<>();
@@ -47,6 +62,11 @@ public class FertilizationRecordController {
         }
     }
 
+    /**
+     * 更新受精记录
+     * @param fertilizationRecord
+     * @return
+     */
     @RequestMapping("/updateFertilizationRecord")
     public Result<?> updateFertilizationRecord(@RequestBody FertilizationRecord fertilizationRecord){
         int i = fertilizationRecordService.updateFertilizationRecord(fertilizationRecord);
@@ -55,6 +75,16 @@ public class FertilizationRecordController {
         }else {
             return ResultUtil.success("修改失败");
         }
+    }
+
+    /**
+     * 通过查询条件获取受精记录
+     * @param jsonObject
+     * @return
+     */
+    @RequestMapping("/getFertilizationRecordByCondition")
+    public Result<?> getFertilizationRecordByCondition(@RequestBody JSONObject jsonObject){
+        return null;
     }
 
 }

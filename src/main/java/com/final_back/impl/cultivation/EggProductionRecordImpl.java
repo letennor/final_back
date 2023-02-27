@@ -1,5 +1,6 @@
 package com.final_back.impl.cultivation;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.final_back.entity.cultivation.EggProductionRecord;
 import com.final_back.mapper.cultivation.EggProductionRecordMapper;
@@ -7,6 +8,7 @@ import com.final_back.service.cultivation.EggProductionRecordService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -46,5 +48,26 @@ public class EggProductionRecordImpl extends ServiceImpl<EggProductionRecordMapp
     @Override
     public int updateEggProductionRecord(EggProductionRecord eggProductionRecord) {
         return eggProductionRecordMapper.updateById(eggProductionRecord);
+    }
+
+    @Override
+    public List<EggProductionRecord> getRangeTimeEggProductionRecord(Date startTime, Date endTime) {
+        return eggProductionRecordMapper.getRangeTimeEggProductionRecord(startTime, endTime);
+    }
+
+    /**
+     * 按条件获得产蛋记录
+     * @param batchId
+     * @param collectPerson
+     * @param recordPerson
+     * @param recordStartDate
+     * @param recordEndDate
+     * @return
+     */
+    @Override
+    public List<EggProductionRecord> getEggProductionRecordByCondition(Long batchId, Long collectPerson,
+                                                                       Long recordPerson, Date recordStartDate,
+                                                                       Date recordEndDate) {
+        return null;
     }
 }

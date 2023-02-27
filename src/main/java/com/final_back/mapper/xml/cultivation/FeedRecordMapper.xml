@@ -20,5 +20,9 @@
         </where>
     </select>
 
+    <select id="getRangeTimeFeedRecord" resultType="com.final_back.entity.cultivation.FeedRecord">
+        select * from feed_record where record_time between #{startTime} and #{endTime}
+    </select>
+
 
 </mapper>
