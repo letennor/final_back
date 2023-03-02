@@ -19,7 +19,7 @@ public class PrivilegeTable {
 
     private String privilegeName;
 
-    private String privelegeCode;
+    private String privilegeCode;
 
     private String privilegeDescription;
 
