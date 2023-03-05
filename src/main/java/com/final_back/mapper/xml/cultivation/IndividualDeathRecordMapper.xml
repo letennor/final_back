@@ -14,5 +14,22 @@
         </where>
     </select>
 
+    <select id="getAllIndividualDeathRecord" resultMap="getAllIndividualDeathRecord">
+        select individual_death_record_id,
+               death_record_id,
+               death_reason,
+               picture,
+               record_person,
+               record_time,
+               individual_death_record.gmt_create,
+               individual_death_record.gmt_modified,
+               name as recordPersonName
+        from individual_death_record
+                 join user_basic_info ubi on individual_death_record.record_person = ubi.user_basic_info_id;
+    </select>
+
+    <resultMap id="getAllIndividualDeathRecord" type="com.final_back.entity.cultivation.IndividualDeathRecord">
+
+    </resultMap>
 
 </mapper>

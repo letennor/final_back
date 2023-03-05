@@ -21,8 +21,32 @@
     </select>
 
     <select id="getRangeTimeFeedRecord" resultType="com.final_back.entity.cultivation.FeedRecord">
-        select * from feed_record where record_time between #{startTime} and #{endTime}
+        select *
+        from feed_record
+        where record_time between #{startTime} and #{endTime}
     </select>
+
+    <select id="getAllFeedRecord" resultMap="getAllFeedRecord">
+        select fr.feed_record_id,
+               fr.batch_id,
+               fr.feed_id,
+               fr.feed_amount,
+               fr.feed_person,
+               fr.record_person,
+               fr.record_time,
+               fr.gmt_create,
+               fr.gmt_modified,
+               bi.batch_name,
+               fi.feed_name,
+               ubi.name  as recordPersonName,
+               ubi2.name as feedPersonName
+        from feed_record fr
+                 join batch_info bi on fr.batch_id = bi.batch_id
+                 join feed_info fi on fr.feed_id = fi.feed_id
+                 join user_basic_info ubi on ubi.user_basic_info_id = fr.record_person
+                 join user_basic_info ubi2 on ubi2.user_basic_info_id = fr.feed_person;
+    </select>
+    <resultMap id="getAllFeedRecord" type="com.final_back.entity.cultivation.FeedRecord"></resultMap>
 
 
 </mapper>

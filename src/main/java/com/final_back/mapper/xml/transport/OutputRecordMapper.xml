@@ -17,5 +17,20 @@
         </where>
     </select>
 
+    <select id="getAllOutputRecord" resultMap="getAllOutputRecord">
+        select output_record_id,
+               output_record.batch_id,
+               output_amount,
+               output_rate,
+               transport_record_id,
+               output_record.record_person,
+               record_time,
+               batch_name,
+               name as recordPersonName
+        from output_record
+                 join batch_info bi on output_record.batch_id = bi.batch_id
+                 join user_basic_info ubi on ubi.user_basic_info_id = output_record.record_person;
+    </select>
+    <resultMap id="getAllOutputRecord" type="com.final_back.entity.transport.OutputRecord"></resultMap>
 
 </mapper>

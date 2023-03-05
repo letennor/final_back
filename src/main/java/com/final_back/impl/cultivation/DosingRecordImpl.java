@@ -29,7 +29,7 @@ public class DosingRecordImpl extends ServiceImpl<DosingRecordMapper, DosingReco
 
     @Override
     public List<DosingRecord> getAllDosingRecord() {
-        return dosingRecordMapper.selectList(null);
+        return dosingRecordMapper.getAllDosingRecord();
     }
 
     @Override

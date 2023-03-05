@@ -20,4 +20,21 @@
         </where>
     </select>
 
+    <select id="getAllIncomingRecord" resultMap="getAllIncomingRecord">
+        select ir.incoming_record_id,
+               ir.batch_id,
+               ir.incoming_amount,
+               ir.goods_id,
+               ir.transport_record_id,
+               ir.record_time,
+               ir.gmt_create,
+               ir.gmt_modified,
+               bi.batch_name,
+               gi.goods_name
+        from incoming_record ir
+                 join batch_info bi on ir.batch_id = bi.batch_id
+                 join goods_info gi on ir.goods_id = gi.goods_id;
+    </select>
+    <resultMap id="getAllIncomingRecord" type="com.final_back.entity.transport.IncomingRecord"></resultMap>
+
 </mapper>

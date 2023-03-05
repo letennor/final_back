@@ -33,6 +33,18 @@ public class DosingRecord {
 
     private Date recordTime;
 
+    @TableField(exist = false)
+    private String batchName;
+
+    @TableField(exist = false)
+    private String dosingPersonName;
+
+    @TableField(exist = false)
+    private String recordPersonName;
+
+    @TableField(exist = false)
+    private String medicineName;
+
     @TableField(fill = FieldFill.INSERT)
     private Date gmtCreate;
 

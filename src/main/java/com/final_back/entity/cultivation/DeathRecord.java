@@ -29,6 +29,15 @@ public class DeathRecord {
     @JsonSerialize(using = ToStringSerializer.class)
     private Long batchId;
 
+    @TableField(exist = false)
+    private String deathRecordPersonName;
+
+    @TableField(exist = false)
+    private String recordPersonName;
+
+    @TableField(exist = false)
+    private String batchName;
+
     private Date recordTime;
 
     @TableField(fill = FieldFill.INSERT)

@@ -29,7 +29,7 @@ public class FeedRecordImpl extends ServiceImpl<FeedRecordMapper, FeedRecord> im
 
     @Override
     public List<FeedRecord> getAllFeedRecord() {
-        return feedRecordMapper.selectList(null);
+        return feedRecordMapper.getAllFeedRecord();
     }
 
     @Override

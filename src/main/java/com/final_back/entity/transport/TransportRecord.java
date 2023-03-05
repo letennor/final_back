@@ -16,10 +16,7 @@ public class TransportRecord {
     @TableId(value = "transport_record_id", type = IdType.ASSIGN_ID)
     private Long transportRecordId;
 
-
-    private String start;
-
-    private String end;
+    private Long transportRoute;
 
     private String licensePlate;
 
@@ -33,6 +30,21 @@ public class TransportRecord {
     private Long recordPerson;
 
     private Date recordTime;
+
+    @TableField(exist = false)
+    private String recordPersonName;
+
+    @TableField(exist = false)
+    private String driverName;
+
+    @TableField(exist = false)
+    private String goodsName;
+
+    @TableField(exist = false)
+    private String startPos;
+
+    @TableField(exist = false)
+    private String endPos;
 
     @TableField(fill = FieldFill.INSERT)
     private Date gmtCreate;

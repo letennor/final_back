@@ -30,6 +30,9 @@ public class IndividualDeathRecord {
 
     private Date recordTime;
 
+    @TableField(exist = false)
+    private String recordPersonName;
+
     @TableField(fill = FieldFill.INSERT)
     private Date gmtCreate;
 

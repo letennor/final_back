@@ -17,4 +17,5 @@ public interface EggProductionRecordMapper extends BaseMapper<EggProductionRecor
     List<EggProductionRecord> getRangeTimeEggProductionRecord(@Param("startTime") Date startTime,
                                                               @Param("endTime") Date endTime);
 
+    List<EggProductionRecord> getAllEggProductionRecord();
 }

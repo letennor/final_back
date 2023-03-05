@@ -13,4 +13,5 @@ public interface TransportRecordMapper extends BaseMapper<TransportRecord> {
     List<Long> getIdList(@Param("licensePlate") String licensePlate, @Param("driver") Long driver,
                          @Param("goodsId") Long goodsId, @Param("recordPerson") Long recordPerson);
 
+    List<TransportRecord> getAllTransportRecord();
 }

@@ -22,7 +22,7 @@ public class OutputRecordImpl extends ServiceImpl<OutputRecordMapper, OutputReco
 
     @Override
     public List<OutputRecord> getAllOutputRecord() {
-        return outputRecordMapper.selectList(null);
+        return outputRecordMapper.getAllOutputRecord();
     }
 
     @Override

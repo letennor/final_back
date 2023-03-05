@@ -22,7 +22,7 @@ public class FertilizationRecordImpl extends ServiceImpl<FertilizationRecordMapp
 
     @Override
     public List<FertilizationRecord> getAllFertilizationRecord() {
-        return fertilizationRecordMapper.selectList(null);
+        return fertilizationRecordMapper.getAllFertilizationRecord();
     }
 
     @Override

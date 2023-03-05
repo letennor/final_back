@@ -11,4 +11,6 @@ import java.util.List;
 public interface OutputRecordMapper extends BaseMapper<OutputRecord> {
     List<Long> getIdList(@Param("batchId") Long batchId, @Param("transportRecordId") Long transportRecordId,
                          @Param("recordPerson") Long recordPerson);
+
+    List<OutputRecord> getAllOutputRecord();
 }

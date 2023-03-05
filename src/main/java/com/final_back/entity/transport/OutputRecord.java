@@ -32,6 +32,12 @@ public class OutputRecord {
 
     private Date recordTime;
 
+    @TableField(exist = false)
+    private String batchName;
+
+    @TableField(exist = false)
+    private String recordPersonName;
+
     @TableField(fill = FieldFill.INSERT)
     private Date gmtCreate;
 

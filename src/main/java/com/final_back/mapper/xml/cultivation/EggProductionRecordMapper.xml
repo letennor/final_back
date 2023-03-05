@@ -21,5 +21,26 @@
         select * from egg_production_record where record_time between #{startTime} and #{endTime}
     </select>
 
+    <select id="getAllEggProductionRecord" resultMap="getAllEggProductionRecord">
+        select epr.egg_production_record_id,
+               epr.batch_id,
+               epr.egg_production_amount,
+               epr.egg_production_rate,
+               epr.bad_egg_production_amount,
+               epr.bad_egg_production_rate,
+               epr.pick_egg_person,
+               epr.record_person,
+               epr.record_time,
+               epr.gmt_create,
+               epr.gmt_modified,
+               bi.batch_name,
+               ubi.name  as recordPersonName,
+               ubi2.name as eggPickPersonName
+        from egg_production_record epr
+                 join batch_info bi on epr.batch_id = bi.batch_id
+                 join user_basic_info ubi on epr.record_person = ubi.user_basic_info_id
+                 join user_basic_info ubi2 on epr.pick_egg_person = ubi2.user_basic_info_id;
+    </select>
+    <resultMap id="getAllEggProductionRecord" type="com.final_back.entity.cultivation.EggProductionRecord"></resultMap>
 
 </mapper>

@@ -33,7 +33,7 @@ public class DeathRecordImpl extends ServiceImpl<DeathRecordMapper, DeathRecord>
 
     @Override
     public List<DeathRecord> getAllDeathRecord() {
-        return deathRecordMapper.selectList(null    );
+        return deathRecordMapper.getAllDeathRecord();
     }
 
     @Override
@@ -56,12 +56,12 @@ public class DeathRecordImpl extends ServiceImpl<DeathRecordMapper, DeathRecord>
 
     @Override
     public int deleteDeathRecordByIdList(List<Long> idList) {
-        if (idList.size() > 0){
+        if (idList.size() > 0) {
             //因为有联表，遍历之后一个个删除
             int i = 0;
 
             Iterator iterator = idList.iterator();
-            while (iterator.hasNext()){
+            while (iterator.hasNext()) {
                 Long deathRecordId = (Long) iterator.next();
                 i += deleteDeathRecordById(deathRecordId);
             }
@@ -77,6 +77,7 @@ public class DeathRecordImpl extends ServiceImpl<DeathRecordMapper, DeathRecord>
 
     /**
      * 按查询条件返回死亡记录
+     *
      * @param recordtartDate
      * @param recordEndDate
      * @param batchId

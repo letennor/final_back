@@ -17,5 +17,29 @@
         </where>
     </select>
 
+    <select id="getAllDeathRecord" resultMap="getAllDeathRecord">
+        select death_record.death_record_id,
+               death_record.batch_id,
+               death_record.death_number,
+               death_record.death_rate,
+               death_record.death_record_person,
+               death_record.record_person,
+               death_record.record_time,
+               death_record.gmt_create,
+               death_record.gmt_modified,
+               bi.batch_name,
+               ubi.name as death_record_person_name,
+               ubi2.name as record_person_name
+        from death_record
+                 join batch_info bi on death_record.batch_id = bi.batch_id
+                 join user_basic_info ubi on death_record.record_person = ubi.user_basic_info_id
+                 join user_basic_info ubi2 on death_record.death_record_person = ubi2.user_basic_info_id;
+    </select>
+
+    <resultMap id="getAllDeathRecord" type="com.final_back.entity.cultivation.DeathRecord">
+        <result property="batchName" column="batch_name"/>
+        <result property="recordPersonName" column="record_person_name"/>
+        <result property="deathRecordPersonName" column="death_record_person_name"/>
+    </resultMap>
 
 </mapper>

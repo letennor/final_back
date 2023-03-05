@@ -13,4 +13,6 @@ public interface FertilizationRecordMapper extends BaseMapper<FertilizationRecor
     List<Long> getIdList(@Param("batchId") Long batchId, @Param("operatePerson") Long operatePerson,
                          @Param("recordPerson") Long recordPerson);
 
+    List<FertilizationRecord> getAllFertilizationRecord();
+
 }

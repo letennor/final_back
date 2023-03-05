@@ -31,6 +31,15 @@ public class FertilizationRecord {
 
     private Date recordTime;
 
+    @TableField(exist = false)
+    private String batchName;
+
+    @TableField(exist = false)
+    private String recordPersonName;
+
+    @TableField(exist = false)
+    private String operatePersonName;
+
     @TableField(fill = FieldFill.INSERT)
     private Date gmtCreate;
 

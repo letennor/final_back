@@ -32,6 +32,18 @@ public class FeedRecord {
 
     private Date recordTime;
 
+    @TableField(exist = false)
+    private String batchName;
+
+    @TableField(exist = false)
+    private String recordPersonName;
+
+    @TableField(exist = false)
+    private String feedPersonName;
+
+    @TableField(exist = false)
+    private String feedName;
+
     @TableField(fill = FieldFill.INSERT)
     private Date gmtCreate;
 

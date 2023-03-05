@@ -13,4 +13,5 @@ public interface IncomingRecordMapper extends BaseMapper<IncomingRecord> {
     List<Long> getIdList(@Param("batchId") Long batchId, @Param("goodsId") Long goodsId,
                          @Param("transportRecordId") Long transportRecordId, @Param("recordPerson") Long recordPerson);
 
+    List<IncomingRecord> getAllIncomingRecord();
 }

@@ -22,7 +22,7 @@ public class IncomingRecordImpl extends ServiceImpl<IncomingRecordMapper, Incomi
 
     @Override
     public List<IncomingRecord> getAllIncomingRecord() {
-        return incomingRecordMapper.selectList(null);
+        return incomingRecordMapper.getAllIncomingRecord();
     }
 
     @Override

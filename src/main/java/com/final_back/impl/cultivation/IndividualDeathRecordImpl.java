@@ -23,7 +23,7 @@ public class IndividualDeathRecordImpl extends ServiceImpl<IndividualDeathRecord
 
     @Override
     public List<IndividualDeathRecord> getAllIndividualDeathRecord() {
-        return individualDeathRecordMapper.selectList(null);
+        return individualDeathRecordMapper.getAllIndividualDeathRecord();
     }
 
     @Override

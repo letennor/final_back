@@ -19,4 +19,7 @@ public interface FeedRecordMapper extends BaseMapper<FeedRecord> {
     List<FeedRecord> getRangeTimeFeedRecord(@Param("startTime") Date startTime,
                                                 @Param("endTime") Date endTime);
 
+
+    List<FeedRecord> getAllFeedRecord();
+
 }

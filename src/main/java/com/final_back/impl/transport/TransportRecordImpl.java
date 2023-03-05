@@ -32,7 +32,7 @@ public class TransportRecordImpl extends ServiceImpl<TransportRecordMapper, Tran
 
     @Override
     public List<TransportRecord> getAllTransportRecord() {
-        return transportRecordMapper.selectList(null);
+        return transportRecordMapper.getAllTransportRecord();
     }
 
     @Override

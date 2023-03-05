@@ -20,5 +20,28 @@
         </where>
     </select>
 
+    <select id="getAllTransportRecord" resultMap="getAllTransportRecord">
+        select tr.transport_record_id,
+               tr.transport_route,
+               tr.license_plate,
+               tr.driver,
+               tr.goods_id,
+               tr.record_person,
+               tr.record_time,
+               tr.gmt_create,
+               tr.gmt_modified,
+               tri.start_pos,
+               tri.end_pos,
+               gi.goods_name,
+               ubi.name  as recordPersonName,
+               ubi2.name as driverName
+        from transport_record tr
+                 join transport_route_info tri on tr.transport_route = tri.transport_route_id
+                 join goods_info gi on tr.goods_id = gi.goods_id
+                 join user_basic_info ubi on tr.record_person = ubi.user_basic_info_id
+                 join user_basic_info ubi2 on tr.driver = ubi2.user_basic_info_id;
+    </select>
+    <resultMap id="getAllTransportRecord" type="com.final_back.entity.transport.TransportRecord"></resultMap>
+
 
 </mapper>

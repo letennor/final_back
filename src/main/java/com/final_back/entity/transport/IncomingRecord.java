@@ -32,6 +32,12 @@ public class IncomingRecord {
 
     private Date recordTime;
 
+    @TableField(exist = false)
+    private String batchName;
+
+    @TableField(exist = false)
+    private String goodsName;
+
     @TableField(fill = FieldFill.INSERT)
     private Date gmtCreate;
 

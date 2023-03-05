@@ -17,4 +17,6 @@ public interface DosingRecordMapper extends BaseMapper<DosingRecord> {
 
     List<DosingRecord> getRangeTimeDosingRecord(@Param("startTime") Date startTime,
                                                 @Param("endTime") Date endTime);
+
+    List<DosingRecord> getAllDosingRecord();
 }

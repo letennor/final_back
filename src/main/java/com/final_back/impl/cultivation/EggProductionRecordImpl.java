@@ -24,7 +24,7 @@ public class EggProductionRecordImpl extends ServiceImpl<EggProductionRecordMapp
 
     @Override
     public List<EggProductionRecord> getAllEggProductionRecord() {
-        return eggProductionRecordMapper.selectList(null);
+        return eggProductionRecordMapper.getAllEggProductionRecord();
     }
 
     @Override
