@@ -24,6 +24,10 @@ public class BatchInfo {
     @TableField(fill = FieldFill.INSERT)
     private Date gmtCreate;
 
+    /**
+     * 测试
+     */
+
     @TableField(fill = FieldFill.INSERT_UPDATE)
     private Date gmtModified;
 
