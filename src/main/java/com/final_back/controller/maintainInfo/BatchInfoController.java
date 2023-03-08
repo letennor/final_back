@@ -32,6 +32,7 @@ public class BatchInfoController {
         return ResultUtil.success(batchInfoList);
     }
 
+
     /**
      * 增加批次信息
      * @param batchInfo
