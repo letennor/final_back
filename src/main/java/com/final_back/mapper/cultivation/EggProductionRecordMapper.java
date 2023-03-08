@@ -18,4 +18,7 @@ public interface EggProductionRecordMapper extends BaseMapper<EggProductionRecor
                                                               @Param("endTime") Date endTime);
 
     List<EggProductionRecord> getAllEggProductionRecord();
+
+    List<EggProductionRecord> getEggProductionRecordByCondition(@Param("batchId") Long batchId, @Param("pickEggPerson") Long pickEggPerson,@Param("recordPerson") Long recordPerson,  @Param("startDate") Date startDate, @Param("endDate") Date endDate);
+
 }

@@ -79,7 +79,6 @@ public class DeathRecordController {
 
     /**
      * 通过查询条件获取死亡记录
-     *
      * @param deathRecordDTO
      * @return
      */

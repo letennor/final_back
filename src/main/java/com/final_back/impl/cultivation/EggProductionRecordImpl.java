@@ -58,16 +58,15 @@ public class EggProductionRecordImpl extends ServiceImpl<EggProductionRecordMapp
     /**
      * 按条件获得产蛋记录
      * @param batchId
-     * @param collectPerson
+     * @param pickEggPerson
      * @param recordPerson
-     * @param recordStartDate
-     * @param recordEndDate
+     * @param startDate
+     * @param endDate
      * @return
      */
     @Override
-    public List<EggProductionRecord> getEggProductionRecordByCondition(Long batchId, Long collectPerson,
-                                                                       Long recordPerson, Date recordStartDate,
-                                                                       Date recordEndDate) {
-        return null;
+    public List<EggProductionRecord> getEggProductionRecordByCondition(Long batchId, Long pickEggPerson, Long recordPerson, Date startDate, Date endDate) {
+        List<EggProductionRecord> eggProductionRecordByCondition = eggProductionRecordMapper.getEggProductionRecordByCondition(batchId, pickEggPerson, recordPerson, startDate, endDate);
+        return eggProductionRecordByCondition;
     }
 }

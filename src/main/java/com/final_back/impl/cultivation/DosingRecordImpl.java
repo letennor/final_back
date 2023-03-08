@@ -65,14 +65,16 @@ public class DosingRecordImpl extends ServiceImpl<DosingRecordMapper, DosingReco
      * @param medicineId
      * @param batchId
      * @param dosingPerson
-     * @param recordStartDate
-     * @param recordEndDate
+     * @param startDate
+     * @param endDate
      * @param recordPerson
      * @return
      */
     @Override
     public List<DosingRecord> getDosingRecordByCondition(Long medicineId, Long batchId, Long dosingPerson,
-                                                         Date recordStartDate, Date recordEndDate, Long recordPerson) {
-        return null;
+                                                         Date startDate, Date endDate, Long recordPerson) {
+
+        List<DosingRecord> dosingRecordByCondition = dosingRecordMapper.getDosingRecordByCondition(recordPerson, medicineId, dosingPerson, batchId, startDate, endDate);
+        return dosingRecordByCondition;
     }
 }

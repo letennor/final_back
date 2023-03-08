@@ -1,6 +1,7 @@
 package com.final_back.controller.cultivation;
 
 import com.alibaba.fastjson.JSONObject;
+import com.final_back.dto.EggProductionRecordDTO;
 import com.final_back.dto.RangeTime;
 import com.final_back.entity.cultivation.EggProductionRecord;
 import com.final_back.mapper.cultivation.EggProductionRecordMapper;
@@ -92,12 +93,13 @@ public class EggProductionRecordController {
 
     /**
      * 通过查询条件获取产蛋量信息
-     * @param jsonObject
+     * @param eggProductionRecordDTO
      * @return
      */
     @RequestMapping("/getEggProductionRecordByCondition")
-    public Result<?> getEggProductionRecordByCondition(@RequestBody JSONObject jsonObject){
-        return null;
+    public Result<?> getEggProductionRecordByCondition(@RequestBody EggProductionRecordDTO eggProductionRecordDTO){
+        List<EggProductionRecord> eggProductionRecordByCondition = eggProductionRecordService.getEggProductionRecordByCondition(eggProductionRecordDTO.getBatchId(), eggProductionRecordDTO.getPickEggPerson(), eggProductionRecordDTO.getRecordPerson(), eggProductionRecordDTO.getStartDate(), eggProductionRecordDTO.getEndDate());
+        return ResultUtil.success(eggProductionRecordByCondition);
     }
 
 }

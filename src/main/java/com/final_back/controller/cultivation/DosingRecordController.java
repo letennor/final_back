@@ -2,6 +2,7 @@ package com.final_back.controller.cultivation;
 
 
 import com.alibaba.fastjson.JSONObject;
+import com.final_back.dto.DosingRecordDTO;
 import com.final_back.dto.RangeTime;
 import com.final_back.entity.cultivation.DosingRecord;
 import com.final_back.entity.maintainInfo.MedicineInfo;
@@ -111,12 +112,13 @@ public class DosingRecordController {
 
     /**
      * 通过查询条件获取投药记录
-     * @param jsonObject
+     * @param dosingRecordDTO
      * @return
      */
     @RequestMapping("/getDosingRecordByCondition")
-    public Result<?> getDosingRecordByCondition(@RequestBody JSONObject jsonObject){
-        return null;
+    public Result<?> getDosingRecordByCondition(@RequestBody DosingRecordDTO dosingRecordDTO){
+        List<DosingRecord> dosingRecordByCondition = dosingRecordService.getDosingRecordByCondition(dosingRecordDTO.getMedicineId(), dosingRecordDTO.getBatchId(), dosingRecordDTO.getDosingPerson(), dosingRecordDTO.getStartDate(), dosingRecordDTO.getEndDate(), dosingRecordDTO.getRecordPerson());
+        return ResultUtil.success(dosingRecordByCondition);
     }
 
 }

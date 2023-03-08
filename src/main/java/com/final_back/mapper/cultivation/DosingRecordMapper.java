@@ -19,4 +19,6 @@ public interface DosingRecordMapper extends BaseMapper<DosingRecord> {
                                                 @Param("endTime") Date endTime);
 
     List<DosingRecord> getAllDosingRecord();
+
+    List<DosingRecord> getDosingRecordByCondition(@Param("recordPerson") Long recordPerson, @Param("medicineId") Long medicineId, @Param("dosingPerson") Long dosingPerson, @Param("batchId") Long batchId, @Param("startDate") Date startDate, @Param("endDate") Date endDate);
 }

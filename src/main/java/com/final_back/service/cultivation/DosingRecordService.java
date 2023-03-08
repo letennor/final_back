@@ -25,5 +25,5 @@ public interface DosingRecordService extends IService<DosingRecord> {
 
     List<DosingRecord> getRangeTimeDosingRecord(Date startTime, Date endTime);
 
-    List<DosingRecord> getDosingRecordByCondition(Long medicineId, Long batchId, Long dosingPerson, Date recordStartDate, Date recordEndDate, Long recordPerson);
+    List<DosingRecord> getDosingRecordByCondition(Long medicineId, Long batchId, Long dosingPerson, Date startDate, Date endDate, Long recordPerson);
 }

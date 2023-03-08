@@ -237,4 +237,25 @@ class FinalBackApplicationTests {
         }
     }
 
+    @Test
+    void test25(){
+        List<DosingRecord> dosingRecordByCondition = dosingRecordService.getDosingRecordByCondition(null, null, null, null, null, null);
+        Iterator iterator = dosingRecordByCondition.iterator();
+        while (iterator.hasNext()){
+            Object next = iterator.next();
+            System.out.println(next);
+        }
+
+    }
+
+    @Test
+    void test26(){
+        List<EggProductionRecord> eggProductionRecordByCondition = eggProductionRecordService.getEggProductionRecordByCondition(null, null, null, null, null);
+        Iterator iterator = eggProductionRecordByCondition.iterator();
+        while (iterator.hasNext()){
+            Object next = iterator.next();
+            System.out.println(next);
+        }
+    }
+
 }
