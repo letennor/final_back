@@ -38,6 +38,7 @@ public class BatchInfoController {
      * @param batchInfo
      * @return
      */
+
     @RequestMapping("/addBatchInfo")
     public Result<?> addBatchInfo(@RequestBody BatchInfo batchInfo) {
         int i = batchInfoService.addBatchInfo(batchInfo);
