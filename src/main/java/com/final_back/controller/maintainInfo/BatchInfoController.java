@@ -32,13 +32,11 @@ public class BatchInfoController {
         return ResultUtil.success(batchInfoList);
     }
 
-
     /**
      * 增加批次信息
      * @param batchInfo
      * @return
      */
-
     @RequestMapping("/addBatchInfo")
     public Result<?> addBatchInfo(@RequestBody BatchInfo batchInfo) {
         int i = batchInfoService.addBatchInfo(batchInfo);

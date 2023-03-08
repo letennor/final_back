@@ -78,15 +78,17 @@ public class DeathRecordImpl extends ServiceImpl<DeathRecordMapper, DeathRecord>
     /**
      * 按查询条件返回死亡记录
      *
-     * @param recordtartDate
-     * @param recordEndDate
+     * @param startDate
+     * @param endDate
      * @param batchId
      * @param recordPerson
      * @return
      */
     @Override
-    public List<DeathRecord> getDeathRecordByCondition(Date recordtartDate, Date recordEndDate, Long batchId,
-                                                       Long recordPerson) {
-        return null;
+    public List<DeathRecord> getDeathRecordByCondition(Date startDate, Date endDate, Long batchId,
+                                                       Long recordPerson, Long deathRecordPerson) {
+
+        List<DeathRecord> deathRecordByCondition = deathRecordMapper.getDeathRecordByCondition(batchId, recordPerson, deathRecordPerson, startDate, endDate);
+        return deathRecordByCondition;
     }
 }

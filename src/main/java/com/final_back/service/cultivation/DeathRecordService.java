@@ -21,6 +21,7 @@ public interface DeathRecordService extends IService<DeathRecord> {
 
     int updateDeathRecord(DeathRecord deathRecord);
 
-    List<DeathRecord> getDeathRecordByCondition(Date recordtartDate, Date recordEndDate, Long batchId, Long recordPerson);
+    List<DeathRecord> getDeathRecordByCondition(Date startDate, Date endDate, Long batchId, Long recordPerson, Long deathRecordPerson);
+
 
 }
