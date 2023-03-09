@@ -2,6 +2,7 @@ package com.final_back.controller.cultivation;
 
 
 import com.alibaba.fastjson.JSONObject;
+import com.final_back.dto.FeedRecordDTO;
 import com.final_back.dto.RangeTime;
 import com.final_back.entity.cultivation.EggProductionRecord;
 import com.final_back.entity.maintainInfo.FeedInfo;
@@ -119,12 +120,14 @@ public class FeedRecordController {
 
     /**
      * 通过查询条件获取饲养信息
-     * @param jsonObject
+     * @param feedRecordDTO
      * @return
      */
     @RequestMapping("/getFeedRecordByCondition")
-    public Result<?> getFeedRecordByCondition(@RequestBody JSONObject jsonObject){
-        return null;
+    public Result<?> getFeedRecordByCondition(@RequestBody FeedRecordDTO feedRecordDTO){
+        List<FeedRecord> feedRecordByCondition = feedRecordService.getFeedRecordByCondition(feedRecordDTO.getBatchId(), feedRecordDTO.getFeedPerson(), feedRecordDTO.getRecordPerson(), feedRecordDTO.getStartDate(), feedRecordDTO.getEndDate());
+
+        return ResultUtil.success(feedRecordByCondition);
     }
 
 

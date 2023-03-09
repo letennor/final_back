@@ -23,5 +23,5 @@ public interface FeedRecordService extends IService<FeedRecord> {
 
     List<FeedRecord> getRangeTimeFeedRecord(Date startTime, Date endTime);
 
-    List<FeedRecord> getFeedRecordByCondition(Long batchId, Long feedPerson, Long recordPerson, Date recordStartDate, Date recordEndDate);
+    List<FeedRecord> getFeedRecordByCondition(Long batchId, Long feedPerson, Long recordPerson, Date startDate, Date endDate);
 }

@@ -31,5 +31,30 @@
     <resultMap id="getAllIndividualDeathRecord" type="com.final_back.entity.cultivation.IndividualDeathRecord">
 
     </resultMap>
+    
+    
+    <select id="getIndividualDeathRecordByCondition" resultMap="getIndividualDeathRecordByCondition">
+
+        select individual_death_record_id,
+        death_record_id,
+        death_reason,
+        picture,
+        record_person,
+        record_time,
+        idr.gmt_create,
+        idr.gmt_modified,
+        name as recordPersonName
+        from individual_death_record idr
+        join user_basic_info ubi on idr.record_person = ubi.user_basic_info_id
+        <where>
+            <if test="recordPerson != null">
+                idr.record_person = #{recordPerson}
+            </if>
+            <if test="startDate != null">
+                AND idr.record_time BETWEEN #{startDate} AND #{endDate}
+            </if>
+        </where>
+    </select>
+    <resultMap id="getIndividualDeathRecordByCondition" type="com.final_back.entity.cultivation.IndividualDeathRecord"></resultMap>
 
 </mapper>

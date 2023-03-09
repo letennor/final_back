@@ -60,13 +60,15 @@ public class FeedRecordImpl extends ServiceImpl<FeedRecordMapper, FeedRecord> im
      * @param batchId
      * @param feedPerson
      * @param recordPerson
-     * @param recordStartDate
-     * @param recordEndDate
+     * @param startDate
+     * @param endDate
      * @return
      */
     @Override
     public List<FeedRecord> getFeedRecordByCondition(Long batchId, Long feedPerson, Long recordPerson,
-                                                     Date recordStartDate, Date recordEndDate) {
-        return null;
+                                                     Date startDate, Date endDate) {
+
+        List<FeedRecord> feedRecordByCondition = feedRecordMapper.getFeedRecordByCondition(batchId, feedPerson, recordPerson, startDate, endDate);
+        return feedRecordByCondition;
     }
 }

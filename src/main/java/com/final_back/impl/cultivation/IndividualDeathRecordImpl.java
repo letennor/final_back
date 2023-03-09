@@ -55,13 +55,15 @@ public class IndividualDeathRecordImpl extends ServiceImpl<IndividualDeathRecord
     /**
      * 按查询条件返回个体死亡记录
      * @param recordPerson
-     * @param recordStartDate
-     * @param recordEndDate
+     * @param startDate
+     * @param endDate
      * @return
      */
     @Override
-    public List<IndividualDeathRecord> getIndividualDeathRecordByCondition(Long recordPerson, Date recordStartDate,
-                                                                           Date recordEndDate) {
-        return null;
+    public List<IndividualDeathRecord> getIndividualDeathRecordByCondition(Long recordPerson, Date startDate,
+                                                                           Date endDate) {
+
+        List<IndividualDeathRecord> individualDeathRecordByCondition = individualDeathRecordMapper.getIndividualDeathRecordByCondition(recordPerson, startDate, endDate);
+        return individualDeathRecordByCondition;
     }
 }

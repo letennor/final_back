@@ -258,4 +258,35 @@ class FinalBackApplicationTests {
         }
     }
 
+    @Test
+    void test27(){
+        List<FeedRecord> feedRecordByCondition = feedRecordService.getFeedRecordByCondition(null, null, null, null, null);
+        Iterator iterator = feedRecordByCondition.iterator();
+        while (iterator.hasNext()){
+            Object next = iterator.next();
+            System.out.println(next);
+        }
+    }
+
+
+    @Test
+    void test28(){
+        List<FertilizationRecord> fertilizationRecordByCondition = fertilizationRecordService.getFertilizationRecordByCondition(null, null, null, null, null, null, null);
+        Iterator iterator = fertilizationRecordByCondition.iterator();
+        while (iterator.hasNext()){
+            Object next = iterator.next();
+            System.out.println(next);
+        }
+    }
+
+    @Test
+    void test29(){
+        List<IndividualDeathRecord> individualDeathRecordByCondition = individualDeathRecordService.getIndividualDeathRecordByCondition(null, null, null);
+        Iterator iterator = individualDeathRecordByCondition.iterator();
+        while (iterator.hasNext()){
+            Object next = iterator.next();
+            System.out.println(next);
+        }
+    }
+
 }

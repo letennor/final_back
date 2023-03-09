@@ -1,6 +1,7 @@
 package com.final_back.controller.cultivation;
 
 import com.alibaba.fastjson.JSONObject;
+import com.final_back.dto.IndividualDeathRecordDTO;
 import com.final_back.entity.cultivation.IndividualDeathRecord;
 import com.final_back.mapper.cultivation.IndividualDeathRecordMapper;
 import com.final_back.service.cultivation.IndividualDeathRecordService;
@@ -79,12 +80,13 @@ public class IndividualDeathRecordController {
 
     /**
      * 通过查询条件获取个体死亡记录
-     * @param jsonObject
+     * @param individualDeathRecordDTO
      * @return
      */
     @RequestMapping("/getIndividualDeathRecordByCondition")
-    public Result<?> getIndividualDeathRecordByCondition(@RequestBody JSONObject jsonObject){
-        return null;
+    public Result<?> getIndividualDeathRecordByCondition(@RequestBody IndividualDeathRecordDTO individualDeathRecordDTO){
+        List<IndividualDeathRecord> individualDeathRecordByCondition = individualDeathRecordService.getIndividualDeathRecordByCondition(individualDeathRecordDTO.getRecordPerson(), individualDeathRecordDTO.getStartDate(), individualDeathRecordDTO.getEndDate());
+        return ResultUtil.success(individualDeathRecordByCondition);
     }
 
 }

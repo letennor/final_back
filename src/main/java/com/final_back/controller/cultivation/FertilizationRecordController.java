@@ -1,6 +1,7 @@
 package com.final_back.controller.cultivation;
 
 import com.alibaba.fastjson.JSONObject;
+import com.final_back.dto.FertilizationRecordDTO;
 import com.final_back.entity.cultivation.FertilizationRecord;
 import com.final_back.mapper.cultivation.FertilizationRecordMapper;
 import com.final_back.service.cultivation.FertilizationRecordService;
@@ -79,12 +80,13 @@ public class FertilizationRecordController {
 
     /**
      * 通过查询条件获取受精记录
-     * @param jsonObject
+     * @param fertilizationRecordDTO
      * @return
      */
     @RequestMapping("/getFertilizationRecordByCondition")
-    public Result<?> getFertilizationRecordByCondition(@RequestBody JSONObject jsonObject){
-        return null;
+    public Result<?> getFertilizationRecordByCondition(@RequestBody FertilizationRecordDTO fertilizationRecordDTO){
+        List<FertilizationRecord> fertilizationRecordByCondition = fertilizationRecordService.getFertilizationRecordByCondition(fertilizationRecordDTO.getBatchId(), fertilizationRecordDTO.getFertilizationStartDate(), fertilizationRecordDTO.getFertilizationEndDate(), fertilizationRecordDTO.getOperatePerson(), fertilizationRecordDTO.getRecordPerson(), fertilizationRecordDTO.getStartDate(), fertilizationRecordDTO.getEndDate());
+        return ResultUtil.success(fertilizationRecordByCondition);
     }
 
 }

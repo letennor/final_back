@@ -22,4 +22,6 @@ public interface FeedRecordMapper extends BaseMapper<FeedRecord> {
 
     List<FeedRecord> getAllFeedRecord();
 
+    List<FeedRecord> getFeedRecordByCondition(@Param("batchId") Long batchId, @Param("feedPerson") Long feedPerson, @Param("recordPerson") Long recordPerson, @Param("startDate") Date startDate, @Param("endDate") Date endDate);
+
 }

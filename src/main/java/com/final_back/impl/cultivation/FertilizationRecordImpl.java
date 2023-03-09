@@ -52,19 +52,20 @@ public class FertilizationRecordImpl extends ServiceImpl<FertilizationRecordMapp
     /**
      * 按条件取得受精记录
      * @param batchId
-     * @param fertilizationRecordStartDate
-     * @param fertilizationRecordEndDate
+     * @param fertilizationStartDate
+     * @param fertilizationEndDate
      * @param operatePerson
      * @param recordPerson
-     * @param recordStartDate
-     * @param recordEndDate
+     * @param startDate
+     * @param endDate
      * @return
      */
     @Override
-    public List<FertilizationRecord> getFertilizationRecordByCondition(Long batchId, Date fertilizationRecordStartDate,
-                                                                       Date fertilizationRecordEndDate,
+    public List<FertilizationRecord> getFertilizationRecordByCondition(Long batchId, Date fertilizationStartDate,
+                                                                       Date fertilizationEndDate,
                                                                        Long operatePerson, Long recordPerson,
-                                                                       Date recordStartDate, Date recordEndDate) {
-        return null;
+                                                                       Date startDate, Date endDate) {
+        List<FertilizationRecord> fertilizationRecordByCondition = fertilizationRecordMapper.getFertilizationRecordByCondition(batchId, fertilizationStartDate, fertilizationEndDate, operatePerson,  recordPerson, startDate, endDate);
+        return fertilizationRecordByCondition;
     }
 }
