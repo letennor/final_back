@@ -3,6 +3,7 @@ package com.final_back.service.transport;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.final_back.entity.transport.OutputRecord;
 
+import java.util.Date;
 import java.util.List;
 
 public interface OutputRecordService extends IService<OutputRecord> {
@@ -18,5 +19,5 @@ public interface OutputRecordService extends IService<OutputRecord> {
 
     int updateOutputRecord(OutputRecord outputRecord);
 
-    List<OutputRecord> getOutputRecordByCondition(Integer minAmount, Integer maxAmount, Double minRate, Double maxRate, Long recordPerson, Long batchId);
+    List<OutputRecord> getOutputRecordByCondition(Long batchId, Date startDate, Date endDate, Long recordPerson);
 }

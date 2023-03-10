@@ -21,5 +21,5 @@ public interface IncomingRecordService extends IService<IncomingRecord> {
 
     int updateIncomingRecord(IncomingRecord incomingRecord);
 
-    List<IncomingRecord> getIncomingRecordByCondition(Long batchId, Date recordStartDate, Date recordEndDate, Integer minAmount, Integer maxAmount);
+    List<IncomingRecord> getIncomingRecordByCondition(Long batchId, Date startDate, Date endDate, Integer minAmount, Integer maxAmount);
 }

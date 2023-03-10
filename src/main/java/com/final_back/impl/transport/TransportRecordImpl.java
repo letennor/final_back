@@ -55,11 +55,11 @@ public class TransportRecordImpl extends ServiceImpl<TransportRecordMapper, Tran
 
     @Override
     public int deleteTransportRecordByIdList(List<Long> idList) {
-        if (idList.size() > 0){
+        if (idList.size() > 0) {
             //先找出所有的id，然后遍历这些id，然后调用service的接口一个一个删除。因为有联表，所以不能通过deleteBatchIds删除
             Iterator iterator = idList.iterator();
             int i = 0;
-            while (iterator.hasNext()){
+            while (iterator.hasNext()) {
                 Long transportRecordId = (Long) iterator.next();
                 i += deleteTransportRecordById(transportRecordId);
             }
@@ -78,18 +78,20 @@ public class TransportRecordImpl extends ServiceImpl<TransportRecordMapper, Tran
 
     /**
      * 通过条件返回运输记录
+     *
      * @param transportRoute
      * @param license
      * @param driver
      * @param recordPerson
-     * @param recordStartDate
-     * @param recordEndDate
+     * @param startDate
+     * @param endDate
      * @return
      */
     @Override
     public List<TransportRecord> getTransportRecordByCondition(Long transportRoute, String license, Long driver,
-                                                               Long recordPerson, Date recordStartDate,
-                                                               Date recordEndDate) {
-        return null;
+                                                               Long recordPerson, Date startDate,
+                                                               Date endDate) {
+        List<TransportRecord> transportRecordByCondition = transportRecordMapper.getTransportRecordByCondition(transportRoute, license, driver, recordPerson, startDate, endDate);
+        return transportRecordByCondition;
     }
 }

@@ -1,5 +1,6 @@
 package com.final_back.controller.transport;
 
+import com.final_back.dto.IncomingRecordDTO;
 import com.final_back.entity.transport.IncomingRecord;
 import com.final_back.mapper.transport.IncomingRecordMapper;
 import com.final_back.service.transport.IncomingRecordService;
@@ -72,6 +73,18 @@ public class IncomingRecordController {
         }else {
             return ResultUtil.success("修改失败");
         }
+    }
+
+
+    /**
+     * 按条件获取进蛋记录
+     * @param incomingRecordDTO
+     * @return
+     */
+    @RequestMapping("/getIncomingRecordByCondition")
+    public Result<?> getIncomingRecordByCondition(@RequestBody IncomingRecordDTO incomingRecordDTO){
+        List<IncomingRecord> incomingRecordByCondition = incomingRecordService.getIncomingRecordByCondition(incomingRecordDTO.getBatchId(), incomingRecordDTO.getStartDate(), incomingRecordDTO.getEndDate(), incomingRecordDTO.getMinAmount(), incomingRecordDTO.getMaxAmount());
+        return ResultUtil.success(incomingRecordByCondition);
     }
 
 

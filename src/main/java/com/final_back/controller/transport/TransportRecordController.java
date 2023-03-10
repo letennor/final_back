@@ -1,6 +1,7 @@
 package com.final_back.controller.transport;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.final_back.dto.TransportRecordDTO;
 import com.final_back.entity.transport.IncomingRecord;
 import com.final_back.entity.transport.OutputRecord;
 import com.final_back.entity.transport.TransportRecord;
@@ -24,6 +25,7 @@ public class TransportRecordController {
 
     /**
      * 添加运输记录
+     *
      * @param transportRecord
      * @return
      */
@@ -39,6 +41,7 @@ public class TransportRecordController {
 
     /**
      * 取得所有运输记录
+     *
      * @return
      */
     @RequestMapping("/getAllTransportRecord")
@@ -49,6 +52,7 @@ public class TransportRecordController {
 
     /**
      * 删除运输记录
+     *
      * @param transportRecord
      * @return
      */
@@ -64,17 +68,30 @@ public class TransportRecordController {
 
     /**
      * 更新运输记录
+     *
      * @param transportRecord
      * @return
      */
     @RequestMapping("/updateTransportRecord")
-    public Result<?> updateTransportRecord(@RequestBody TransportRecord transportRecord){
+    public Result<?> updateTransportRecord(@RequestBody TransportRecord transportRecord) {
         int i = transportRecordService.updateTransportRecord(transportRecord);
         if (i > 0) {
             return ResultUtil.success("修改成功");
         } else {
             return ResultUtil.success("修改失败");
         }
+    }
+
+    /**
+     * 通过条件获得运输记录
+     *
+     * @param transportRecordDTO
+     * @return
+     */
+    @RequestMapping("/getTransportRecordByCondition")
+    public Result<?> getTransportRecordByCondition(@RequestBody TransportRecordDTO transportRecordDTO) {
+        List<TransportRecord> transportRecordByCondition = transportRecordService.getTransportRecordByCondition(transportRecordDTO.getTransportRoute(), transportRecordDTO.getLicensePlate(), transportRecordDTO.getDriver(), transportRecordDTO.getRecordPerson(), transportRecordDTO.getStartDate(), transportRecordDTO.getEndDate());
+        return ResultUtil.success(transportRecordByCondition);
     }
 
 }

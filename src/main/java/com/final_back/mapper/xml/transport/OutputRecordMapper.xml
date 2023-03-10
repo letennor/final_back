@@ -33,4 +33,32 @@
     </select>
     <resultMap id="getAllOutputRecord" type="com.final_back.entity.transport.OutputRecord"></resultMap>
 
+
+    <select id="getOutputRecordByCondition" resultMap="getOutputRecordByCondition">
+        select output_record_id,
+        output_record.batch_id,
+        output_amount,
+        output_rate,
+        transport_record_id,
+        output_record.record_person,
+        record_time,
+        batch_name,
+        name as recordPersonName
+        from output_record
+        join batch_info bi on output_record.batch_id = bi.batch_id
+        join user_basic_info ubi on ubi.user_basic_info_id = output_record.record_person
+        <where>
+            <if test="batchId != null">
+                output_record.batch_id = #{batchId}
+            </if>
+            <if test="recordPerson != null">
+                output_record.record_person = #{recordPerson}
+            </if>
+            <if test="startDate != null">
+                AND output_record.record_time BETWEEN #{startDate} AND #{endDate}
+            </if>
+        </where>
+    </select>
+    <resultMap id="getOutputRecordByCondition" type="com.final_back.entity.transport.OutputRecord"></resultMap>
+
 </mapper>

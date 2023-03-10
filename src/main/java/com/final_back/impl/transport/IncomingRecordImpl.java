@@ -51,15 +51,18 @@ public class IncomingRecordImpl extends ServiceImpl<IncomingRecordMapper, Incomi
     /**
      * 通过条件返回进货记录
      * @param batchId
-     * @param recordStartDate
-     * @param recordEndDate
+     * @param startDate
+     * @param endDate
      * @param minAmount
      * @param maxAmount
      * @return
      */
     @Override
-    public List<IncomingRecord> getIncomingRecordByCondition(Long batchId, Date recordStartDate, Date recordEndDate,
+    public List<IncomingRecord> getIncomingRecordByCondition(Long batchId, Date startDate, Date endDate,
                                                              Integer minAmount, Integer maxAmount) {
-        return null;
+
+        List<IncomingRecord> incomingRecordByCondition = incomingRecordMapper.getIncomingRecordByCondition(batchId, startDate, endDate, minAmount, maxAmount);
+
+        return incomingRecordByCondition;
     }
 }

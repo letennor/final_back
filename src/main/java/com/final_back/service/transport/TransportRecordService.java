@@ -19,5 +19,5 @@ public interface TransportRecordService extends IService<TransportRecord> {
 
     int updateTransportRecord(TransportRecord transportRecord);
 
-    List<TransportRecord> getTransportRecordByCondition(Long transportRoute, String license, Long driver, Long recordPerson, Date recordStartDate, Date recordEndDate);
+    List<TransportRecord> getTransportRecordByCondition(Long transportRoute, String license, Long driver, Long recordPerson, Date startDate, Date endDate);
 }

@@ -3,6 +3,7 @@ package com.final_back;
 import com.final_back.dto.UserBasicInfoDTO;
 import com.final_back.entity.cultivation.*;
 import com.final_back.entity.transport.IncomingRecord;
+import com.final_back.entity.transport.OutputRecord;
 import com.final_back.entity.transport.TransportRecord;
 import com.final_back.mapper.cultivation.IndividualDeathRecordMapper;
 import com.final_back.mapper.system.UserBasicInfoMapper;
@@ -104,37 +105,37 @@ class FinalBackApplicationTests {
     }
 
     @Test
-    void test9(){
+    void test9() {
         List<Long> eggProductionRecordIdList = eggProductionRecordService.getIdList(null, null, null);
         System.out.println(eggProductionRecordIdList);
     }
 
     @Test
-    void test10(){
+    void test10() {
         List<Long> idList = deathRecordService.getIdList(null, null, 1594944996053143554L);
         System.out.println(idList);
     }
 
     @Test
-    void test11(){
+    void test11() {
         List<Long> idList = fertilizationRecordService.getIdList(null, null, null);
         System.out.println(idList);
     }
 
     @Test
-    void test12(){
+    void test12() {
         List<Long> idList = userPasswordInfoService.getIdList(null, null, null, 1L);
         System.out.println(idList);
     }
 
     @Test
-    void test13(){
+    void test13() {
         List<Long> idList = batchInfoService.getIdList(1594945262135595010L);
         System.out.println(idList);
     }
 
     @Test
-    void test14(){
+    void test14() {
         UserBasicInfo userBasicInfo = new UserBasicInfo();
         userBasicInfo.setUserBasicInfoId(1597035679850520578L);
         userBasicInfo.setAge(60);
@@ -143,105 +144,105 @@ class FinalBackApplicationTests {
     }
 
     @Test
-    void test15(){
+    void test15() {
         List<UserBasicInfo> allPerson = userBasicInfoService.getAllPerson();
         Iterator iterator = allPerson.iterator();
 
-        while (iterator.hasNext()){
+        while (iterator.hasNext()) {
             System.out.println(iterator.next());
         }
     }
 
     @Test
-    void test16(){
+    void test16() {
         List<UserBasicInfoDTO> allUserAllInfo = userBasicInfoService.getAllUserAllInfo();
         Iterator iterator = allUserAllInfo.iterator();
-        while (iterator.hasNext()){
+        while (iterator.hasNext()) {
             UserBasicInfoDTO userBasicInfoDTO = (UserBasicInfoDTO) iterator.next();
             System.out.println(userBasicInfoDTO.getUserBasicInfoId());
         }
     }
 
     @Test
-    void test17(){
+    void test17() {
         List<DeathRecord> allDeathRecord = deathRecordService.getAllDeathRecord();
         Iterator iterator = allDeathRecord.iterator();
-        while (iterator.hasNext()){
+        while (iterator.hasNext()) {
             Object next = iterator.next();
             System.out.println(next);
         }
     }
 
     @Test
-    void test18(){
+    void test18() {
         List<IndividualDeathRecord> allIndividualDeathRecord = individualDeathRecordService.getAllIndividualDeathRecord();
         Iterator iterator = allIndividualDeathRecord.iterator();
-        while (iterator.hasNext()){
+        while (iterator.hasNext()) {
             Object next = iterator.next();
         }
     }
 
     @Test
-    void test19(){
+    void test19() {
         List<DosingRecord> allDosingRecord = dosingRecordService.getAllDosingRecord();
         Iterator iterator = allDosingRecord.iterator();
-        while (iterator.hasNext()){
+        while (iterator.hasNext()) {
             Object next = iterator.next();
             System.out.println(next);
         }
     }
 
     @Test
-    void test20(){
+    void test20() {
         List<EggProductionRecord> allEggProductionRecord = eggProductionRecordService.getAllEggProductionRecord();
         Iterator iterator = allEggProductionRecord.iterator();
-        while (iterator.hasNext()){
+        while (iterator.hasNext()) {
             Object next = iterator.next();
             System.out.println(next);
         }
     }
 
     @Test
-    void test21(){
+    void test21() {
         List<FeedRecord> allFeedRecord = feedRecordService.getAllFeedRecord();
         Iterator iterator = allFeedRecord.iterator();
-        while (iterator.hasNext()){
+        while (iterator.hasNext()) {
             Object next = iterator.next();
             System.out.println(next);
         }
     }
 
     @Test
-    void test22(){
+    void test22() {
         List<TransportRecord> allTransportRecord = transportRecordService.getAllTransportRecord();
         System.out.println(allTransportRecord);
     }
 
     @Test
-    void test23(){
+    void test23() {
         List<TransportRecord> allTransportRecord = transportRecordService.getAllTransportRecord();
         Iterator iterator = allTransportRecord.iterator();
-        while (iterator.hasNext()){
+        while (iterator.hasNext()) {
             Object next = iterator.next();
             System.out.println(next);
         }
     }
 
     @Test
-    void test24(){
+    void test24() {
         List<IncomingRecord> allIncomingRecord = incomingRecordService.getAllIncomingRecord();
         Iterator iterator = allIncomingRecord.iterator();
-        while (iterator.hasNext()){
+        while (iterator.hasNext()) {
             Object next = iterator.next();
             System.out.println(next);
         }
     }
 
     @Test
-    void test25(){
+    void test25() {
         List<DosingRecord> dosingRecordByCondition = dosingRecordService.getDosingRecordByCondition(null, null, null, null, null, null);
         Iterator iterator = dosingRecordByCondition.iterator();
-        while (iterator.hasNext()){
+        while (iterator.hasNext()) {
             Object next = iterator.next();
             System.out.println(next);
         }
@@ -249,20 +250,20 @@ class FinalBackApplicationTests {
     }
 
     @Test
-    void test26(){
+    void test26() {
         List<EggProductionRecord> eggProductionRecordByCondition = eggProductionRecordService.getEggProductionRecordByCondition(null, null, null, null, null);
         Iterator iterator = eggProductionRecordByCondition.iterator();
-        while (iterator.hasNext()){
+        while (iterator.hasNext()) {
             Object next = iterator.next();
             System.out.println(next);
         }
     }
 
     @Test
-    void test27(){
+    void test27() {
         List<FeedRecord> feedRecordByCondition = feedRecordService.getFeedRecordByCondition(null, null, null, null, null);
         Iterator iterator = feedRecordByCondition.iterator();
-        while (iterator.hasNext()){
+        while (iterator.hasNext()) {
             Object next = iterator.next();
             System.out.println(next);
         }
@@ -270,20 +271,50 @@ class FinalBackApplicationTests {
 
 
     @Test
-    void test28(){
+    void test28() {
         List<FertilizationRecord> fertilizationRecordByCondition = fertilizationRecordService.getFertilizationRecordByCondition(null, null, null, null, null, null, null);
         Iterator iterator = fertilizationRecordByCondition.iterator();
-        while (iterator.hasNext()){
+        while (iterator.hasNext()) {
             Object next = iterator.next();
             System.out.println(next);
         }
     }
 
     @Test
-    void test29(){
+    void test29() {
         List<IndividualDeathRecord> individualDeathRecordByCondition = individualDeathRecordService.getIndividualDeathRecordByCondition(null, null, null);
         Iterator iterator = individualDeathRecordByCondition.iterator();
-        while (iterator.hasNext()){
+        while (iterator.hasNext()) {
+            Object next = iterator.next();
+            System.out.println(next);
+        }
+    }
+
+    @Test
+    void test30() {
+        List<IncomingRecord> incomingRecordByCondition = incomingRecordService.getIncomingRecordByCondition(null, null, null, null, null);
+        Iterator iterator = incomingRecordByCondition.iterator();
+        while (iterator.hasNext()) {
+            Object next = iterator.next();
+            System.out.println(next);
+        }
+    }
+
+    @Test
+    void test31() {
+        List<OutputRecord> outputRecordByCondition = outputRecordService.getOutputRecordByCondition(null, null, null, null);
+        Iterator iterator = outputRecordByCondition.iterator();
+        while (iterator.hasNext()) {
+            Object next = iterator.next();
+            System.out.println(next);
+        }
+    }
+
+    @Test
+    void test32(){
+        List<TransportRecord> transportRecordByCondition = transportRecordService.getTransportRecordByCondition(null, null, null, null, null, null);
+        Iterator iterator = transportRecordByCondition.iterator();
+        while (iterator.hasNext()) {
             Object next = iterator.next();
             System.out.println(next);
         }

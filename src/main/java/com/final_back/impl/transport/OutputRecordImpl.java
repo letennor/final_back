@@ -8,6 +8,7 @@ import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -51,17 +52,16 @@ public class OutputRecordImpl extends ServiceImpl<OutputRecordMapper, OutputReco
 
     /**
      * 按条件获取出苗记录
-     * @param minAmount
-     * @param maxAmount
-     * @param minRate
-     * @param maxRate
-     * @param recordPerson
      * @param batchId
+     * @param startDate
+     * @param endDate
+     * @param recordPerson
      * @return
      */
     @Override
-    public List<OutputRecord> getOutputRecordByCondition(Integer minAmount, Integer maxAmount, Double minRate,
-                                                         Double maxRate, Long recordPerson, Long batchId) {
-        return null;
+    public List<OutputRecord> getOutputRecordByCondition(Long batchId, Date startDate, Date endDate, Long recordPerson) {
+        List<OutputRecord> outputRecordByCondition = outputRecordMapper.getOutputRecordByCondition(batchId, recordPerson, startDate, endDate);
+
+        return outputRecordByCondition;
     }
 }
