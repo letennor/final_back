@@ -19,5 +19,5 @@ public interface OutputRecordService extends IService<OutputRecord> {
 
     int updateOutputRecord(OutputRecord outputRecord);
 
-    List<OutputRecord> getOutputRecordByCondition(Long batchId, Date startDate, Date endDate, Long recordPerson);
+    List<OutputRecord> getOutputRecordByCondition(Long batchId, Date startDate, Date endDate, Long recordPerson, String order, Integer isDesc, Integer limit);
 }

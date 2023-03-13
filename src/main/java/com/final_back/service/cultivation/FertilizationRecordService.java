@@ -20,5 +20,5 @@ public interface FertilizationRecordService extends IService<FertilizationRecord
 
     int updateFertilizationRecord(FertilizationRecord fertilizationRecord);
 
-    List<FertilizationRecord> getFertilizationRecordByCondition(Long batchId, Date fertilizationStartDate, Date fertilizationEndDate, Long operatePerson, Long recordPerson, Date startDate, Date endDate);
+    List<FertilizationRecord> getFertilizationRecordByCondition(Long batchId, Date fertilizationStartDate, Date fertilizationEndDate, Long operatePerson, Long recordPerson, Date startDate, Date endDate, String order, Integer isDesc, Integer limit);
 }

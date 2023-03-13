@@ -16,6 +16,6 @@ public interface IncomingRecordMapper extends BaseMapper<IncomingRecord> {
 
     List<IncomingRecord> getAllIncomingRecord();
 
-    List<IncomingRecord> getIncomingRecordByCondition(@Param("batchId") Long batchId, @Param("startDate") Date startDate, @Param("endDate") Date endDate, @Param("minAmount") Integer minAmount, @Param("maxAmount") Integer maxAmount);
+    List<IncomingRecord> getIncomingRecordByCondition(@Param("batchId") Long batchId, @Param("startDate") Date startDate, @Param("endDate") Date endDate, @Param("minAmount") Integer minAmount, @Param("maxAmount") Integer maxAmount, @Param("goodsId") Long goodsId, @Param("order") String order, @Param("isDesc") Integer isDesc, @Param("limit") Integer limit);
 
 }

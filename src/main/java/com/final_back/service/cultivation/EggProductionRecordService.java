@@ -22,5 +22,5 @@ public interface EggProductionRecordService extends IService<EggProductionRecord
 
     List<EggProductionRecord> getRangeTimeEggProductionRecord(Date startTime, Date endTime);
 
-    List<EggProductionRecord> getEggProductionRecordByCondition(Long batchId, Long pickEggPerson, Long recordPerson, Date startDate, Date endDate);
+    List<EggProductionRecord> getEggProductionRecordByCondition(Long batchId, Long pickEggPerson, Long recordPerson, Date startDate, Date endDate, String order, Integer isDesc, Integer limit);
 }

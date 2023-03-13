@@ -39,7 +39,7 @@ public class FeedRecordImpl extends ServiceImpl<FeedRecordMapper, FeedRecord> im
 
     @Override
     public int deleteFeedRecordByIdList(List<Long> idList) {
-        if (idList.size() > 0){
+        if (idList.size() > 0) {
             return feedRecordMapper.deleteBatchIds(idList);
         }
         return 0;
@@ -57,6 +57,7 @@ public class FeedRecordImpl extends ServiceImpl<FeedRecordMapper, FeedRecord> im
 
     /**
      * 按条件返回饲养记录
+     *
      * @param batchId
      * @param feedPerson
      * @param recordPerson
@@ -66,9 +67,9 @@ public class FeedRecordImpl extends ServiceImpl<FeedRecordMapper, FeedRecord> im
      */
     @Override
     public List<FeedRecord> getFeedRecordByCondition(Long batchId, Long feedPerson, Long recordPerson,
-                                                     Date startDate, Date endDate) {
+                                                     Date startDate, Date endDate, Long feedId, String order, Integer isDesc, Integer limit) {
 
-        List<FeedRecord> feedRecordByCondition = feedRecordMapper.getFeedRecordByCondition(batchId, feedPerson, recordPerson, startDate, endDate);
+        List<FeedRecord> feedRecordByCondition = feedRecordMapper.getFeedRecordByCondition(batchId, feedPerson, recordPerson, startDate, endDate, feedId, order, isDesc, limit);
         return feedRecordByCondition;
     }
 }

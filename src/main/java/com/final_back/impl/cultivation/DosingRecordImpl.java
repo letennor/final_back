@@ -44,7 +44,7 @@ public class DosingRecordImpl extends ServiceImpl<DosingRecordMapper, DosingReco
 
     @Override
     public int deleteDosingRecordByIdList(List<Long> idList) {
-        if (idList.size() > 0){
+        if (idList.size() > 0) {
             return dosingRecordMapper.deleteBatchIds(idList);
         }
         return 0;
@@ -62,6 +62,7 @@ public class DosingRecordImpl extends ServiceImpl<DosingRecordMapper, DosingReco
 
     /**
      * 按查询条件返回投药记录
+     *
      * @param medicineId
      * @param batchId
      * @param dosingPerson
@@ -72,9 +73,9 @@ public class DosingRecordImpl extends ServiceImpl<DosingRecordMapper, DosingReco
      */
     @Override
     public List<DosingRecord> getDosingRecordByCondition(Long medicineId, Long batchId, Long dosingPerson,
-                                                         Date startDate, Date endDate, Long recordPerson) {
+                                                         Date startDate, Date endDate, Long recordPerson, String order, Integer isDesc, Integer limit) {
 
-        List<DosingRecord> dosingRecordByCondition = dosingRecordMapper.getDosingRecordByCondition(recordPerson, medicineId, dosingPerson, batchId, startDate, endDate);
+        List<DosingRecord> dosingRecordByCondition = dosingRecordMapper.getDosingRecordByCondition(recordPerson, medicineId, dosingPerson, batchId, startDate, endDate, order, isDesc, limit);
         return dosingRecordByCondition;
     }
 }

@@ -16,8 +16,7 @@ public interface DeathRecordMapper extends BaseMapper<DeathRecord> {
 
     List<DeathRecord> getAllDeathRecord();
 
-    List<DeathRecord> getDeathRecordByCondition(@Param("batchId") Long batchId, @Param("recordPerson") Long recordPerson, @Param("deathRecordPerson") Long deathRecordPerson, @Param("startDate") Date startDate, @Param("endDate") Date endDate);
-
+    List<DeathRecord> getDeathRecordByCondition(@Param("batchId") Long batchId, @Param("recordPerson") Long recordPerson, @Param("deathRecordPerson") Long deathRecordPerson, @Param("startDate") Date startDate, @Param("endDate") Date endDate, @Param("order") String order, @Param("isDesc") Integer isDesc, @Param("limit") Integer limit);
 
 
 }

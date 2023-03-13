@@ -11,6 +11,7 @@ import com.final_back.mapper.maintainInfo.FeedInfoMapper;
 import com.final_back.mapper.cultivation.FeedRecordMapper;
 import com.final_back.service.cultivation.FeedRecordService;
 import com.final_back.service.maintainInfo.FeedInfoService;
+import com.final_back.utils.date.DateUtils;
 import com.final_back.utils.result.Result;
 import com.final_back.utils.result.ResultUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,9 +19,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @RestController
 public class FeedRecordController {
@@ -109,6 +108,7 @@ public class FeedRecordController {
 
     /**
      * 取得一段时间内的投药记录
+     *
      * @param rangeTime
      * @return
      */
@@ -120,14 +120,31 @@ public class FeedRecordController {
 
     /**
      * 通过查询条件获取饲养信息
+     *
      * @param feedRecordDTO
      * @return
      */
     @RequestMapping("/getFeedRecordByCondition")
-    public Result<?> getFeedRecordByCondition(@RequestBody FeedRecordDTO feedRecordDTO){
-        List<FeedRecord> feedRecordByCondition = feedRecordService.getFeedRecordByCondition(feedRecordDTO.getBatchId(), feedRecordDTO.getFeedPerson(), feedRecordDTO.getRecordPerson(), feedRecordDTO.getStartDate(), feedRecordDTO.getEndDate());
+    public Result<?> getFeedRecordByCondition(@RequestBody FeedRecordDTO feedRecordDTO) {
+        List<FeedRecord> feedRecordByCondition = feedRecordService.getFeedRecordByCondition(feedRecordDTO.getBatchId(), feedRecordDTO.getFeedPerson(), feedRecordDTO.getRecordPerson(), feedRecordDTO.getStartDate(), feedRecordDTO.getEndDate(), feedRecordDTO.getFeedId(), null, null, null);
 
         return ResultUtil.success(feedRecordByCondition);
+    }
+
+    @RequestMapping("/getFeedRecordChart")
+    public Result<?> getFeedRecordChart(@RequestBody FeedRecordDTO feedRecordDTO) {
+        List<String> dateNameList = new ArrayList<>();
+        List<FeedRecord> feedRecordByCondition = feedRecordService.getFeedRecordByCondition(null, null, null, null, null, feedRecordDTO.getFeedId(), "fr.record_time", 1, 7);
+        Iterator<FeedRecord> iterator = feedRecordByCondition.iterator();
+        while (iterator.hasNext()) {
+            FeedRecord next = (FeedRecord) iterator.next();
+            dateNameList.add(DateUtils.dateToString(next.getRecordTime(), "MM-dd"));
+            System.out.println(next);
+        }
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("xData", dateNameList);
+        map.put("yData", feedRecordByCondition);
+        return ResultUtil.success(map);
     }
 
 

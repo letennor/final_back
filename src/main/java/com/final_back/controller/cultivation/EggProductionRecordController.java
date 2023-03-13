@@ -6,6 +6,7 @@ import com.final_back.dto.RangeTime;
 import com.final_back.entity.cultivation.EggProductionRecord;
 import com.final_back.mapper.cultivation.EggProductionRecordMapper;
 import com.final_back.service.cultivation.EggProductionRecordService;
+import com.final_back.utils.date.DateUtils;
 import com.final_back.utils.result.Result;
 import com.final_back.utils.result.ResultUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 @RestController
 public class EggProductionRecordController {
@@ -24,6 +24,7 @@ public class EggProductionRecordController {
 
     /**
      * 添加产蛋记录
+     *
      * @param eggProductionRecord
      * @return
      */
@@ -39,6 +40,7 @@ public class EggProductionRecordController {
 
     /**
      * 取得所有产蛋记录
+     *
      * @return
      */
     @RequestMapping("/getAllEggProductionRecord")
@@ -49,43 +51,46 @@ public class EggProductionRecordController {
 
     /**
      * 删除产蛋记录
+     *
      * @param eggProductionRecord
      * @return
      */
     @RequestMapping("/deleteEggProductionRecord")
-    public Result<?> deleteEggProductionRecord(@RequestBody EggProductionRecord eggProductionRecord){
+    public Result<?> deleteEggProductionRecord(@RequestBody EggProductionRecord eggProductionRecord) {
         HashMap<String, Object> map = new HashMap<>();
         map.put("egg_production_record_id", eggProductionRecord.getEggProductionRecordId());
         int i = eggProductionRecordService.deleteEggProductionRecord(map);
-        if (i > 0){
+        if (i > 0) {
             return ResultUtil.success("删除成功");
-        }else {
+        } else {
             return ResultUtil.success("删除失败");
         }
     }
 
     /**
      * 更新产蛋记录
+     *
      * @param eggProductionRecord
      * @return
      */
     @RequestMapping("/updateEggProductionRecord")
-    public Result<?> updateEggProductionRecord(@RequestBody EggProductionRecord eggProductionRecord){
+    public Result<?> updateEggProductionRecord(@RequestBody EggProductionRecord eggProductionRecord) {
         int i = eggProductionRecordService.updateEggProductionRecord(eggProductionRecord);
-        if (i > 0){
+        if (i > 0) {
             return ResultUtil.success("修改成功");
-        }else {
+        } else {
             return ResultUtil.success("修改失败");
         }
     }
 
     /**
      * 获得一段时间内产蛋记录
+     *
      * @param rangeTime
      * @return
      */
     @RequestMapping("/getRangeTimeEggProductionRecord")
-    public Result<?> getRangeTimeEggProductionRecord(@RequestBody RangeTime rangeTime){
+    public Result<?> getRangeTimeEggProductionRecord(@RequestBody RangeTime rangeTime) {
         System.out.println(rangeTime);
         List<EggProductionRecord> eggProductionRecordList = eggProductionRecordService.getRangeTimeEggProductionRecord(rangeTime.getStartTime(), rangeTime.getEndTime());
         return ResultUtil.success(eggProductionRecordList);
@@ -93,13 +98,35 @@ public class EggProductionRecordController {
 
     /**
      * 通过查询条件获取产蛋量信息
+     *
      * @param eggProductionRecordDTO
      * @return
      */
     @RequestMapping("/getEggProductionRecordByCondition")
-    public Result<?> getEggProductionRecordByCondition(@RequestBody EggProductionRecordDTO eggProductionRecordDTO){
-        List<EggProductionRecord> eggProductionRecordByCondition = eggProductionRecordService.getEggProductionRecordByCondition(eggProductionRecordDTO.getBatchId(), eggProductionRecordDTO.getPickEggPerson(), eggProductionRecordDTO.getRecordPerson(), eggProductionRecordDTO.getStartDate(), eggProductionRecordDTO.getEndDate());
+    public Result<?> getEggProductionRecordByCondition(@RequestBody EggProductionRecordDTO eggProductionRecordDTO) {
+        List<EggProductionRecord> eggProductionRecordByCondition = eggProductionRecordService.getEggProductionRecordByCondition(eggProductionRecordDTO.getBatchId(), eggProductionRecordDTO.getPickEggPerson(), eggProductionRecordDTO.getRecordPerson(), eggProductionRecordDTO.getStartDate(), eggProductionRecordDTO.getEndDate(), null, null, null);
         return ResultUtil.success(eggProductionRecordByCondition);
+    }
+
+
+    @RequestMapping("/getEggProductionRecordChart")
+    public Result<?> getEggProductionRecordChart() {
+
+        List<EggProductionRecord> eggProductionRecordByCondition = eggProductionRecordService.getEggProductionRecordByCondition(null, null, null, null, null, "epr.record_time", 1, 7);
+        Iterator<EggProductionRecord> iterator = eggProductionRecordByCondition.iterator();
+
+        List<String> dateNameList = new ArrayList<>();
+
+        while (iterator.hasNext()) {
+            EggProductionRecord next = (EggProductionRecord) iterator.next();
+            dateNameList.add(DateUtils.dateToString(next.getRecordTime(), "MM-dd"));
+            System.out.println(next);
+        }
+
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("xData", dateNameList);
+        map.put("yData", eggProductionRecordByCondition);
+        return ResultUtil.success(map);
     }
 
 }

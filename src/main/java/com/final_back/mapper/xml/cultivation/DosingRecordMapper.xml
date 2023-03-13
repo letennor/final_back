@@ -51,23 +51,23 @@
 
     <select id="getDosingRecordByCondition" resultMap="getDosingRecordByCondition">
         select dr.dosing_record_id,
-               dr.dosing_amount,
-               dr.medicine_id,
-               dr.dosing_person,
-               dr.record_person,
-               dr.batch_id,
-               dr.record_time,
-               dr.gmt_create,
-               dr.gmt_modified,
-               bi.batch_name,
-               mi.medicine_name,
-               ubi.name  as record_person_name,
-               ubi2.name as dosing_person_name
+        dr.dosing_amount,
+        dr.medicine_id,
+        dr.dosing_person,
+        dr.record_person,
+        dr.batch_id,
+        dr.record_time,
+        dr.gmt_create,
+        dr.gmt_modified,
+        bi.batch_name,
+        mi.medicine_name,
+        ubi.name as record_person_name,
+        ubi2.name as dosing_person_name
         from dosing_record dr
-                 join batch_info bi on dr.batch_id = bi.batch_id
-                 join medicine_info mi on dr.medicine_id = mi.medicine_id
-                 join user_basic_info ubi on dr.record_person = ubi.user_basic_info_id
-                 join user_basic_info ubi2 on dr.dosing_person = ubi2.user_basic_info_id
+        join batch_info bi on dr.batch_id = bi.batch_id
+        join medicine_info mi on dr.medicine_id = mi.medicine_id
+        join user_basic_info ubi on dr.record_person = ubi.user_basic_info_id
+        join user_basic_info ubi2 on dr.dosing_person = ubi2.user_basic_info_id
         <where>
             <if test="recordPerson != null">
                 dr.record_person = #{recordPerson}
@@ -85,6 +85,17 @@
                 AND dr.record_time BETWEEN #{startDate} AND #{endDate}
             </if>
         </where>
+        <if test="order != null and order != ''">
+            <choose>
+                <when test='isDesc != null and isDesc == "1"'>
+                    order by ${order} desc
+                </when>
+            </choose>
+        </if>
+
+        <if test="limit != null and limit != ''">
+            limit #{limit}
+        </if>
     </select>
     <resultMap id="getDosingRecordByCondition" type="com.final_back.entity.cultivation.DosingRecord"></resultMap>
 

@@ -38,7 +38,7 @@ public class OutputRecordImpl extends ServiceImpl<OutputRecordMapper, OutputReco
 
     @Override
     public int deleteOutputRecordByIdList(List<Long> idList) {
-        if (idList.size() > 0){
+        if (idList.size() > 0) {
             return outputRecordMapper.deleteBatchIds(idList);
         }
 
@@ -52,6 +52,7 @@ public class OutputRecordImpl extends ServiceImpl<OutputRecordMapper, OutputReco
 
     /**
      * 按条件获取出苗记录
+     *
      * @param batchId
      * @param startDate
      * @param endDate
@@ -59,8 +60,8 @@ public class OutputRecordImpl extends ServiceImpl<OutputRecordMapper, OutputReco
      * @return
      */
     @Override
-    public List<OutputRecord> getOutputRecordByCondition(Long batchId, Date startDate, Date endDate, Long recordPerson) {
-        List<OutputRecord> outputRecordByCondition = outputRecordMapper.getOutputRecordByCondition(batchId, recordPerson, startDate, endDate);
+    public List<OutputRecord> getOutputRecordByCondition(Long batchId, Date startDate, Date endDate, Long recordPerson, String order, Integer isDesc, Integer limit) {
+        List<OutputRecord> outputRecordByCondition = outputRecordMapper.getOutputRecordByCondition(batchId, recordPerson, startDate, endDate, order, isDesc, limit);
 
         return outputRecordByCondition;
     }

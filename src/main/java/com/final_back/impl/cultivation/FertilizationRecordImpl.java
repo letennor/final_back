@@ -15,6 +15,7 @@ import java.util.Map;
 public class FertilizationRecordImpl extends ServiceImpl<FertilizationRecordMapper, FertilizationRecord> implements FertilizationRecordService {
     @Autowired
     FertilizationRecordMapper fertilizationRecordMapper;
+
     @Override
     public int addFertilizationRecord(FertilizationRecord fertilizationRecord) {
         return fertilizationRecordMapper.insert(fertilizationRecord);
@@ -37,7 +38,7 @@ public class FertilizationRecordImpl extends ServiceImpl<FertilizationRecordMapp
 
     @Override
     public int deleteFertilizationRecordByIdList(List<Long> idList) {
-        if (idList.size() > 0){
+        if (idList.size() > 0) {
             return fertilizationRecordMapper.deleteBatchIds(idList);
         }
 
@@ -51,6 +52,7 @@ public class FertilizationRecordImpl extends ServiceImpl<FertilizationRecordMapp
 
     /**
      * 按条件取得受精记录
+     *
      * @param batchId
      * @param fertilizationStartDate
      * @param fertilizationEndDate
@@ -64,8 +66,9 @@ public class FertilizationRecordImpl extends ServiceImpl<FertilizationRecordMapp
     public List<FertilizationRecord> getFertilizationRecordByCondition(Long batchId, Date fertilizationStartDate,
                                                                        Date fertilizationEndDate,
                                                                        Long operatePerson, Long recordPerson,
-                                                                       Date startDate, Date endDate) {
-        List<FertilizationRecord> fertilizationRecordByCondition = fertilizationRecordMapper.getFertilizationRecordByCondition(batchId, fertilizationStartDate, fertilizationEndDate, operatePerson,  recordPerson, startDate, endDate);
+                                                                       Date startDate, Date endDate,
+                                                                       String order, Integer isDesc, Integer limit) {
+        List<FertilizationRecord> fertilizationRecordByCondition = fertilizationRecordMapper.getFertilizationRecordByCondition(batchId, fertilizationStartDate, fertilizationEndDate, operatePerson, recordPerson, startDate, endDate, order, isDesc, limit);
         return fertilizationRecordByCondition;
     }
 }

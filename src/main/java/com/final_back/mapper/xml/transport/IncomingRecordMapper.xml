@@ -39,21 +39,24 @@
 
     <select id="getIncomingRecordByCondition" resultMap="getIncomingRecordByCondition">
         select ir.incoming_record_id,
-               ir.batch_id,
-               ir.incoming_amount,
-               ir.goods_id,
-               ir.transport_record_id,
-               ir.record_time,
-               ir.gmt_create,
-               ir.gmt_modified,
-               bi.batch_name,
-               gi.goods_name
+        ir.batch_id,
+        ir.incoming_amount,
+        ir.goods_id,
+        ir.transport_record_id,
+        ir.record_time,
+        ir.gmt_create,
+        ir.gmt_modified,
+        bi.batch_name,
+        gi.goods_name
         from incoming_record ir
-                 join batch_info bi on ir.batch_id = bi.batch_id
-                 join goods_info gi on ir.goods_id = gi.goods_id
+        join batch_info bi on ir.batch_id = bi.batch_id
+        join goods_info gi on ir.goods_id = gi.goods_id
         <where>
             <if test="batchId != null">
                 ir.batch_id = #{batchId}
+            </if>
+            <if test="goodsId != null">
+                ir.goods_id = #{goodsId}
             </if>
             <if test="minAmount != null">
                 AND ir.incoming_amount BETWEEN #{minAmount} AND #{maxAmount};
@@ -62,6 +65,17 @@
                 AND ir.record_time BETWEEN #{startDate} AND #{endDate}
             </if>
         </where>
+        <if test="order != null and order != ''">
+            <choose>
+                <when test='isDesc != null and isDesc == "1"'>
+                    order by ${order} desc
+                </when>
+            </choose>
+        </if>
+
+        <if test="limit != null and limit != ''">
+            limit #{limit}
+        </if>
     </select>
     <resultMap id="getIncomingRecordByCondition" type="com.final_back.entity.transport.IncomingRecord"></resultMap>
 

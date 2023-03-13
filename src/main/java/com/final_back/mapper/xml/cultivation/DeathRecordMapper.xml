@@ -28,7 +28,7 @@
                death_record.gmt_create,
                death_record.gmt_modified,
                bi.batch_name,
-               ubi.name as death_record_person_name,
+               ubi.name  as death_record_person_name,
                ubi2.name as record_person_name
         from death_record
                  join batch_info bi on death_record.batch_id = bi.batch_id
@@ -52,7 +52,7 @@
         death_record.gmt_create,
         death_record.gmt_modified,
         bi.batch_name,
-        ubi.name  as death_record_person_name,
+        ubi.name as death_record_person_name,
         ubi2.name as record_person_name
         from death_record
         join batch_info bi on death_record.batch_id = bi.batch_id
@@ -72,7 +72,22 @@
                 AND death_record.record_time BETWEEN #{startDate} AND #{endDate}
             </if>
         </where>
+        <if test="order != null and order != ''">
+            <choose>
+                <when test='isDesc != null and isDesc == "1"'>
+                    order by ${order} desc
+                </when>
+            </choose>
+        </if>
+
+        <if test="limit != null and limit != ''">
+            limit #{limit}
+        </if>
+
+
     </select>
+
     <resultMap id="getDeathRecordByCondition" type="com.final_back.entity.cultivation.DeathRecord"></resultMap>
+
 
 </mapper>

@@ -39,21 +39,21 @@
 
     <select id="getFertilizationRecordByCondition" resultMap="getFertilizationRecordByCondition">
         select fr.fertilization_record_id,
-               fr.batch_id,
-               fr.fertilization_rate,
-               fr.fertilization_time,
-               fr.operate_person,
-               fr.record_person,
-               fr.record_time,
-               fr.gmt_create,
-               fr.gmt_modified,
-               bi.batch_name,
-               ubi.name  as recordPersonName,
-               ubi2.name as operatePersonName
+        fr.batch_id,
+        fr.fertilization_rate,
+        fr.fertilization_time,
+        fr.operate_person,
+        fr.record_person,
+        fr.record_time,
+        fr.gmt_create,
+        fr.gmt_modified,
+        bi.batch_name,
+        ubi.name as recordPersonName,
+        ubi2.name as operatePersonName
         from fertilization_record fr
-                 join batch_info bi on fr.batch_id = bi.batch_id
-                 join user_basic_info ubi on ubi.user_basic_info_id = fr.record_person
-                 join user_basic_info ubi2 on ubi2.user_basic_info_id = fr.operate_person
+        join batch_info bi on fr.batch_id = bi.batch_id
+        join user_basic_info ubi on ubi.user_basic_info_id = fr.record_person
+        join user_basic_info ubi2 on ubi2.user_basic_info_id = fr.operate_person
         <where>
             <if test="recordPerson != null">
                 fr.record_person = #{recordPerson}
@@ -71,6 +71,17 @@
                 AND fr.fertilization_time BETWEEN #{fertilizationStartDate} AND #{fertilizationEndDate}
             </if>
         </where>
+        <if test="order != null and order != ''">
+            <choose>
+                <when test='isDesc != null and isDesc == "1"'>
+                    order by ${order} desc
+                </when>
+            </choose>
+        </if>
+
+        <if test="limit != null and limit != ''">
+            limit #{limit}
+        </if>
     </select>
     <resultMap id="getFertilizationRecordByCondition" type="com.final_back.entity.cultivation.FertilizationRecord"></resultMap>
 

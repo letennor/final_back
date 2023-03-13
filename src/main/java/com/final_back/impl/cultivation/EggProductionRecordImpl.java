@@ -39,7 +39,7 @@ public class EggProductionRecordImpl extends ServiceImpl<EggProductionRecordMapp
 
     @Override
     public int deleteEggProductionRecordByIdList(List<Long> idList) {
-        if (idList.size() > 0){
+        if (idList.size() > 0) {
             eggProductionRecordMapper.deleteBatchIds(idList);
         }
         return 0;
@@ -57,6 +57,7 @@ public class EggProductionRecordImpl extends ServiceImpl<EggProductionRecordMapp
 
     /**
      * 按条件获得产蛋记录
+     *
      * @param batchId
      * @param pickEggPerson
      * @param recordPerson
@@ -65,8 +66,8 @@ public class EggProductionRecordImpl extends ServiceImpl<EggProductionRecordMapp
      * @return
      */
     @Override
-    public List<EggProductionRecord> getEggProductionRecordByCondition(Long batchId, Long pickEggPerson, Long recordPerson, Date startDate, Date endDate) {
-        List<EggProductionRecord> eggProductionRecordByCondition = eggProductionRecordMapper.getEggProductionRecordByCondition(batchId, pickEggPerson, recordPerson, startDate, endDate);
+    public List<EggProductionRecord> getEggProductionRecordByCondition(Long batchId, Long pickEggPerson, Long recordPerson, Date startDate, Date endDate, String order, Integer isDesc, Integer limit) {
+        List<EggProductionRecord> eggProductionRecordByCondition = eggProductionRecordMapper.getEggProductionRecordByCondition(batchId, pickEggPerson, recordPerson, startDate, endDate, order, isDesc, limit);
         return eggProductionRecordByCondition;
     }
 }

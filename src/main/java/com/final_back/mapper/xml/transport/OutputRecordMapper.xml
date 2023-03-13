@@ -58,6 +58,17 @@
                 AND output_record.record_time BETWEEN #{startDate} AND #{endDate}
             </if>
         </where>
+        <if test="order != null and order != ''">
+            <choose>
+                <when test='isDesc != null and isDesc == "1"'>
+                    order by ${order} desc
+                </when>
+            </choose>
+        </if>
+
+        <if test="limit != null and limit != ''">
+            limit #{limit}
+        </if>
     </select>
     <resultMap id="getOutputRecordByCondition" type="com.final_back.entity.transport.OutputRecord"></resultMap>
 

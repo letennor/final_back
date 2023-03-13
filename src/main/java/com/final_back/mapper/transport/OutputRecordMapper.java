@@ -15,5 +15,5 @@ public interface OutputRecordMapper extends BaseMapper<OutputRecord> {
 
     List<OutputRecord> getAllOutputRecord();
 
-    List<OutputRecord> getOutputRecordByCondition(@Param("batchId") Long batchId, @Param("recordPerson") Long recordPerson, @Param("startDate") Date startDate, @Param("endDate") Date endDate);
+    List<OutputRecord> getOutputRecordByCondition(@Param("batchId") Long batchId, @Param("recordPerson") Long recordPerson, @Param("startDate") Date startDate, @Param("endDate") Date endDate, @Param("order") String order, @Param("isDesc") Integer isDesc, @Param("limit") Integer limit);
 }

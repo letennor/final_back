@@ -1,5 +1,7 @@
 package com.final_back;
 
+import com.final_back.controller.cultivation.EggProductionRecordController;
+import com.final_back.dto.DeathRecordDTO;
 import com.final_back.dto.UserBasicInfoDTO;
 import com.final_back.entity.cultivation.*;
 import com.final_back.entity.transport.IncomingRecord;
@@ -17,6 +19,7 @@ import com.final_back.service.system.UserPasswordInfoService;
 import com.final_back.service.transport.IncomingRecordService;
 import com.final_back.service.transport.OutputRecordService;
 import com.final_back.service.transport.TransportRecordService;
+import com.final_back.utils.date.DateUtils;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -24,10 +27,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 @SpringBootTest
 class FinalBackApplicationTests {
@@ -99,8 +99,7 @@ class FinalBackApplicationTests {
 
     @Test
     void test8() {
-        List<Long> idList = feedRecordService.getIdList(null, null, null,
-                null);
+        List<Long> idList = feedRecordService.getIdList(null, null, null, null);
         System.out.println(idList);
     }
 
@@ -238,47 +237,6 @@ class FinalBackApplicationTests {
         }
     }
 
-    @Test
-    void test25() {
-        List<DosingRecord> dosingRecordByCondition = dosingRecordService.getDosingRecordByCondition(null, null, null, null, null, null);
-        Iterator iterator = dosingRecordByCondition.iterator();
-        while (iterator.hasNext()) {
-            Object next = iterator.next();
-            System.out.println(next);
-        }
-
-    }
-
-    @Test
-    void test26() {
-        List<EggProductionRecord> eggProductionRecordByCondition = eggProductionRecordService.getEggProductionRecordByCondition(null, null, null, null, null);
-        Iterator iterator = eggProductionRecordByCondition.iterator();
-        while (iterator.hasNext()) {
-            Object next = iterator.next();
-            System.out.println(next);
-        }
-    }
-
-    @Test
-    void test27() {
-        List<FeedRecord> feedRecordByCondition = feedRecordService.getFeedRecordByCondition(null, null, null, null, null);
-        Iterator iterator = feedRecordByCondition.iterator();
-        while (iterator.hasNext()) {
-            Object next = iterator.next();
-            System.out.println(next);
-        }
-    }
-
-
-    @Test
-    void test28() {
-        List<FertilizationRecord> fertilizationRecordByCondition = fertilizationRecordService.getFertilizationRecordByCondition(null, null, null, null, null, null, null);
-        Iterator iterator = fertilizationRecordByCondition.iterator();
-        while (iterator.hasNext()) {
-            Object next = iterator.next();
-            System.out.println(next);
-        }
-    }
 
     @Test
     void test29() {
@@ -291,33 +249,139 @@ class FinalBackApplicationTests {
     }
 
     @Test
-    void test30() {
-        List<IncomingRecord> incomingRecordByCondition = incomingRecordService.getIncomingRecordByCondition(null, null, null, null, null);
-        Iterator iterator = incomingRecordByCondition.iterator();
-        while (iterator.hasNext()) {
-            Object next = iterator.next();
-            System.out.println(next);
-        }
-    }
-
-    @Test
-    void test31() {
-        List<OutputRecord> outputRecordByCondition = outputRecordService.getOutputRecordByCondition(null, null, null, null);
-        Iterator iterator = outputRecordByCondition.iterator();
-        while (iterator.hasNext()) {
-            Object next = iterator.next();
-            System.out.println(next);
-        }
-    }
-
-    @Test
-    void test32(){
+    void test32() {
         List<TransportRecord> transportRecordByCondition = transportRecordService.getTransportRecordByCondition(null, null, null, null, null, null);
         Iterator iterator = transportRecordByCondition.iterator();
         while (iterator.hasNext()) {
             Object next = iterator.next();
             System.out.println(next);
         }
+    }
+
+
+    @Test
+    void test35() {
+        List<String> daySevenRange = DateUtils.getDaySevenRangeYYMMDD();
+
+        Date endDate = DateUtils.stringToDate(daySevenRange.get(0));
+        Date startDate = DateUtils.stringToDate(daySevenRange.get(6));
+        List<DeathRecord> deathRecordByCondition = deathRecordService.getDeathRecordByCondition(null, null, null, null, null, null, null, 7);
+        Iterator iterator = deathRecordByCondition.iterator();
+        List<String> dateNameList = new ArrayList<>();
+
+        while (iterator.hasNext()) {
+            DeathRecord next = (DeathRecord) iterator.next();
+            dateNameList.add(DateUtils.dateToString(next.getRecordTime(), "YYYY-MM-dd"));
+            System.out.println(next);
+        }
+
+        System.out.println(dateNameList);
+    }
+
+    @Test
+    void test36() {
+        List<DosingRecord> dosingRecordByCondition = dosingRecordService.getDosingRecordByCondition(1597441811072995329L, null, null, null, null, null, "dr.record_time", 1, 7);
+        Iterator<DosingRecord> dosingRecordIterator = dosingRecordByCondition.iterator();
+
+        List<String> sevenDayTag = new ArrayList<>();
+
+        while (dosingRecordIterator.hasNext()) {
+            sevenDayTag.add(DateUtils.dateToString(dosingRecordIterator.next().getRecordTime(), "MM-dd"));
+        }
+
+        System.out.println(sevenDayTag);
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("sevenDayTag", sevenDayTag);
+        map.put("dosingRecordByCondition", dosingRecordByCondition);
+        System.out.println(map);
+
+    }
+
+    @Test
+    void test37() {
+        List<String> daySevenRange = DateUtils.getDaySevenRangeYYMMDD();
+
+        Date endDate = DateUtils.stringToDate(daySevenRange.get(0));
+        Date startDate = DateUtils.stringToDate(daySevenRange.get(6));
+        List<EggProductionRecord> eggProductionRecordByCondition = eggProductionRecordService.getEggProductionRecordByCondition(null, null, null, startDate, endDate, "epr.record_time", 1, 7);
+        Iterator<EggProductionRecord> iterator = eggProductionRecordByCondition.iterator();
+
+        List<String> dateNameList = new ArrayList<>();
+
+        while (iterator.hasNext()) {
+            EggProductionRecord next = (EggProductionRecord) iterator.next();
+            dateNameList.add(DateUtils.dateToString(next.getRecordTime(), "YYYY-MM-dd"));
+            System.out.println(next);
+        }
+
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("xData", dateNameList);
+        map.put("yData", eggProductionRecordByCondition);
+
+
+    }
+
+    @Test
+    void test38() {
+        List<String> dateNameList = new ArrayList<>();
+        List<FeedRecord> feedRecordByCondition = feedRecordService.getFeedRecordByCondition(null, null, null, null, null, null, "fr.record_time", 1, 7);
+        Iterator<FeedRecord> iterator = feedRecordByCondition.iterator();
+        while (iterator.hasNext()) {
+            FeedRecord next = (FeedRecord) iterator.next();
+            dateNameList.add(DateUtils.dateToString(next.getRecordTime(), "MM-dd"));
+            System.out.println(next);
+        }
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("xData", dateNameList);
+        map.put("yData", feedRecordByCondition);
+
+        System.out.println(map);
+    }
+
+    @Test
+    void test39() {
+        List<String> dateNameList = new ArrayList<>();
+        List<FertilizationRecord> fertilizationRecordByCondition = fertilizationRecordService.getFertilizationRecordByCondition(null, null, null, null, null, null, null, "fr.record_time", 1, 7);
+        Iterator<FertilizationRecord> iterator = fertilizationRecordByCondition.iterator();
+        while (iterator.hasNext()) {
+            FertilizationRecord next = (FertilizationRecord) iterator.next();
+            dateNameList.add(DateUtils.dateToString(next.getRecordTime(), "MM-dd"));
+            System.out.println(next);
+        }
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("xData", dateNameList);
+        map.put("yData", fertilizationRecordByCondition);
+
+        System.out.println(map);
+    }
+
+    @Test
+    void test40() {
+        List<String> dateNameList = new ArrayList<>();
+        List<IncomingRecord> incomingRecordByCondition = incomingRecordService.getIncomingRecordByCondition(null, null, null, null, null, null, "ir.record_time", 1, 7);
+        Iterator<IncomingRecord> iterator = incomingRecordByCondition.iterator();
+        while (iterator.hasNext()) {
+            IncomingRecord next = (IncomingRecord) iterator.next();
+            dateNameList.add(DateUtils.dateToString(next.getRecordTime(), "MM-dd"));
+            System.out.println(next);
+        }
+    }
+
+    @Test
+    void test41() {
+        List<String> dateNameList = new ArrayList<>();
+        List<OutputRecord> outputRecordByCondition = outputRecordService.getOutputRecordByCondition(null, null, null, null, "output_record.record_time", 1, 7);
+        Iterator<OutputRecord> iterator = outputRecordByCondition.iterator();
+        while (iterator.hasNext()) {
+            OutputRecord next = (OutputRecord) iterator.next();
+            dateNameList.add(DateUtils.dateToString(next.getRecordTime(), "MM-dd"));
+            System.out.println(next);
+        }
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("xData", dateNameList);
+        map.put("yData", outputRecordByCondition);
+
+        System.out.println(map);
     }
 
 }

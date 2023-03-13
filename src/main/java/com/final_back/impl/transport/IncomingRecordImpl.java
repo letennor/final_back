@@ -37,7 +37,7 @@ public class IncomingRecordImpl extends ServiceImpl<IncomingRecordMapper, Incomi
 
     @Override
     public int deleteIncomingRecordByIdList(List<Long> idList) {
-        if (idList.size() > 0){
+        if (idList.size() > 0) {
             return incomingRecordMapper.deleteBatchIds(idList);
         }
         return 0;
@@ -50,6 +50,7 @@ public class IncomingRecordImpl extends ServiceImpl<IncomingRecordMapper, Incomi
 
     /**
      * 通过条件返回进货记录
+     *
      * @param batchId
      * @param startDate
      * @param endDate
@@ -59,9 +60,9 @@ public class IncomingRecordImpl extends ServiceImpl<IncomingRecordMapper, Incomi
      */
     @Override
     public List<IncomingRecord> getIncomingRecordByCondition(Long batchId, Date startDate, Date endDate,
-                                                             Integer minAmount, Integer maxAmount) {
+                                                             Integer minAmount, Integer maxAmount,  Long goodsId, String order,Integer isDesc, Integer limit) {
 
-        List<IncomingRecord> incomingRecordByCondition = incomingRecordMapper.getIncomingRecordByCondition(batchId, startDate, endDate, minAmount, maxAmount);
+        List<IncomingRecord> incomingRecordByCondition = incomingRecordMapper.getIncomingRecordByCondition(batchId, startDate, endDate, minAmount, maxAmount, goodsId, order, isDesc, limit);
 
         return incomingRecordByCondition;
     }

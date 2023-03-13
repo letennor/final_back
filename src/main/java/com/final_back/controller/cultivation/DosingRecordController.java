@@ -10,6 +10,7 @@ import com.final_back.mapper.cultivation.DosingRecordMapper;
 import com.final_back.mapper.maintainInfo.MedicineInfoMapper;
 import com.final_back.service.cultivation.DosingRecordService;
 import com.final_back.service.maintainInfo.MedicineInfoService;
+import com.final_back.utils.date.DateUtils;
 import com.final_back.utils.result.Result;
 import com.final_back.utils.result.ResultUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 
 @RestController
@@ -30,6 +33,7 @@ public class DosingRecordController {
 
     /**
      * 添加投药记录
+     *
      * @param dosingRecord
      * @return
      */
@@ -59,6 +63,7 @@ public class DosingRecordController {
 
     /**
      * 取得所有投药记录
+     *
      * @return
      */
     @RequestMapping("/getAllDosingRecord")
@@ -69,6 +74,7 @@ public class DosingRecordController {
 
     /**
      * 删除投药记录
+     *
      * @param dosingRecord
      * @return
      */
@@ -86,6 +92,7 @@ public class DosingRecordController {
 
     /**
      * 更新投药记录
+     *
      * @param dosingRecord
      * @return
      */
@@ -101,24 +108,44 @@ public class DosingRecordController {
 
     /**
      * 取得某段时间内投药记录
+     *
      * @param rangeTime
      * @return
      */
     @RequestMapping("/getRangeTimeDosingRecord")
-    public Result<?> getRangeTimeDosingRecord(@RequestBody RangeTime rangeTime){
+    public Result<?> getRangeTimeDosingRecord(@RequestBody RangeTime rangeTime) {
         List<DosingRecord> dosingRecordList = dosingRecordService.getRangeTimeDosingRecord(rangeTime.getStartTime(), rangeTime.getEndTime());
         return ResultUtil.success(dosingRecordList);
     }
 
     /**
      * 通过查询条件获取投药记录
+     *
      * @param dosingRecordDTO
      * @return
      */
     @RequestMapping("/getDosingRecordByCondition")
-    public Result<?> getDosingRecordByCondition(@RequestBody DosingRecordDTO dosingRecordDTO){
-        List<DosingRecord> dosingRecordByCondition = dosingRecordService.getDosingRecordByCondition(dosingRecordDTO.getMedicineId(), dosingRecordDTO.getBatchId(), dosingRecordDTO.getDosingPerson(), dosingRecordDTO.getStartDate(), dosingRecordDTO.getEndDate(), dosingRecordDTO.getRecordPerson());
+    public Result<?> getDosingRecordByCondition(@RequestBody DosingRecordDTO dosingRecordDTO) {
+        List<DosingRecord> dosingRecordByCondition = dosingRecordService.getDosingRecordByCondition(dosingRecordDTO.getMedicineId(), dosingRecordDTO.getBatchId(), dosingRecordDTO.getDosingPerson(), dosingRecordDTO.getStartDate(), dosingRecordDTO.getEndDate(), dosingRecordDTO.getRecordPerson(), null, null, null);
         return ResultUtil.success(dosingRecordByCondition);
+    }
+
+
+    @RequestMapping("/getDosingRecordChart")
+    public Result<?> getDosingRecordChart(@RequestBody DosingRecordDTO dosingRecordDTO) {
+        List<DosingRecord> dosingRecordByCondition = dosingRecordService.getDosingRecordByCondition(dosingRecordDTO.getMedicineId(), null, null, null, null, null, "dr.record_time", 1, 7);
+        Iterator<DosingRecord> dosingRecordIterator = dosingRecordByCondition.iterator();
+
+        List<String> xData = new ArrayList<>();
+
+        while (dosingRecordIterator.hasNext()) {
+            xData.add(DateUtils.dateToString(dosingRecordIterator.next().getRecordTime(), "MM-dd"));
+        }
+
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("xData", xData);
+        map.put("yData", dosingRecordByCondition);
+        return ResultUtil.success(map);
     }
 
 }

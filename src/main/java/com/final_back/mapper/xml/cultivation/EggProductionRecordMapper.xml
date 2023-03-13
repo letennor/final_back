@@ -46,23 +46,23 @@
 
     <select id="getEggProductionRecordByCondition" resultMap="getEggProductionRecordByCondition">
         select epr.egg_production_record_id,
-               epr.batch_id,
-               epr.egg_production_amount,
-               epr.egg_production_rate,
-               epr.bad_egg_production_amount,
-               epr.bad_egg_production_rate,
-               epr.pick_egg_person,
-               epr.record_person,
-               epr.record_time,
-               epr.gmt_create,
-               epr.gmt_modified,
-               bi.batch_name,
-               ubi.name  as recordPersonName,
-               ubi2.name as eggPickPersonName
+        epr.batch_id,
+        epr.egg_production_amount,
+        epr.egg_production_rate,
+        epr.bad_egg_production_amount,
+        epr.bad_egg_production_rate,
+        epr.pick_egg_person,
+        epr.record_person,
+        epr.record_time,
+        epr.gmt_create,
+        epr.gmt_modified,
+        bi.batch_name,
+        ubi.name as recordPersonName,
+        ubi2.name as eggPickPersonName
         from egg_production_record epr
-                 join batch_info bi on epr.batch_id = bi.batch_id
-                 join user_basic_info ubi on epr.record_person = ubi.user_basic_info_id
-                 join user_basic_info ubi2 on epr.pick_egg_person = ubi2.user_basic_info_id
+        join batch_info bi on epr.batch_id = bi.batch_id
+        join user_basic_info ubi on epr.record_person = ubi.user_basic_info_id
+        join user_basic_info ubi2 on epr.pick_egg_person = ubi2.user_basic_info_id
         <where>
             <if test="recordPerson != null">
                 epr.record_person = #{recordPerson}
@@ -77,6 +77,17 @@
                 AND epr.record_time BETWEEN #{startDate} AND #{endDate}
             </if>
         </where>
+        <if test="order != null and order != ''">
+            <choose>
+                <when test='isDesc != null and isDesc == "1"'>
+                    order by ${order} desc
+                </when>
+            </choose>
+        </if>
+
+        <if test="limit != null and limit != ''">
+            limit #{limit}
+        </if>
     </select>
     <resultMap id="getEggProductionRecordByCondition" type="com.final_back.entity.cultivation.EggProductionRecord"></resultMap>
 

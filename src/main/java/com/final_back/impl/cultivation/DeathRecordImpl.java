@@ -86,9 +86,9 @@ public class DeathRecordImpl extends ServiceImpl<DeathRecordMapper, DeathRecord>
      */
     @Override
     public List<DeathRecord> getDeathRecordByCondition(Date startDate, Date endDate, Long batchId,
-                                                       Long recordPerson, Long deathRecordPerson) {
+                                                       Long recordPerson, Long deathRecordPerson, String order, Integer isDesc, Integer limit) {
 
-        List<DeathRecord> deathRecordByCondition = deathRecordMapper.getDeathRecordByCondition(batchId, recordPerson, deathRecordPerson, startDate, endDate);
+        List<DeathRecord> deathRecordByCondition = deathRecordMapper.getDeathRecordByCondition(batchId, recordPerson, deathRecordPerson, startDate, endDate, order, isDesc, limit);
         return deathRecordByCondition;
     }
 }
