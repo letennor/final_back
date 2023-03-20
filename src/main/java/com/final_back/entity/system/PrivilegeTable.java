@@ -9,6 +9,7 @@ import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import lombok.Data;
 
 import java.util.Date;
+import java.util.List;
 
 @Data
 public class PrivilegeTable {
@@ -22,6 +23,14 @@ public class PrivilegeTable {
     private String privilegeCode;
 
     private String privilegeDescription;
+
+    private String type;
+
+    @JsonSerialize(using = ToStringSerializer.class)
+    private Long parentId;
+
+    @TableField(exist = false)
+    private List<PrivilegeTable> children;
 
     @TableField(fill = FieldFill.INSERT)
     private Date gmtCreate;

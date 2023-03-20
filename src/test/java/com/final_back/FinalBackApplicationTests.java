@@ -1,13 +1,18 @@
 package com.final_back;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.final_back.controller.cultivation.EggProductionRecordController;
 import com.final_back.dto.DeathRecordDTO;
 import com.final_back.dto.UserBasicInfoDTO;
 import com.final_back.entity.cultivation.*;
+import com.final_back.entity.system.PrivilegeTable;
+import com.final_back.entity.system.RolePri;
 import com.final_back.entity.transport.IncomingRecord;
 import com.final_back.entity.transport.OutputRecord;
 import com.final_back.entity.transport.TransportRecord;
 import com.final_back.mapper.cultivation.IndividualDeathRecordMapper;
+import com.final_back.mapper.system.PrivilegeTableMapper;
+import com.final_back.mapper.system.RolePriMapper;
 import com.final_back.mapper.system.UserBasicInfoMapper;
 import com.final_back.mapper.system.UserPasswordInfoMapper;
 import com.final_back.entity.system.UserBasicInfo;
@@ -19,6 +24,7 @@ import com.final_back.service.system.UserPasswordInfoService;
 import com.final_back.service.transport.IncomingRecordService;
 import com.final_back.service.transport.OutputRecordService;
 import com.final_back.service.transport.TransportRecordService;
+import com.final_back.utils.common.TokenUtil;
 import com.final_back.utils.date.DateUtils;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -381,6 +387,84 @@ class FinalBackApplicationTests {
         map.put("xData", dateNameList);
         map.put("yData", outputRecordByCondition);
 
+        System.out.println(map);
+    }
+
+    @Autowired
+    UserBasicInfoMapper userBasicInfoMapper;
+
+    @Test
+    void test42() {
+        UserBasicInfo userBasicInfo = userBasicInfoMapper.selectById(1597441346729988097L);
+        System.out.println(userBasicInfo);
+        String s = TokenUtil.generateToken(userBasicInfo);
+        System.out.println(s);
+    }
+
+    @Autowired
+    PrivilegeTableMapper privilegeTableMapper;
+
+    @Test
+    void test43() {
+        List<PrivilegeTable> privilegeTables = privilegeTableMapper.selectList(null);
+
+        List<PrivilegeTable> authList = new ArrayList<>();
+
+        Iterator<PrivilegeTable> iterator = privilegeTables.iterator();
+        while (iterator.hasNext()) {
+            PrivilegeTable next = (PrivilegeTable) iterator.next();
+            authList.add(next);
+//            System.out.println(next);
+        }
+        Iterator<PrivilegeTable> authListIter = authList.iterator();
+        while (authListIter.hasNext()) {
+            PrivilegeTable next = authListIter.next();
+            // 如果parentid是null
+            if (next.getParentId() == null) {
+                QueryWrapper<PrivilegeTable> wrapper = new QueryWrapper<>();
+                wrapper.eq("parent_id", next.getPrivilegeId());
+                List<PrivilegeTable> children = privilegeTableMapper.selectList(wrapper);
+                next.setChildren(children);
+            }
+        }
+
+
+    }
+
+    @Test
+    void test44() {
+        QueryWrapper<PrivilegeTable> wrapper = new QueryWrapper<>();
+        wrapper.eq("parent_id", 1635926426146115586L);
+        List<PrivilegeTable> privilegeTables = privilegeTableMapper.selectList(wrapper);
+        Iterator<PrivilegeTable> iterator = privilegeTables.iterator();
+        while (iterator.hasNext()) {
+            System.out.println(iterator.next());
+        }
+    }
+
+    @Autowired
+    RolePriMapper rolePriMapper;
+
+    @Test
+    void test45() {
+        QueryWrapper<RolePri> wrapper = new QueryWrapper<>();
+        wrapper.eq("role_id", 1636587885578465282L);
+        List<RolePri> rolePris = rolePriMapper.selectList(wrapper);
+        Iterator<RolePri> iterator = rolePris.iterator();
+        List<Long> rolePriId = new ArrayList<>();
+        while (iterator.hasNext()) {
+            rolePriId.add(iterator.next().getPrivilegeId());
+        }
+    }
+
+    @Test
+    void test46() {
+        Map<String, String> map = new HashMap<>();
+        map.put("1", "1");
+        map.put("2", "2");
+        map.put("3", "3");
+
+        map.remove("1");
         System.out.println(map);
     }
 

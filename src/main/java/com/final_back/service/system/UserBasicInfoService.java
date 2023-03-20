@@ -21,7 +21,7 @@ public interface UserBasicInfoService extends IService<UserBasicInfo> {
 
     List<UserBasicInfoDTO> getAllUserAllInfo();
 
-    UserBasicInfo getPersonInfoByAccount(String account);
+    UserBasicInfo getPersonInfoByUserName(String userName);
 
     UserBasicInfo getPersonInfoByUserBasicInfoId(Long userBasicInfoId);
 

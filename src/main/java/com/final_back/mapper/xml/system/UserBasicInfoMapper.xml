@@ -31,7 +31,7 @@
                email,
                user_password_info_id,
                state,
-               account,
+               user_name,
                password,
                organization_id
         from user_basic_info

@@ -20,7 +20,7 @@ public class WorkItem {
     private String workName;
 
     private String workDescription;
-
+    @JsonSerialize(using = ToStringSerializer.class)
     private Long privilegeId;
 
     @TableField(fill = FieldFill.INSERT)

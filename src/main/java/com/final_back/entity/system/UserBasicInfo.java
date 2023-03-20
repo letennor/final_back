@@ -36,7 +36,7 @@ public class UserBasicInfo {
     private String email;
 
     private String photo;
-
+    @JsonSerialize(using = ToStringSerializer.class)
     private Long roleId;
 
     @TableField(fill = FieldFill.INSERT)

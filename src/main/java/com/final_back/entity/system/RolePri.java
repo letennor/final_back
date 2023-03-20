@@ -14,10 +14,10 @@ import java.util.Date;
 public class RolePri {
     @JsonSerialize(using = ToStringSerializer.class)
     @TableId(value = "role_pri_id", type = IdType.ASSIGN_ID)
-    private Long role_pri_id;
-
+    private Long rolePriId;
+    @JsonSerialize(using = ToStringSerializer.class)
     private Long roleId;
-
+    @JsonSerialize(using = ToStringSerializer.class)
     private Long privilegeId;
 
     @TableField(fill = FieldFill.INSERT)

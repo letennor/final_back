@@ -14,11 +14,11 @@ public interface UserPasswordInfoService extends IService<UserPasswordInfo> {
 
     List<UserPasswordInfo> getAllUserPasswordInfo();
 
-    List<Long> getIdList(Long userBasicInfoId, Integer state, String account, Long organizationId);
+    List<Long> getIdList(Long userBasicInfoId, Integer state, String userName, Long organizationId);
 
     int deleteUserPasswordInfoByIdList(List<Long> idList);
 
-    Boolean checkPassword(String account, String password);
+    Boolean checkPassword(String userName, String password);
 
     Boolean checkState(Long userBasicInfoId);
 

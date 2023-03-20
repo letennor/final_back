@@ -18,4 +18,5 @@ public interface TransportRecordMapper extends BaseMapper<TransportRecord> {
 
     List<TransportRecord> getTransportRecordByCondition(@Param("transportRoute") Long transportRoute, @Param("licensePlate") String licensePlate,
                                                         @Param("driver") Long driver, @Param("recordPerson") Long recordPerson, @Param("startDate") Date startDate, @Param("endDate") Date endDate);
+
 }

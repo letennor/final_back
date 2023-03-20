@@ -11,6 +11,6 @@ import java.util.List;
 public interface UserPasswordInfoMapper extends BaseMapper<UserPasswordInfo> {
 
     List<Long> getIdList(@Param("userBasicInfoId") Long userBasicInfoId, @Param("state") Integer state,
-                         @Param("account") String account, @Param("organizationId") Long organizationId);
+                         @Param("userName") String userName, @Param("organizationId") Long organizationId);
 
 }

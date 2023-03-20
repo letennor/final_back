@@ -29,13 +29,13 @@ public class UserPasswordInfoImpl extends ServiceImpl<UserPasswordInfoMapper, Us
     }
 
     @Override
-    public List<Long> getIdList(Long userBasicInfoId, Integer state, String account, Long organizationId) {
-        return userPasswordInfoMapper.getIdList(userBasicInfoId, state, account,organizationId);
+    public List<Long> getIdList(Long userBasicInfoId, Integer state, String userName, Long organizationId) {
+        return userPasswordInfoMapper.getIdList(userBasicInfoId, state, userName, organizationId);
     }
 
     @Override
     public int deleteUserPasswordInfoByIdList(List<Long> idList) {
-        if (idList.size() > 0){
+        if (idList.size() > 0) {
             return userPasswordInfoMapper.deleteBatchIds(idList);
         }
 
@@ -44,17 +44,19 @@ public class UserPasswordInfoImpl extends ServiceImpl<UserPasswordInfoMapper, Us
 
     /**
      * 检查密码是否正确
-     * @param account
+     *
+     * @param userName
      * @param password
      * @return
      */
     @Override
-    public Boolean checkPassword(String account, String password) {
+    public Boolean checkPassword(String userName, String password) {
         return null;
     }
 
     /**
      * 查询账户是否启用
+     *
      * @param userBasicInfoId
      * @return
      */
@@ -65,6 +67,7 @@ public class UserPasswordInfoImpl extends ServiceImpl<UserPasswordInfoMapper, Us
 
     /**
      * 取得登陆成功后返回前端的所有信息
+     *
      * @param userBasicInfoId
      * @return
      */
@@ -75,6 +78,7 @@ public class UserPasswordInfoImpl extends ServiceImpl<UserPasswordInfoMapper, Us
 
     /**
      * 修改密码
+     *
      * @param oldPassword
      * @param newPassword
      * @return

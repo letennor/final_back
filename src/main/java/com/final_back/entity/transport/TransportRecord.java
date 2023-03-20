@@ -15,7 +15,7 @@ public class TransportRecord {
     @JsonSerialize(using = ToStringSerializer.class)
     @TableId(value = "transport_record_id", type = IdType.ASSIGN_ID)
     private Long transportRecordId;
-
+    @JsonSerialize(using = ToStringSerializer.class)
     private Long transportRoute;
 
     private String licensePlate;

@@ -1,12 +1,16 @@
 package com.final_back.impl.system;
 
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.final_back.entity.system.PrivilegeTable;
 import com.final_back.mapper.system.PrivilegeTableMapper;
 import com.final_back.service.system.PrivilegeTableService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 @Service
@@ -18,6 +22,7 @@ public class PrivilegeTableImpl extends ServiceImpl<PrivilegeTableMapper, Privil
 
     /**
      * 通过权限id列表取得权限
+     *
      * @param privilegeTableIdList
      * @return
      */
@@ -27,7 +32,6 @@ public class PrivilegeTableImpl extends ServiceImpl<PrivilegeTableMapper, Privil
     }
 
     /**
-     *
      * @param privilegeTable
      * @return
      */
@@ -40,6 +44,7 @@ public class PrivilegeTableImpl extends ServiceImpl<PrivilegeTableMapper, Privil
 
     /**
      * 取得所有权限
+     *
      * @return
      */
     @Override
@@ -50,6 +55,7 @@ public class PrivilegeTableImpl extends ServiceImpl<PrivilegeTableMapper, Privil
 
     /**
      * 删除权限
+     *
      * @param privilegeId
      * @return
      */
@@ -61,6 +67,7 @@ public class PrivilegeTableImpl extends ServiceImpl<PrivilegeTableMapper, Privil
 
     /**
      * 更新权限
+     *
      * @param privilegeTable
      * @return
      */
@@ -68,5 +75,42 @@ public class PrivilegeTableImpl extends ServiceImpl<PrivilegeTableMapper, Privil
     public Integer updatePrivilege(PrivilegeTable privilegeTable) {
         int i = privilegeTableMapper.updateById(privilegeTable);
         return i;
+    }
+
+    /**
+     * 取得所有权限（用于角色配置）
+     *
+     * @return
+     */
+    @Override
+    public List<PrivilegeTable> getAuthList() {
+        List<PrivilegeTable> privilegeTables = privilegeTableMapper.selectList(null);
+
+        List<PrivilegeTable> authList = new ArrayList<>();
+
+        Iterator<PrivilegeTable> iterator = privilegeTables.iterator();
+        while (iterator.hasNext()) {
+            PrivilegeTable next = (PrivilegeTable) iterator.next();
+            next.setChildren(new ArrayList<>());
+            authList.add(next);
+//            System.out.println(next);
+        }
+        Iterator<PrivilegeTable> authListIter = authList.iterator();
+        while (authListIter.hasNext()) {
+            PrivilegeTable next = authListIter.next();
+            // 如果parentid是null
+            if (next.getParentId() == null) {
+                QueryWrapper<PrivilegeTable> wrapper = new QueryWrapper<>();
+                wrapper.eq("parent_id", next.getPrivilegeId());
+                List<PrivilegeTable> children = privilegeTableMapper.selectList(wrapper);
+                Iterator<PrivilegeTable> childrenIterator = children.iterator();
+                while (childrenIterator.hasNext()) {
+                    childrenIterator.next().setChildren(new ArrayList<>());
+                }
+                next.setChildren(children);
+            }
+        }
+
+        return authList;
     }
 }

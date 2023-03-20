@@ -16,9 +16,9 @@ public class UserRole {
     @JsonSerialize(using = ToStringSerializer.class)
     @TableId(value = "user_role_id", type = IdType.ASSIGN_ID)
     private Long userRoleId;
-
+    @JsonSerialize(using = ToStringSerializer.class)
     private Long userInfoId;
-
+    @JsonSerialize(using = ToStringSerializer.class)
     private Long roleId;
 
     @TableField(fill = FieldFill.INSERT)

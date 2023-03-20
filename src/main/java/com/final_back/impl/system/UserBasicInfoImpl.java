@@ -43,7 +43,6 @@ public class UserBasicInfoImpl extends ServiceImpl<UserBasicInfoMapper, UserBasi
     BatchInfoService batchInfoService;
 
 
-
     @Override
     public int addUser(UserBasicInfo userBasicInfo) {
         int basicInfoInsert = userBasicInfoMapper.insert(userBasicInfo);
@@ -99,26 +98,30 @@ public class UserBasicInfoImpl extends ServiceImpl<UserBasicInfoMapper, UserBasi
 
     /**
      * 通过账户取得基本信息
-     * @param account
+     *
+     * @param userName
      * @return
      */
     @Override
-    public UserBasicInfo getPersonInfoByAccount(String account) {
+    public UserBasicInfo getPersonInfoByUserName(String userName) {
         return null;
     }
 
     /**
      * 通过userBasicInfoId取得基本信息
+     *
      * @param userBasicInfoId
      * @return
      */
     @Override
     public UserBasicInfo getPersonInfoByUserBasicInfoId(Long userBasicInfoId) {
-        return null;
+        UserBasicInfo userBasicInfo = userBasicInfoMapper.selectById(userBasicInfoId);
+        return userBasicInfo;
     }
 
     /**
      * 通过角色、空闲时间查找用户
+     *
      * @param roleId
      * @param startFreeDate
      * @param endFreeDate
@@ -131,6 +134,7 @@ public class UserBasicInfoImpl extends ServiceImpl<UserBasicInfoMapper, UserBasi
 
     /**
      * 改变用户状态
+     *
      * @param userId
      * @return
      */

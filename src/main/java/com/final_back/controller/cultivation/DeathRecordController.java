@@ -105,7 +105,6 @@ public class DeathRecordController {
     @RequestMapping("/getDeathRecordChart")
     public Result<?> getDeathRecordChart(@RequestBody DeathRecordDTO deathRecordDTO) {
 
-
         //取最近7条数据，按record_time排序
         List<DeathRecord> deathRecordByCondition = deathRecordService.getDeathRecordByCondition(null, null, null, null, null, "death_record.record_time", 1, 7);
         //将x轴坐标拿出来
@@ -118,7 +117,6 @@ public class DeathRecordController {
         map.put("xData", sevenDayTag);
         map.put("yData", deathRecordByCondition);
         return ResultUtil.success(map);
-
     }
 
 }

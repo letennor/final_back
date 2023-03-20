@@ -8,7 +8,7 @@ import lombok.Data;
 @Data
 public class UserBasicInfoDTO extends UserBasicInfo {
 
-    private String account;
+    private String userName;
 
     private Integer state;
 
@@ -16,4 +16,6 @@ public class UserBasicInfoDTO extends UserBasicInfo {
     private Long organizationId;
 
     private String password;
+
+    private String token;
 }

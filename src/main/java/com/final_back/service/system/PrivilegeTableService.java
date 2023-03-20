@@ -16,4 +16,7 @@ public interface PrivilegeTableService extends IService<PrivilegeTable> {
     Integer deletePrivilege(Long privilegeId);
 
     Integer updatePrivilege(PrivilegeTable privilegeTable);
+
+    List<PrivilegeTable> getAuthList();
+
 }

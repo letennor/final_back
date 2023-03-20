@@ -19,9 +19,9 @@ public class MessageInfo {
     private String messageContent;
 
     private Integer isRead;
-
+    @JsonSerialize(using = ToStringSerializer.class)
     private Long messageSender;
-
+    @JsonSerialize(using = ToStringSerializer.class)
     private Long messageReceiver;
 
     private Date messageDate;

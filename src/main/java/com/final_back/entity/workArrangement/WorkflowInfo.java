@@ -16,9 +16,9 @@ public class WorkflowInfo {
     @JsonSerialize(using = ToStringSerializer.class)
     @TableId(value = "workflow_id", type = IdType.ASSIGN_ID)
     private Long workflowId;
-
+    @JsonSerialize(using = ToStringSerializer.class)
     private Long workItemId;
-
+    @JsonSerialize(using = ToStringSerializer.class)
     private Long workPerson;
 
     private Date workDate;

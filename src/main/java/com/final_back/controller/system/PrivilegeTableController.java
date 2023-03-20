@@ -19,10 +19,11 @@ public class PrivilegeTableController {
 
     /**
      * 添加权限
+     *
      * @return
      */
     @RequestMapping("/addPrivilege")
-    public Result<?> addPrivilege(@RequestBody PrivilegeTable privilegeTable){
+    public Result<?> addPrivilege(@RequestBody PrivilegeTable privilegeTable) {
 
 
         Integer i = privilegeTableService.addPrivilage(privilegeTable);
@@ -33,39 +34,46 @@ public class PrivilegeTableController {
      * 编辑权限
      */
     @RequestMapping("/editPrivilege")
-    public Result<?> editPrivilege(@RequestBody PrivilegeTable privilegeTable){
+    public Result<?> editPrivilege(@RequestBody PrivilegeTable privilegeTable) {
         return null;
     }
 
     /**
      * 取得所有权限
+     *
      * @return
      */
     @RequestMapping("/getAllPrivilege")
-    public Result<?> getAllPrivilege(){
+    public Result<?> getAllPrivilege() {
         List<PrivilegeTable> allPrivilege = privilegeTableService.getAllPrivilege();
         return ResultUtil.success(allPrivilege);
     }
 
     @RequestMapping("/deletePrivilege")
-    public Result<?> deletePrivilege(@RequestBody PrivilegeTable privilegeTable){
+    public Result<?> deletePrivilege(@RequestBody PrivilegeTable privilegeTable) {
         Integer integer = privilegeTableService.deletePrivilege(privilegeTable.getPrivilegeId());
-        if (integer > 0){
+        if (integer > 0) {
             return ResultUtil.success("删除成功");
-        }else {
+        } else {
             return ResultUtil.success("删除失败");
         }
     }
 
     @RequestMapping("/updatePrivilege")
-    public Result<?> updatePrivilege(@RequestBody PrivilegeTable privilegeTable){
+    public Result<?> updatePrivilege(@RequestBody PrivilegeTable privilegeTable) {
         Integer integer = privilegeTableService.updatePrivilege(privilegeTable);
-        if (integer > 0){
+        if (integer > 0) {
             return ResultUtil.success("更新成功");
-        }else {
+        } else {
             return ResultUtil.success("更新失败");
         }
 
+    }
+
+    @RequestMapping("/getAuthList")
+    public Result<?> getAuthList() {
+        List<PrivilegeTable> authList = privilegeTableService.getAuthList();
+        return ResultUtil.success(authList);
     }
 
 }

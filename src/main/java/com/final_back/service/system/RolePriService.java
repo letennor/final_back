@@ -2,15 +2,21 @@ package com.final_back.service.system;
 
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.final_back.dto.RolePriDTO;
 import com.final_back.entity.system.RolePri;
 
 import java.util.List;
 
 public interface RolePriService extends IService<RolePri> {
 
-    List<RolePri> getRolePriList(Long roleId);
+//    List<RolePri> getRolePriList(Long roleId);
+//
+//    Integer createRole(RolePri rolePri);
+//
+//    Integer editRole(RolePri rolePri);
 
-    Integer createRole(RolePri rolePri);
+    List<RolePri> getRolePriInfo(Long roleId);
 
-    Integer editRole(RolePri rolePri);
+    Integer configPrivilges(RolePriDTO rolePriDTO);
+
 }

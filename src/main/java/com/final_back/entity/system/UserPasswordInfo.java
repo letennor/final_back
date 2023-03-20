@@ -20,7 +20,7 @@ public class UserPasswordInfo {
 
     private Integer state;
 
-    private String account;
+    private String userName;
 
     private String password;
 
