@@ -10,4 +10,6 @@ import java.util.List;
 @Repository
 public interface BatchInfoMapper extends BaseMapper<BatchInfo> {
     List<Long> getIdList(@Param("recordPerson") Long recordPerson);
+
+    List<BatchInfo> getBatchList();
 }

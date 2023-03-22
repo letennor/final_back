@@ -2,7 +2,23 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.final_back.mapper.workArrangement.WorkItemMapper">
 
-
+    <select id="getWorkItem" resultMap="getWorkItem">
+        select work_item.work_item_id,
+               work_item.work_name,
+               work_item.work_description,
+               work_item.privilege_id,
+               work_item.gmt_create,
+               work_item.gmt_modified,
+               pt.privilege_id,
+               pt.type,
+               pt.privilege_name,
+               pt.privilege_code,
+               pt.privilege_description,
+               pt.parent_id
+        from work_item
+                 join privilege_table pt on work_item.privilege_id = pt.privilege_id;
+    </select>
+    <resultMap id="getWorkItem" type="com.final_back.entity.workArrangement.WorkItem"></resultMap>
 
 
 </mapper>

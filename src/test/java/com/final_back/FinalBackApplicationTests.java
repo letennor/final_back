@@ -10,6 +10,7 @@ import com.final_back.entity.system.RolePri;
 import com.final_back.entity.transport.IncomingRecord;
 import com.final_back.entity.transport.OutputRecord;
 import com.final_back.entity.transport.TransportRecord;
+import com.final_back.entity.workArrangement.WorkItem;
 import com.final_back.mapper.cultivation.IndividualDeathRecordMapper;
 import com.final_back.mapper.system.PrivilegeTableMapper;
 import com.final_back.mapper.system.RolePriMapper;
@@ -24,6 +25,7 @@ import com.final_back.service.system.UserPasswordInfoService;
 import com.final_back.service.transport.IncomingRecordService;
 import com.final_back.service.transport.OutputRecordService;
 import com.final_back.service.transport.TransportRecordService;
+import com.final_back.service.workArrangement.WorkItemService;
 import com.final_back.utils.common.TokenUtil;
 import com.final_back.utils.date.DateUtils;
 import org.junit.jupiter.api.Test;
@@ -466,6 +468,24 @@ class FinalBackApplicationTests {
 
         map.remove("1");
         System.out.println(map);
+    }
+
+    @Autowired
+    WorkItemService workItemService;
+
+    @Test
+    void test47() {
+        List<WorkItem> workItem = workItemService.getWorkItem();
+        Iterator<WorkItem> iterator = workItem.iterator();
+        while (iterator.hasNext()) {
+            System.out.println(iterator.next());
+        }
+    }
+
+    @Test
+    void test48(){
+        Map<String, Object> batchWorkFlow = workItemService.getBatchWorkFlow(1597441931764092929L);
+        System.out.println(batchWorkFlow);
     }
 
 }

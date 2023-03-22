@@ -11,5 +11,20 @@
         </where>
     </select>
 
+    <select id="getBatchList" resultMap="getBatchList">
+        select batch_id,
+               type,
+               record_person,
+               batch_name,
+               current_work,
+               bi.gmt_create,
+               bi.gmt_modified,
+               user_basic_info_id,
+               name as recordPersonName
+        from batch_info bi
+                 join user_basic_info ubi on bi.record_person = ubi.user_basic_info_id;
+    </select>
+    <resultMap id="getBatchList" type="com.final_back.entity.maintainInfo.BatchInfo"></resultMap>
+
 
 </mapper>

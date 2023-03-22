@@ -23,6 +23,15 @@ public class WorkItem {
     @JsonSerialize(using = ToStringSerializer.class)
     private Long privilegeId;
 
+    @JsonSerialize(using = ToStringSerializer.class)
+    private Long preWork;
+
+    @JsonSerialize(using = ToStringSerializer.class)
+    private Long nextWork;
+
+    @TableField(exist = false)
+    private String privilegeName;
+
     @TableField(fill = FieldFill.INSERT)
     private Date gmtCreate;
 

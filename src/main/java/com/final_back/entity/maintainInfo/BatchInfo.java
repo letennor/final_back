@@ -21,6 +21,13 @@ public class BatchInfo {
 
     private String batchName;
 
+    @TableField(exist = false)
+    private String recordPersonName;
+    @JsonSerialize(using = ToStringSerializer.class)
+    private Long currentWork;
+
+    private String type;
+
     @TableField(fill = FieldFill.INSERT)
     private Date gmtCreate;
 

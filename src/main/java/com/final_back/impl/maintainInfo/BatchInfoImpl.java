@@ -36,11 +36,19 @@ public class BatchInfoImpl extends ServiceImpl<BatchInfoMapper, BatchInfo> imple
 
     @Override
     public List<BatchInfo> getAllBatch() {
-        return batchInfoMapper.selectList(null);
+        return batchInfoMapper.getBatchList();
     }
 
     @Override
     public int addBatchInfo(BatchInfo batchInfo) {
+        //判断是养殖生产线还是孵化生产线，如果是养殖，则放入1637722972147695617，如果是孵化，则放入1637723241820471297
+
+        if (batchInfo.getType().equals("养殖")) {
+            batchInfo.setCurrentWork(1637722972147695617L);
+        } else if (batchInfo.getType().equals("孵化")) {
+            batchInfo.setCurrentWork(1637723241820471297L);
+        }
+
         return batchInfoMapper.insert(batchInfo);
     }
 
@@ -74,10 +82,10 @@ public class BatchInfoImpl extends ServiceImpl<BatchInfoMapper, BatchInfo> imple
 
     @Override
     public int deleteBatchInfoByIdList(List<Long> idList) {
-        if (idList.size() > 0){
+        if (idList.size() > 0) {
             int i = 0;
             Iterator iterator = idList.iterator();
-            while (iterator.hasNext()){
+            while (iterator.hasNext()) {
                 Long batchId = (Long) iterator.next();
                 i += deleteBatchInfoById(batchId);
             }
