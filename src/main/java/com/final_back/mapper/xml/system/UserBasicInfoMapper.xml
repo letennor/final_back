@@ -17,25 +17,76 @@
     </resultMap>
 
 
-    <select id="getAllUserAllInfo" resultType="com.final_back.dto.UserBasicInfoDTO">
-        select upi.user_basic_info_id,
-               gender,
-               name,
-               gender,
-               age,
-               work_year,
-               entry_time,
-               salary,
-               phone_number,
-               wechat,
-               email,
-               user_password_info_id,
-               state,
-               user_name,
-               password,
-               organization_id
+    <select id="getAllUserAllInfo" resultMap="getAllUserAllInfo">
+        select user_basic_info.user_basic_info_id,
+               user_basic_info.gender,
+               user_basic_info.name,
+               user_basic_info.age,
+               user_basic_info.work_year,
+               user_basic_info.entry_time,
+               user_basic_info.salary,
+               user_basic_info.phone_number,
+               user_basic_info.wechat,
+               user_basic_info.email,
+               user_basic_info.photo,
+               user_basic_info.gmt_create,
+               user_basic_info.gmt_modified,
+               user_basic_info.role_id,
+               upi.user_password_info_id,
+               upi.state,
+               upi.user_name,
+               upi.password,
+               upi.organization_id,
+               rt.role_name,
+               rt.role_description
         from user_basic_info
-                 join user_password_info upi on user_basic_info.user_basic_info_id = upi.user_basic_info_id;
+                 join user_password_info upi on user_basic_info.user_basic_info_id = upi.user_basic_info_id
+                 join role_table rt on user_basic_info.role_id = rt.role_id;
+
     </select>
+    <resultMap id="getAllUserAllInfo" type="com.final_back.dto.UserBasicInfoDTO"></resultMap>
+
+
+    <select id="getUserAllInfoByCondition" resultMap="getUserAllInfoByCondition">
+        select user_basic_info.user_basic_info_id,
+        user_basic_info.gender,
+        user_basic_info.name,
+        user_basic_info.age,
+        user_basic_info.work_year,
+        user_basic_info.entry_time,
+        user_basic_info.salary,
+        user_basic_info.phone_number,
+        user_basic_info.wechat,
+        user_basic_info.email,
+        user_basic_info.photo,
+        user_basic_info.gmt_create,
+        user_basic_info.gmt_modified,
+        user_basic_info.role_id,
+        upi.user_password_info_id,
+        upi.state,
+        upi.user_name,
+        upi.password,
+        upi.organization_id,
+        rt.role_name,
+        rt.role_description
+        from user_basic_info
+        join user_password_info upi on user_basic_info.user_basic_info_id = upi.user_basic_info_id
+        join role_table rt on user_basic_info.role_id = rt.role_id
+        <where>
+            <if test="roleId != null">
+                user_basic_info.role_id = #{roleId}
+            </if>
+            <if test="matchIdList != null">
+                AND user_basic_info.user_basic_info_id IN
+                <foreach item="item" collection="matchIdList" index="index" open="(" separator="," close=")">
+
+                    #{item}
+
+                </foreach>
+            </if>
+        </where>
+    </select>
+    <resultMap id="getUserAllInfoByCondition" type="com.final_back.dto.UserBasicInfoDTO"></resultMap>
+
 
 </mapper>

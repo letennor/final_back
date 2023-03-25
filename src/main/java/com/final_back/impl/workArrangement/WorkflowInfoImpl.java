@@ -1,9 +1,13 @@
 package com.final_back.impl.workArrangement;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.final_back.dto.UserBasicInfoDTO;
+import com.final_back.entity.system.UserBasicInfo;
 import com.final_back.entity.workArrangement.WorkflowInfo;
 import com.final_back.mapper.workArrangement.WorkflowInfoMapper;
+import com.final_back.service.system.UserBasicInfoService;
 import com.final_back.service.workArrangement.WorkflowInfoService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -11,8 +15,14 @@ import java.util.List;
 
 @Service
 public class WorkflowInfoImpl extends ServiceImpl<WorkflowInfoMapper, WorkflowInfo> implements WorkflowInfoService {
+    @Autowired
+    UserBasicInfoService userBasicInfoService;
+    @Autowired
+    WorkflowInfoMapper workflowInfoMapper;
+
     /**
      * 取得用户所有为完成的工作
+     *
      * @param userBasicInfo
      * @return
      */
@@ -23,6 +33,7 @@ public class WorkflowInfoImpl extends ServiceImpl<WorkflowInfoMapper, WorkflowIn
 
     /**
      * 添加工作流程
+     *
      * @param workflowInfo
      * @return
      */
@@ -33,6 +44,7 @@ public class WorkflowInfoImpl extends ServiceImpl<WorkflowInfoMapper, WorkflowIn
 
     /**
      * 改变工作状态
+     *
      * @param workflowId
      * @return
      */
@@ -43,6 +55,7 @@ public class WorkflowInfoImpl extends ServiceImpl<WorkflowInfoMapper, WorkflowIn
 
     /**
      * 判断员工在选择的日期是否有空
+     *
      * @param userId
      * @param workDate
      * @return
@@ -50,6 +63,30 @@ public class WorkflowInfoImpl extends ServiceImpl<WorkflowInfoMapper, WorkflowIn
     @Override
     public Boolean checkIfFree(Long userId, Date workDate) {
         return null;
+    }
+
+    /**
+     * 某个人的工作信息流
+     *
+     * @param workPerosn
+     * @return
+     */
+    @Override
+    public List<WorkflowInfo> getPersonWorkFlowInfo(Long workPerosn, Date currentDate) {
+        List<WorkflowInfo> personWorkFlowInfo = workflowInfoMapper.getPersonWorkFlowInfo(workPerosn, currentDate);
+        return personWorkFlowInfo;
+    }
+
+    @Override
+    public List<UserBasicInfoDTO> getPersonWorkInfo() {
+
+        return null;
+    }
+
+    @Override
+    public List<Long> getPersonWorkFlowInfoIdByCondition(Date beginFreeDate, Date endFreeDate) {
+        List<Long> personWorkFlowInfoIdByCondition = workflowInfoMapper.getPersonWorkFlowInfoIdByCondition(beginFreeDate, endFreeDate);
+        return personWorkFlowInfoIdByCondition;
     }
 
 

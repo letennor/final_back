@@ -21,6 +21,8 @@ public interface UserBasicInfoService extends IService<UserBasicInfo> {
 
     List<UserBasicInfoDTO> getAllUserAllInfo();
 
+    List<UserBasicInfoDTO> getUserAllInfoByCondition(Long roleId, List<Long> matchIdList);
+
     UserBasicInfo getPersonInfoByUserName(String userName);
 
     UserBasicInfo getPersonInfoByUserBasicInfoId(Long userBasicInfoId);
@@ -28,5 +30,6 @@ public interface UserBasicInfoService extends IService<UserBasicInfo> {
     List<UserBasicInfo> queryUserByCondition(Long roleId, Date startFreeDate, Date endFreeDate);
 
     Integer changeUserState(Long userId);
+
 
 }

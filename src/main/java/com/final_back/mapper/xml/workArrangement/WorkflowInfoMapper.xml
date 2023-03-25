@@ -2,8 +2,45 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.final_back.mapper.workArrangement.WorkflowInfoMapper">
 
+    <select id="getPersonWorkFlowInfo" resultMap="getPersonWorkFlowInfo">
 
+        select work_flow_info.workflow_id,
+        work_flow_info.work_item_id,
+        work_flow_info.work_person,
+        work_flow_info.work_date,
+        work_flow_info.is_finished,
+        work_flow_info.work_batch,
+        work_flow_info.gmt_create,
+        work_flow_info.gmt_modified,
+        wi.pre_work,
+        wi.next_work,
+        wi.work_name,
+        wi.work_description,
+        wi.privilege_id,
+        bi.batch_name
+        from work_flow_info
+        join work_item wi on work_flow_info.work_item_id = wi.work_item_id
+        left join batch_info bi on work_flow_info.work_batch = bi.batch_id
+        <where>
+            <if test="workPerson != null">
+                work_flow_info.work_person = #{workPerson}
+            </if>
+            <if test="currentDate != null">
+                AND work_flow_info.work_date = #{currentDate}
+            </if>
+        </where>
+    </select>
+    <resultMap id="getPersonWorkFlowInfo" type="com.final_back.entity.workArrangement.WorkflowInfo"></resultMap>
 
-
+    <select id="getPersonWorkFlowInfoIdByCondition" resultMap="getPersonWorkFlowInfoIdByCondition">
+        select distinct work_person
+        from work_flow_info
+        <where>
+            <if test="beginFreeDate != null">
+                work_date NOT BETWEEN #{beginFreeDate} AND #{endFreeDate}
+            </if>
+        </where>
+    </select>
+    <resultMap id="getPersonWorkFlowInfoIdByCondition" type="java.lang.Long"></resultMap>
 
 </mapper>

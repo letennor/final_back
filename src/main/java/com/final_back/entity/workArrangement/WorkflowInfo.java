@@ -23,7 +23,26 @@ public class WorkflowInfo {
 
     private Date workDate;
 
+
     private Integer isFinished;
+
+    @TableField(exist = false)
+    private String workPersonName;
+
+    @TableField(exist = false)
+    private String workName;
+
+    @TableField(exist = false)
+    private Integer gender;
+
+    @TableField(exist = false)
+    private String roleName;
+
+    @JsonSerialize(using = ToStringSerializer.class)
+    private Long workBatch;
+
+    @TableField(exist = false)
+    private String batchName;
 
     @TableField(fill = FieldFill.INSERT)
     private Date gmtCreate;

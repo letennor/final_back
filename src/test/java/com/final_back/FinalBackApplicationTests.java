@@ -11,6 +11,7 @@ import com.final_back.entity.transport.IncomingRecord;
 import com.final_back.entity.transport.OutputRecord;
 import com.final_back.entity.transport.TransportRecord;
 import com.final_back.entity.workArrangement.WorkItem;
+import com.final_back.entity.workArrangement.WorkflowInfo;
 import com.final_back.mapper.cultivation.IndividualDeathRecordMapper;
 import com.final_back.mapper.system.PrivilegeTableMapper;
 import com.final_back.mapper.system.RolePriMapper;
@@ -26,6 +27,7 @@ import com.final_back.service.transport.IncomingRecordService;
 import com.final_back.service.transport.OutputRecordService;
 import com.final_back.service.transport.TransportRecordService;
 import com.final_back.service.workArrangement.WorkItemService;
+import com.final_back.service.workArrangement.WorkflowInfoService;
 import com.final_back.utils.common.TokenUtil;
 import com.final_back.utils.date.DateUtils;
 import org.junit.jupiter.api.Test;
@@ -483,9 +485,64 @@ class FinalBackApplicationTests {
     }
 
     @Test
-    void test48(){
+    void test48() {
         Map<String, Object> batchWorkFlow = workItemService.getBatchWorkFlow(1597441931764092929L);
         System.out.println(batchWorkFlow);
+    }
+
+    @Autowired
+    WorkflowInfoService workflowInfoService;
+
+    @Test
+    void test49() {
+        List<UserBasicInfoDTO> allUserAllInfo = userBasicInfoService.getAllUserAllInfo();
+        Iterator<UserBasicInfoDTO> iterator = allUserAllInfo.iterator();
+        Date currentDate = DateUtils.stringToDate(DateUtils.dateToString(new Date(), "YYYY-MM-dd"));
+
+        //通过workPerson找到某人今天的所有工作
+        while (iterator.hasNext()) {
+            UserBasicInfoDTO next = iterator.next();
+            List<WorkflowInfo> personWorkFlowInfo = workflowInfoService.getPersonWorkFlowInfo(next.getUserBasicInfoId(), currentDate);
+            next.setWorkflowInfoList(personWorkFlowInfo);
+        }
+        System.out.println(allUserAllInfo);
+    }
+
+    @Test
+    void test50() {
+        List<UserBasicInfoDTO> allUserAllInfo = userBasicInfoService.getAllUserAllInfo();
+        Iterator<UserBasicInfoDTO> iterator = allUserAllInfo.iterator();
+        while (iterator.hasNext()) {
+            System.out.println(iterator.next().getUserBasicInfoId());
+        }
+    }
+
+
+    @Test
+    void test51() {
+        List<UserBasicInfoDTO> userAllInfoByCondition = userBasicInfoService.getUserAllInfoByCondition(null, null);
+        Iterator<UserBasicInfoDTO> iterator = userAllInfoByCondition.iterator();
+        while (iterator.hasNext()) {
+            System.out.println(iterator.next());
+        }
+    }
+
+    @Test
+    void test52() {
+        List<Long> personWorkFlowInfoIdByCondition = workflowInfoService.getPersonWorkFlowInfoIdByCondition(DateUtils.stringToDate("2023-03-24 00:00:00"), DateUtils.stringToDate("2023-03-25 00:00:00"));
+        Iterator<Long> iterator = personWorkFlowInfoIdByCondition.iterator();
+        while (iterator.hasNext()) {
+            System.out.println(iterator.next());
+        }
+    }
+
+    @Test
+    void test53() {
+        List<Long> personWorkFlowInfoIdByCondition = workflowInfoService.getPersonWorkFlowInfoIdByCondition(DateUtils.stringToDate("2023-03-24 00:00:00"), DateUtils.stringToDate("2023-03-25 00:00:00"));
+        System.out.println(personWorkFlowInfoIdByCondition);
+        List<UserBasicInfoDTO> userAllInfoByCondition = userBasicInfoService.getUserAllInfoByCondition(null, personWorkFlowInfoIdByCondition);
+        System.out.println(userAllInfoByCondition);
+    
     }
 
 }

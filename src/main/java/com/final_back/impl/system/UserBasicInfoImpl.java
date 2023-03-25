@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.final_back.dto.UserBasicInfoDTO;
 import com.final_back.entity.system.UserBasicInfo;
 import com.final_back.entity.system.UserPasswordInfo;
+import com.final_back.entity.workArrangement.WorkflowInfo;
 import com.final_back.mapper.system.UserBasicInfoMapper;
 import com.final_back.service.cultivation.*;
 import com.final_back.service.maintainInfo.BatchInfoService;
@@ -11,10 +12,13 @@ import com.final_back.service.system.UserBasicInfoService;
 import com.final_back.service.system.UserPasswordInfoService;
 import com.final_back.service.transport.OutputRecordService;
 import com.final_back.service.transport.TransportRecordService;
+import com.final_back.service.workArrangement.WorkflowInfoService;
+import com.final_back.utils.date.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 @Service
@@ -94,6 +98,12 @@ public class UserBasicInfoImpl extends ServiceImpl<UserBasicInfoMapper, UserBasi
     @Override
     public List<UserBasicInfoDTO> getAllUserAllInfo() {
         return userBasicInfoMapper.getAllUserAllInfo();
+    }
+
+    @Override
+    public List<UserBasicInfoDTO> getUserAllInfoByCondition(Long roleId, List<Long> matchIdList) {
+        List<UserBasicInfoDTO> userAllInfoByCondition = userBasicInfoMapper.getUserAllInfoByCondition(roleId, matchIdList);
+        return userAllInfoByCondition;
     }
 
     /**
