@@ -22,4 +22,6 @@ public interface WorkItemService extends IService<WorkItem> {
 
     Map<String, Object> getBatchWorkFlow(Long batchId);
 
+    List<WorkItem> getAllElseWork();
+
 }

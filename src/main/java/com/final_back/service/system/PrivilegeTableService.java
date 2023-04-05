@@ -19,4 +19,6 @@ public interface PrivilegeTableService extends IService<PrivilegeTable> {
 
     List<PrivilegeTable> getAuthList();
 
+    List<PrivilegeTable> getParentPrivilege();
+
 }

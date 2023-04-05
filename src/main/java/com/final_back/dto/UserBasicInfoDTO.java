@@ -3,9 +3,10 @@ package com.final_back.dto;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import com.final_back.entity.system.UserBasicInfo;
-import com.final_back.entity.workArrangement.WorkflowInfo;
+import com.final_back.entity.workArrangement.WorkFlowInfo;
 import lombok.Data;
 
+import java.util.Date;
 import java.util.List;
 
 @Data
@@ -24,5 +25,9 @@ public class UserBasicInfoDTO extends UserBasicInfo {
 
     private String roleName;
 
-    List<WorkflowInfo> workflowInfoList;
+    List<WorkFlowInfo> workFlowInfoList;
+
+    private Date beginFreeDate;
+
+    private Date endFreeDate;
 }

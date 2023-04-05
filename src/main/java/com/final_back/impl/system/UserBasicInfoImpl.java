@@ -3,8 +3,6 @@ package com.final_back.impl.system;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.final_back.dto.UserBasicInfoDTO;
 import com.final_back.entity.system.UserBasicInfo;
-import com.final_back.entity.system.UserPasswordInfo;
-import com.final_back.entity.workArrangement.WorkflowInfo;
 import com.final_back.mapper.system.UserBasicInfoMapper;
 import com.final_back.service.cultivation.*;
 import com.final_back.service.maintainInfo.BatchInfoService;
@@ -12,13 +10,10 @@ import com.final_back.service.system.UserBasicInfoService;
 import com.final_back.service.system.UserPasswordInfoService;
 import com.final_back.service.transport.OutputRecordService;
 import com.final_back.service.transport.TransportRecordService;
-import com.final_back.service.workArrangement.WorkflowInfoService;
-import com.final_back.utils.date.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 
 @Service
@@ -101,8 +96,8 @@ public class UserBasicInfoImpl extends ServiceImpl<UserBasicInfoMapper, UserBasi
     }
 
     @Override
-    public List<UserBasicInfoDTO> getUserAllInfoByCondition(Long roleId, List<Long> matchIdList) {
-        List<UserBasicInfoDTO> userAllInfoByCondition = userBasicInfoMapper.getUserAllInfoByCondition(roleId, matchIdList);
+    public List<UserBasicInfoDTO> getUserAllInfoByCondition(Long roleId, List<Long> matchIdList, Long userId) {
+        List<UserBasicInfoDTO> userAllInfoByCondition = userBasicInfoMapper.getUserAllInfoByCondition(roleId, matchIdList, userId);
         return userAllInfoByCondition;
     }
 
@@ -124,9 +119,10 @@ public class UserBasicInfoImpl extends ServiceImpl<UserBasicInfoMapper, UserBasi
      * @return
      */
     @Override
-    public UserBasicInfo getPersonInfoByUserBasicInfoId(Long userBasicInfoId) {
-        UserBasicInfo userBasicInfo = userBasicInfoMapper.selectById(userBasicInfoId);
-        return userBasicInfo;
+    public UserBasicInfoDTO getPersonInfoByUserBasicInfoId(Long userBasicInfoId) {
+        //需要返回state
+        List<UserBasicInfoDTO> userAllInfoByCondition = userBasicInfoMapper.getUserAllInfoByCondition(null, null, userBasicInfoId);
+        return userAllInfoByCondition.get(0);
     }
 
     /**
@@ -139,17 +135,6 @@ public class UserBasicInfoImpl extends ServiceImpl<UserBasicInfoMapper, UserBasi
      */
     @Override
     public List<UserBasicInfo> queryUserByCondition(Long roleId, Date startFreeDate, Date endFreeDate) {
-        return null;
-    }
-
-    /**
-     * 改变用户状态
-     *
-     * @param userId
-     * @return
-     */
-    @Override
-    public Integer changeUserState(Long userId) {
         return null;
     }
 

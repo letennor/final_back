@@ -26,4 +26,6 @@ public interface UserPasswordInfoService extends IService<UserPasswordInfo> {
 
     Boolean changePassword(String oldPassword, String newPassword);
 
+    Integer changeState(Long userId);
+
 }

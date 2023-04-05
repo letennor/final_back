@@ -76,12 +76,13 @@
             <if test="roleId != null">
                 user_basic_info.role_id = #{roleId}
             </if>
+            <if test="userBasicInfoId != null">
+                AND user_basic_info.user_basic_info_id = #{userBasicInfoId}
+            </if>
             <if test="matchIdList != null">
                 AND user_basic_info.user_basic_info_id IN
                 <foreach item="item" collection="matchIdList" index="index" open="(" separator="," close=")">
-
                     #{item}
-
                 </foreach>
             </if>
         </where>

@@ -69,4 +69,10 @@ public class WorkItemController {
         }
     }
 
+    @RequestMapping("/getAllElseWork")
+    public Result<?> getAllElseWork() {
+        List<WorkItem> allElseWork = workItemService.getAllElseWork();
+        return ResultUtil.success(allElseWork);
+    }
+
 }

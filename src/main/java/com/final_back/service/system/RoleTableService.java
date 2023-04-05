@@ -15,4 +15,6 @@ public interface RoleTableService extends IService<RoleTable> {
 
     RoleTable getRoleInfo(Long roleId);
 
+    Integer deleteRole(Long roleId);
+
 }

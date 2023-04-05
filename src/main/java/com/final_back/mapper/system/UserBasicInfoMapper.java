@@ -16,6 +16,7 @@ public interface UserBasicInfoMapper extends BaseMapper<UserBasicInfo> {
 
     List<UserBasicInfoDTO> getAllUserAllInfo();
 
-    List<UserBasicInfoDTO> getUserAllInfoByCondition(@Param("roleId") Long roleId, @Param("matchIdList") List<Long> matchIdList);
+    List<UserBasicInfoDTO> getUserAllInfoByCondition(@Param("roleId") Long roleId, @Param("matchIdList") List<Long> matchIdList, @Param("userBasicInfoId") Long userBasicInfoId);
+
 
 }

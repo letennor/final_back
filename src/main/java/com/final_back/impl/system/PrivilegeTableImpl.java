@@ -4,7 +4,9 @@ package com.final_back.impl.system;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.final_back.entity.system.PrivilegeTable;
+import com.final_back.entity.system.RolePri;
 import com.final_back.mapper.system.PrivilegeTableMapper;
+import com.final_back.mapper.system.RolePriMapper;
 import com.final_back.service.system.PrivilegeTableService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,6 +20,8 @@ public class PrivilegeTableImpl extends ServiceImpl<PrivilegeTableMapper, Privil
 
     @Autowired
     PrivilegeTableMapper privilegeTableMapper;
+    @Autowired
+    RolePriMapper rolePriMapper;
 
 
     /**
@@ -38,7 +42,6 @@ public class PrivilegeTableImpl extends ServiceImpl<PrivilegeTableMapper, Privil
     @Override
     public Integer addPrivilage(PrivilegeTable privilegeTable) {
         int insert = privilegeTableMapper.insert(privilegeTable);
-
         return insert;
     }
 
@@ -61,6 +64,11 @@ public class PrivilegeTableImpl extends ServiceImpl<PrivilegeTableMapper, Privil
      */
     @Override
     public Integer deletePrivilege(Long privilegeId) {
+        //先删除角色权限表
+        QueryWrapper<RolePri> rolePriQueryWrapper = new QueryWrapper<>();
+        rolePriQueryWrapper.eq("privilege_id", privilegeId);
+        rolePriMapper.delete(rolePriQueryWrapper);
+
         int i = privilegeTableMapper.deleteById(privilegeId);
         return i;
     }
@@ -112,5 +120,22 @@ public class PrivilegeTableImpl extends ServiceImpl<PrivilegeTableMapper, Privil
         }
 
         return authList;
+    }
+
+    //取得所有父级权限
+    @Override
+    public List<PrivilegeTable> getParentPrivilege() {
+
+        List<PrivilegeTable> parentPrivilegeList = new ArrayList<>();
+
+        List<PrivilegeTable> allPrivilege = getAllPrivilege();
+        Iterator<PrivilegeTable> iterator = allPrivilege.iterator();
+        while (iterator.hasNext()) {
+            PrivilegeTable next = iterator.next();
+            if (next.getParentId() == null) {
+                parentPrivilegeList.add(next);
+            }
+        }
+        return parentPrivilegeList;
     }
 }

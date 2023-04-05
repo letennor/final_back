@@ -1,6 +1,7 @@
 package com.final_back.impl.system;
 
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.final_back.entity.system.UserPasswordInfo;
 import com.final_back.mapper.system.UserPasswordInfoMapper;
@@ -86,6 +87,27 @@ public class UserPasswordInfoImpl extends ServiceImpl<UserPasswordInfoMapper, Us
     @Override
     public Boolean changePassword(String oldPassword, String newPassword) {
         return null;
+    }
+
+    /**
+     * 改变用户状态
+     *
+     * @param userId
+     * @return
+     */
+    @Override
+    public Integer changeState(Long userId) {
+        QueryWrapper<UserPasswordInfo> userPasswordInfoQueryWrapper = new QueryWrapper<>();
+        userPasswordInfoQueryWrapper.eq("user_basic_info_id", userId);
+        UserPasswordInfo userPasswordInfo = userPasswordInfoMapper.selectOne(userPasswordInfoQueryWrapper);
+        if (userPasswordInfo.getState() == 1) {
+            userPasswordInfo.setState(0);
+        } else {
+            userPasswordInfo.setState(1);
+        }
+
+        int i = userPasswordInfoMapper.updateById(userPasswordInfo);
+        return i;
     }
 
 }

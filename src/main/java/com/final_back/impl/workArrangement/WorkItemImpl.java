@@ -4,19 +4,15 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.final_back.entity.maintainInfo.BatchInfo;
 import com.final_back.entity.workArrangement.WorkItem;
-import com.final_back.entity.workArrangement.WorkflowInfo;
+import com.final_back.entity.workArrangement.WorkFlowInfo;
 import com.final_back.mapper.maintainInfo.BatchInfoMapper;
 import com.final_back.mapper.workArrangement.WorkItemMapper;
-import com.final_back.mapper.workArrangement.WorkflowInfoMapper;
+import com.final_back.mapper.workArrangement.WorkFlowInfoMapper;
 import com.final_back.service.workArrangement.WorkItemService;
-import com.final_back.service.workArrangement.WorkflowInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class WorkItemImpl extends ServiceImpl<WorkItemMapper, WorkItem> implements WorkItemService {
@@ -24,7 +20,7 @@ public class WorkItemImpl extends ServiceImpl<WorkItemMapper, WorkItem> implemen
     @Autowired
     WorkItemMapper workItemMapper;
     @Autowired
-    WorkflowInfoMapper workflowInfoMapper;
+    WorkFlowInfoMapper workflowInfoMapper;
     @Autowired
     BatchInfoMapper batchInfoMapper;
 
@@ -80,7 +76,7 @@ public class WorkItemImpl extends ServiceImpl<WorkItemMapper, WorkItem> implemen
     @Override
     public Integer deleteWorkItem(Long workItemId) {
         // 先找出workFlowInfo中的所有记录，删除，然后再删除workItem
-        QueryWrapper<WorkflowInfo> workflowInfoQueryWrapper = new QueryWrapper<>();
+        QueryWrapper<WorkFlowInfo> workflowInfoQueryWrapper = new QueryWrapper<>();
         workflowInfoQueryWrapper.eq("work_item_id", workItemId);
         workflowInfoMapper.delete(workflowInfoQueryWrapper);
 
@@ -146,5 +142,28 @@ public class WorkItemImpl extends ServiceImpl<WorkItemMapper, WorkItem> implemen
 
         return map;
     }
+
+
+    /**
+     * 返回所有其他工作
+     *
+     * @return
+     */
+    @Override
+    public List<WorkItem> getAllElseWork() {
+        List<WorkItem> elseWorkList = new ArrayList<>();
+        List<WorkItem> workItems = workItemMapper.selectList(null);
+        Iterator<WorkItem> iterator = workItems.iterator();
+        while (iterator.hasNext()) {
+            WorkItem next = iterator.next();
+            if (next.getNextWork() == null && next.getPreWork() == null) {
+                elseWorkList.add(next);
+            }
+
+        }
+
+        return elseWorkList;
+    }
+
 
 }

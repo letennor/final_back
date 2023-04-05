@@ -21,15 +21,13 @@ public interface UserBasicInfoService extends IService<UserBasicInfo> {
 
     List<UserBasicInfoDTO> getAllUserAllInfo();
 
-    List<UserBasicInfoDTO> getUserAllInfoByCondition(Long roleId, List<Long> matchIdList);
+    List<UserBasicInfoDTO> getUserAllInfoByCondition(Long roleId, List<Long> matchIdList, Long userId);
 
     UserBasicInfo getPersonInfoByUserName(String userName);
 
-    UserBasicInfo getPersonInfoByUserBasicInfoId(Long userBasicInfoId);
+    UserBasicInfoDTO getPersonInfoByUserBasicInfoId(Long userBasicInfoId);
 
     List<UserBasicInfo> queryUserByCondition(Long roleId, Date startFreeDate, Date endFreeDate);
-
-    Integer changeUserState(Long userId);
 
 
 }

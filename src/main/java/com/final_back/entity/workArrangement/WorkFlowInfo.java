@@ -11,10 +11,10 @@ import lombok.Data;
 import java.util.Date;
 
 @Data
-public class WorkflowInfo {
+public class WorkFlowInfo {
 
     @JsonSerialize(using = ToStringSerializer.class)
-    @TableId(value = "workflow_id", type = IdType.ASSIGN_ID)
+    @TableId(value = "work_flow_id", type = IdType.ASSIGN_ID)
     private Long workflowId;
     @JsonSerialize(using = ToStringSerializer.class)
     private Long workItemId;
@@ -43,6 +43,9 @@ public class WorkflowInfo {
 
     @TableField(exist = false)
     private String batchName;
+
+    @TableField(exist = false)
+    private String workDescription;
 
     @TableField(fill = FieldFill.INSERT)
     private Date gmtCreate;

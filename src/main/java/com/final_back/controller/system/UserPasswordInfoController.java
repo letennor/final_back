@@ -70,4 +70,14 @@ public class UserPasswordInfoController {
         return ResultUtil.success("已移除token");
     }
 
+    @RequestMapping("/changeState")
+    public Result<?> changeState(@RequestBody UserBasicInfoDTO userBasicInfoDTO) {
+        Integer integer = userPasswordInfoService.changeState(userBasicInfoDTO.getUserBasicInfoId());
+        if (integer > 0) {
+            return ResultUtil.success("修改成功");
+        } else {
+            return ResultUtil.success("修改失败");
+        }
+    }
+
 }

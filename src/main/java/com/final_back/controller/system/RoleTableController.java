@@ -34,5 +34,14 @@ public class RoleTableController {
         return null;
     }
 
+    @RequestMapping("/deleteRole")
+    public Result<?> deleteRole(@RequestBody RoleTable roleTable) {
+        Integer integer = roleTableService.deleteRole(roleTable.getRoleId());
+        if (integer > 0) {
+            return ResultUtil.success("删除成功");
+        } else {
+            return ResultUtil.success("删除失败");
+        }
+    }
 
 }

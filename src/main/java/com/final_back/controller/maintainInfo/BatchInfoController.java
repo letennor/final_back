@@ -1,5 +1,6 @@
 package com.final_back.controller.maintainInfo;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.final_back.entity.maintainInfo.BatchInfo;
 import com.final_back.mapper.cultivation.*;
 import com.final_back.mapper.maintainInfo.BatchInfoMapper;
@@ -25,6 +26,8 @@ public class BatchInfoController {
     BatchInfoService batchInfoService;
     @Autowired
     WorkItemService workItemService;
+    @Autowired
+    BatchInfoMapper batchInfoMapper;
 
     /**
      * 取得所有批次信息
@@ -88,6 +91,7 @@ public class BatchInfoController {
 
     /**
      * 取得批次工作flow
+     *
      * @param batchInfo
      * @return
      */
@@ -96,4 +100,18 @@ public class BatchInfoController {
         Map<String, Object> batchWorkFlow = workItemService.getBatchWorkFlow(batchInfo.getBatchId());
         return ResultUtil.success(batchWorkFlow);
     }
+
+    /**
+     * 取得不同类型的工作
+     */
+    @RequestMapping("/getTypeBatchInfo")
+    public Result<?> getTypeBatchInfo(@RequestBody BatchInfo batchInfo) {
+        QueryWrapper<BatchInfo> batchInfoQueryWrapper = new QueryWrapper<>();
+        batchInfoQueryWrapper.eq("type", batchInfo.getType());
+        List<BatchInfo> batchInfos = batchInfoMapper.selectList(batchInfoQueryWrapper);
+
+        return ResultUtil.success(batchInfos);
+    }
+
+
 }

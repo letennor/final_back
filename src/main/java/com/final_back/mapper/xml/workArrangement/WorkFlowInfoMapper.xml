@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.final_back.mapper.workArrangement.WorkflowInfoMapper">
+<mapper namespace="com.final_back.mapper.workArrangement.WorkFlowInfoMapper">
 
     <select id="getPersonWorkFlowInfo" resultMap="getPersonWorkFlowInfo">
 
-        select work_flow_info.workflow_id,
+        select work_flow_info.work_flow_id,
         work_flow_info.work_item_id,
         work_flow_info.work_person,
         work_flow_info.work_date,
@@ -28,9 +28,13 @@
             <if test="currentDate != null">
                 AND work_flow_info.work_date = #{currentDate}
             </if>
+            <if test="isFinished != null">
+                AND work_flow_info.is_finished = #{isFinished}
+            </if>
         </where>
     </select>
-    <resultMap id="getPersonWorkFlowInfo" type="com.final_back.entity.workArrangement.WorkflowInfo"></resultMap>
+    <resultMap id="getPersonWorkFlowInfo" type="com.final_back.entity.workArrangement.WorkFlowInfo"></resultMap>
+
 
     <select id="getPersonWorkFlowInfoIdByCondition" resultMap="getPersonWorkFlowInfoIdByCondition">
         select distinct work_person

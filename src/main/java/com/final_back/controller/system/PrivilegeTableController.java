@@ -24,8 +24,6 @@ public class PrivilegeTableController {
      */
     @RequestMapping("/addPrivilege")
     public Result<?> addPrivilege(@RequestBody PrivilegeTable privilegeTable) {
-
-
         Integer i = privilegeTableService.addPrivilage(privilegeTable);
         return ResultUtil.success(i);
     }
@@ -74,6 +72,12 @@ public class PrivilegeTableController {
     public Result<?> getAuthList() {
         List<PrivilegeTable> authList = privilegeTableService.getAuthList();
         return ResultUtil.success(authList);
+    }
+
+    @RequestMapping("/getFatherPrivilege")
+    public Result<?> getFatherPrivilege() {
+        List<PrivilegeTable> parentPrivilege = privilegeTableService.getParentPrivilege();
+        return ResultUtil.success(parentPrivilege);
     }
 
 }

@@ -85,5 +85,23 @@ public class DateUtils {
         return df.format(date);
     }
 
+    // 将date对象，转化为00:00:00的date对象
+    public static Date dateToBottom(Date date) {
+        String dateString = DateUtils.dateToString(date, "yyyy-MM-dd");
+        return DateUtils.stringToDate(dateString);
+    }
 
+    /**
+     * 返回计算日期
+     *
+     * @param date
+     * @param number
+     * @return
+     */
+    public static Date dateCalculate(Date date, Integer number) {
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        cal.add(Calendar.DATE, number);
+        return cal.getTime();
+    }
 }

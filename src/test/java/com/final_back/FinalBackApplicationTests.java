@@ -1,42 +1,39 @@
 package com.final_back;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.final_back.controller.cultivation.EggProductionRecordController;
-import com.final_back.dto.DeathRecordDTO;
 import com.final_back.dto.UserBasicInfoDTO;
 import com.final_back.entity.cultivation.*;
+import com.final_back.entity.maintainInfo.BatchInfo;
 import com.final_back.entity.system.PrivilegeTable;
 import com.final_back.entity.system.RolePri;
 import com.final_back.entity.transport.IncomingRecord;
 import com.final_back.entity.transport.OutputRecord;
 import com.final_back.entity.transport.TransportRecord;
 import com.final_back.entity.workArrangement.WorkItem;
-import com.final_back.entity.workArrangement.WorkflowInfo;
+import com.final_back.entity.workArrangement.WorkFlowInfo;
 import com.final_back.mapper.cultivation.IndividualDeathRecordMapper;
+import com.final_back.mapper.maintainInfo.BatchInfoMapper;
 import com.final_back.mapper.system.PrivilegeTableMapper;
 import com.final_back.mapper.system.RolePriMapper;
 import com.final_back.mapper.system.UserBasicInfoMapper;
-import com.final_back.mapper.system.UserPasswordInfoMapper;
 import com.final_back.entity.system.UserBasicInfo;
-import com.final_back.entity.system.UserPasswordInfo;
+import com.final_back.mapper.workArrangement.WorkFlowInfoMapper;
 import com.final_back.service.cultivation.*;
 import com.final_back.service.maintainInfo.BatchInfoService;
+import com.final_back.service.system.PrivilegeTableService;
 import com.final_back.service.system.UserBasicInfoService;
 import com.final_back.service.system.UserPasswordInfoService;
 import com.final_back.service.transport.IncomingRecordService;
 import com.final_back.service.transport.OutputRecordService;
 import com.final_back.service.transport.TransportRecordService;
 import com.final_back.service.workArrangement.WorkItemService;
-import com.final_back.service.workArrangement.WorkflowInfoService;
+import com.final_back.service.workArrangement.WorkFlowInfoService;
 import com.final_back.utils.common.TokenUtil;
 import com.final_back.utils.date.DateUtils;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.SQLException;
 import java.util.*;
 
 @SpringBootTest
@@ -491,7 +488,7 @@ class FinalBackApplicationTests {
     }
 
     @Autowired
-    WorkflowInfoService workflowInfoService;
+    WorkFlowInfoService workflowInfoService;
 
     @Test
     void test49() {
@@ -502,8 +499,8 @@ class FinalBackApplicationTests {
         //通过workPerson找到某人今天的所有工作
         while (iterator.hasNext()) {
             UserBasicInfoDTO next = iterator.next();
-            List<WorkflowInfo> personWorkFlowInfo = workflowInfoService.getPersonWorkFlowInfo(next.getUserBasicInfoId(), currentDate);
-            next.setWorkflowInfoList(personWorkFlowInfo);
+            List<WorkFlowInfo> personWorkFlowInfo = workflowInfoService.getPersonWorkFlowInfo(next.getUserBasicInfoId(), currentDate);
+            next.setWorkFlowInfoList(personWorkFlowInfo);
         }
         System.out.println(allUserAllInfo);
     }
@@ -540,9 +537,139 @@ class FinalBackApplicationTests {
     void test53() {
         List<Long> personWorkFlowInfoIdByCondition = workflowInfoService.getPersonWorkFlowInfoIdByCondition(DateUtils.stringToDate("2023-03-24 00:00:00"), DateUtils.stringToDate("2023-03-25 00:00:00"));
         System.out.println(personWorkFlowInfoIdByCondition);
-        List<UserBasicInfoDTO> userAllInfoByCondition = userBasicInfoService.getUserAllInfoByCondition(null, personWorkFlowInfoIdByCondition);
+        List<UserBasicInfoDTO> userAllInfoByCondition = userBasicInfoService.getUserAllInfoByCondition(1636587885578465282L, personWorkFlowInfoIdByCondition);
         System.out.println(userAllInfoByCondition);
-    
+
+    }
+
+
+    @Test
+    void test54() {
+        List<Long> personWorkFlowInfoIdByCondition = workflowInfoService.getPersonWorkFlowInfoIdByCondition(null, null);
+        if (personWorkFlowInfoIdByCondition.size() != 0) {
+            List<UserBasicInfoDTO> userAllInfoByCondition = userBasicInfoService.getUserAllInfoByCondition(null, personWorkFlowInfoIdByCondition);
+
+            Iterator<UserBasicInfoDTO> iterator = userAllInfoByCondition.iterator();
+            Date currentDate = DateUtils.stringToDate(DateUtils.dateToString(new Date(), "YYYY-MM-dd"));
+
+            //通过workPerson找到某人今天的所有工作
+            while (iterator.hasNext()) {
+                UserBasicInfoDTO next = iterator.next();
+                List<WorkFlowInfo> personWorkFlowInfo = workflowInfoService.getPersonWorkFlowInfo(next.getUserBasicInfoId(), currentDate);
+                next.setWorkFlowInfoList(personWorkFlowInfo);
+            }
+
+            System.out.println(userAllInfoByCondition);
+        } else {
+            System.out.println("没有人在今天有空");
+        }
+
+
+    }
+
+    @Autowired
+    PrivilegeTableService privilegeTableService;
+
+    @Test
+    void test55() {
+        List<PrivilegeTable> parentPrivilege = privilegeTableService.getParentPrivilege();
+        Iterator<PrivilegeTable> iterator = parentPrivilege.iterator();
+        while (iterator.hasNext()) {
+            System.out.println(iterator.next());
+        }
+    }
+
+    @Autowired
+    BatchInfoMapper batchInfoMapper;
+
+    @Test
+    void test56() {
+        // 通过类型获取不同类型的所有批次，并且要是有效的批次
+        QueryWrapper<BatchInfo> batchInfoQueryWrapper = new QueryWrapper<>();
+        batchInfoQueryWrapper.eq("type", "养殖");
+        List<BatchInfo> batchInfos = batchInfoMapper.selectList(batchInfoQueryWrapper);
+        Iterator<BatchInfo> iterator = batchInfos.iterator();
+        while (iterator.hasNext()) {
+            System.out.println(iterator.next());
+        }
+
+    }
+
+    @Test
+    void test57() {
+        List<WorkItem> allElseWork = workItemService.getAllElseWork();
+        Iterator<WorkItem> iterator = allElseWork.iterator();
+        while (iterator.hasNext()) {
+            System.out.println(iterator.next());
+        }
+    }
+
+    @Test
+    void test58() {
+        System.out.println(DateUtils.dateToBottom(new Date()));
+
+    }
+
+    @Test
+    void test59() {
+        System.out.println("现在的date: " + new Date());
+
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(new Date());
+        cal.add(Calendar.DATE, -1);
+
+        System.out.println("一天前的date: " + cal.getTime());
+
+    }
+
+    @Test
+    void test60() {
+        Date job1 = new Date();
+        Date job2 = DateUtils.dateCalculate(job1, 6);
+        Date job3 = DateUtils.dateCalculate(job2, 0);
+        Date job4 = DateUtils.dateCalculate(job3, 12);
+        Date job5 = DateUtils.dateCalculate(job4, 0);
+        Date job6 = DateUtils.dateCalculate(job5, 3);
+        Date job7 = DateUtils.dateCalculate(job6, 0);
+        Date job8 = DateUtils.dateCalculate(job7, 0);
+
+        List<Date> workFlowDate = new ArrayList<>();
+        workFlowDate.add(job1);
+        workFlowDate.add(job2);
+        workFlowDate.add(job3);
+        workFlowDate.add(job4);
+        workFlowDate.add(job5);
+        workFlowDate.add(job6);
+        workFlowDate.add(job7);
+        workFlowDate.add(job8);
+
+        Iterator<Date> iterator = workFlowDate.iterator();
+        while (iterator.hasNext()) {
+            System.out.println(iterator.next());
+        }
+    }
+
+    @Autowired
+    WorkFlowInfoMapper workFlowInfoMapper;
+
+    @Test
+    void test61() {
+        List<WorkFlowInfo> personWorkFlowInfo = workFlowInfoMapper.getPersonWorkFlowInfo(1597441346729988097L, null, 0);
+        Iterator<WorkFlowInfo> iterator = personWorkFlowInfo.iterator();
+        while (iterator.hasNext()) {
+            System.out.println(iterator.next());
+        }
+
+    }
+
+    @Test
+    void test62() {
+        List<WorkFlowInfo> allPersonUndoneWork = workflowInfoService.getPersonUndoneWork(1637396083667378178L);
+        System.out.println(allPersonUndoneWork);
+        Iterator<WorkFlowInfo> iterator = allPersonUndoneWork.iterator();
+        while (iterator.hasNext()) {
+            System.out.println(iterator.next());
+        }
     }
 
 }

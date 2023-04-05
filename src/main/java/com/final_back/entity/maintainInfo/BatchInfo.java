@@ -28,6 +28,8 @@ public class BatchInfo {
 
     private String type;
 
+    private Date startDate;
+
     @TableField(fill = FieldFill.INSERT)
     private Date gmtCreate;
 

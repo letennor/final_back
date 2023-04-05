@@ -2,11 +2,10 @@ package com.final_back.impl.workArrangement;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.final_back.dto.UserBasicInfoDTO;
-import com.final_back.entity.system.UserBasicInfo;
-import com.final_back.entity.workArrangement.WorkflowInfo;
-import com.final_back.mapper.workArrangement.WorkflowInfoMapper;
+import com.final_back.entity.workArrangement.WorkFlowInfo;
+import com.final_back.mapper.workArrangement.WorkFlowInfoMapper;
 import com.final_back.service.system.UserBasicInfoService;
-import com.final_back.service.workArrangement.WorkflowInfoService;
+import com.final_back.service.workArrangement.WorkFlowInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,22 +13,11 @@ import java.util.Date;
 import java.util.List;
 
 @Service
-public class WorkflowInfoImpl extends ServiceImpl<WorkflowInfoMapper, WorkflowInfo> implements WorkflowInfoService {
+public class WorkFlowInfoImpl extends ServiceImpl<WorkFlowInfoMapper, WorkFlowInfo> implements WorkFlowInfoService {
     @Autowired
     UserBasicInfoService userBasicInfoService;
     @Autowired
-    WorkflowInfoMapper workflowInfoMapper;
-
-    /**
-     * 取得用户所有为完成的工作
-     *
-     * @param userBasicInfo
-     * @return
-     */
-    @Override
-    public List<WorkflowInfo> getAllPersonUndoneWork(Long userBasicInfo) {
-        return null;
-    }
+    WorkFlowInfoMapper workflowInfoMapper;
 
     /**
      * 添加工作流程
@@ -38,7 +26,7 @@ public class WorkflowInfoImpl extends ServiceImpl<WorkflowInfoMapper, WorkflowIn
      * @return
      */
     @Override
-    public Integer addWorkflowInfo(WorkflowInfo workflowInfo) {
+    public Integer addWorkflowInfo(WorkFlowInfo workflowInfo) {
         return null;
     }
 
@@ -72,8 +60,8 @@ public class WorkflowInfoImpl extends ServiceImpl<WorkflowInfoMapper, WorkflowIn
      * @return
      */
     @Override
-    public List<WorkflowInfo> getPersonWorkFlowInfo(Long workPerosn, Date currentDate) {
-        List<WorkflowInfo> personWorkFlowInfo = workflowInfoMapper.getPersonWorkFlowInfo(workPerosn, currentDate);
+    public List<WorkFlowInfo> getPersonWorkFlowInfo(Long workPerosn, Date currentDate) {
+        List<WorkFlowInfo> personWorkFlowInfo = workflowInfoMapper.getPersonWorkFlowInfo(workPerosn, currentDate, 0);
         return personWorkFlowInfo;
     }
 
@@ -87,6 +75,19 @@ public class WorkflowInfoImpl extends ServiceImpl<WorkflowInfoMapper, WorkflowIn
     public List<Long> getPersonWorkFlowInfoIdByCondition(Date beginFreeDate, Date endFreeDate) {
         List<Long> personWorkFlowInfoIdByCondition = workflowInfoMapper.getPersonWorkFlowInfoIdByCondition(beginFreeDate, endFreeDate);
         return personWorkFlowInfoIdByCondition;
+    }
+
+    /**
+     * 取得所有未完成的任务
+     *
+     * @param userId
+     * @return
+     */
+    @Override
+    public List<WorkFlowInfo> getPersonUndoneWork(Long userId) {
+        List<WorkFlowInfo> personWorkFlowInfo = workflowInfoMapper.getPersonWorkFlowInfo(userId, null, 0);
+
+        return personWorkFlowInfo;
     }
 
 

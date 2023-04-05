@@ -136,7 +136,7 @@ public class UserBasicInfoController {
         Map<String, Object> map = new HashMap<>();
 
         //userBasicInfo
-        UserBasicInfo userBasicInfo = userBasicInfoService.getPersonInfoByUserBasicInfoId(id);
+        UserBasicInfoDTO userBasicInfo = userBasicInfoService.getPersonInfoByUserBasicInfoId(id);
         map.put("user", userBasicInfo);
 
         RoleTable roleInfo = roleTableService.getRoleInfo(user.getRoleId());
@@ -164,5 +164,16 @@ public class UserBasicInfoController {
         return ResultUtil.success(s);
     }
 
+    @RequestMapping("/getAllDriver")
+    public Result<?> getAllDriver() {
+        List<UserBasicInfoDTO> userAllInfoByCondition = userBasicInfoMapper.getUserAllInfoByCondition(1636587920441520130L, null, null);
+        return ResultUtil.success(userAllInfoByCondition);
+    }
+
+    @RequestMapping("/getPersonInfoByUserBasicInfoId")
+    public Result<?> getPersonInfoByUserBasicInfoId(@RequestBody UserBasicInfoDTO userBasicInfoDTO) {
+        UserBasicInfoDTO personInfoByUserBasicInfoId = userBasicInfoService.getPersonInfoByUserBasicInfoId(userBasicInfoDTO.getUserBasicInfoId());
+        return ResultUtil.success(personInfoByUserBasicInfoId);
+    }
 
 }
