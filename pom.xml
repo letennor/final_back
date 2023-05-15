@@ -58,6 +58,13 @@
             <version>3.5.2</version>
         </dependency>
 
+        <!--  AOP  -->
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>1.9.4</version>
+        </dependency>
+
         <dependency>
             <groupId>p6spy</groupId>
             <artifactId>p6spy</artifactId>
@@ -70,13 +77,11 @@
             <optional>true</optional>
         </dependency>
 
-
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
             <version>1.2.4</version>
         </dependency>
-
 
         <!--sprintboot单元测试-->
         <dependency>

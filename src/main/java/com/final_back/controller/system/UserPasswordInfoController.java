@@ -1,6 +1,7 @@
 package com.final_back.controller.system;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.final_back.annotation.MyTransactional;
 import com.final_back.dto.UserBasicInfoDTO;
 import com.final_back.entity.system.UserBasicInfo;
 import com.final_back.entity.system.UserPasswordInfo;
@@ -44,6 +45,7 @@ public class UserPasswordInfoController {
      * @return
      */
     @RequestMapping("/login")
+    @MyTransactional
     public Result<?> login(@RequestBody UserPasswordInfo userPasswordInfo) {
         System.out.println("userName:" + userPasswordInfo.getUserName());
         System.out.println("password:" + userPasswordInfo.getPassword());

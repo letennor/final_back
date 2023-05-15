@@ -11,6 +11,7 @@ import com.final_back.entity.transport.OutputRecord;
 import com.final_back.entity.transport.TransportRecord;
 import com.final_back.entity.workArrangement.WorkItem;
 import com.final_back.entity.workArrangement.WorkFlowInfo;
+import com.final_back.handler.MysqlBackup;
 import com.final_back.mapper.cultivation.IndividualDeathRecordMapper;
 import com.final_back.mapper.maintainInfo.BatchInfoMapper;
 import com.final_back.mapper.system.PrivilegeTableMapper;
@@ -514,16 +515,6 @@ class FinalBackApplicationTests {
         }
     }
 
-
-    @Test
-    void test51() {
-        List<UserBasicInfoDTO> userAllInfoByCondition = userBasicInfoService.getUserAllInfoByCondition(null, null);
-        Iterator<UserBasicInfoDTO> iterator = userAllInfoByCondition.iterator();
-        while (iterator.hasNext()) {
-            System.out.println(iterator.next());
-        }
-    }
-
     @Test
     void test52() {
         List<Long> personWorkFlowInfoIdByCondition = workflowInfoService.getPersonWorkFlowInfoIdByCondition(DateUtils.stringToDate("2023-03-24 00:00:00"), DateUtils.stringToDate("2023-03-25 00:00:00"));
@@ -533,39 +524,6 @@ class FinalBackApplicationTests {
         }
     }
 
-    @Test
-    void test53() {
-        List<Long> personWorkFlowInfoIdByCondition = workflowInfoService.getPersonWorkFlowInfoIdByCondition(DateUtils.stringToDate("2023-03-24 00:00:00"), DateUtils.stringToDate("2023-03-25 00:00:00"));
-        System.out.println(personWorkFlowInfoIdByCondition);
-        List<UserBasicInfoDTO> userAllInfoByCondition = userBasicInfoService.getUserAllInfoByCondition(1636587885578465282L, personWorkFlowInfoIdByCondition);
-        System.out.println(userAllInfoByCondition);
-
-    }
-
-
-    @Test
-    void test54() {
-        List<Long> personWorkFlowInfoIdByCondition = workflowInfoService.getPersonWorkFlowInfoIdByCondition(null, null);
-        if (personWorkFlowInfoIdByCondition.size() != 0) {
-            List<UserBasicInfoDTO> userAllInfoByCondition = userBasicInfoService.getUserAllInfoByCondition(null, personWorkFlowInfoIdByCondition);
-
-            Iterator<UserBasicInfoDTO> iterator = userAllInfoByCondition.iterator();
-            Date currentDate = DateUtils.stringToDate(DateUtils.dateToString(new Date(), "YYYY-MM-dd"));
-
-            //通过workPerson找到某人今天的所有工作
-            while (iterator.hasNext()) {
-                UserBasicInfoDTO next = iterator.next();
-                List<WorkFlowInfo> personWorkFlowInfo = workflowInfoService.getPersonWorkFlowInfo(next.getUserBasicInfoId(), currentDate);
-                next.setWorkFlowInfoList(personWorkFlowInfo);
-            }
-
-            System.out.println(userAllInfoByCondition);
-        } else {
-            System.out.println("没有人在今天有空");
-        }
-
-
-    }
 
     @Autowired
     PrivilegeTableService privilegeTableService;
@@ -670,6 +628,31 @@ class FinalBackApplicationTests {
         while (iterator.hasNext()) {
             System.out.println(iterator.next());
         }
+    }
+
+    @Test
+    void test63() {
+        MysqlBackup mysqlBackup = new MysqlBackup();
+        mysqlBackup.restoreMysql();
+    }
+
+    @Test
+    void test64() {
+        MysqlBackup mysqlBackup = new MysqlBackup();
+        mysqlBackup.recoverMysql();
+    }
+
+    @Test
+    void test65() {
+        MysqlBackup mysqlBackup = new MysqlBackup();
+        mysqlBackup.restoreMysqlLinux();
+
+    }
+
+    @Test
+    void test66(){
+
+
     }
 
 }
